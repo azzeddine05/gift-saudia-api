@@ -21,7 +21,7 @@ class GiftStepsController extends Controller
 
     public function index()
     {
-
+        dd('welcome to step here');
     }
 
     public function create(Request $request)
