@@ -14,11 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('admin/gift-steps', 'admin\DashboardController@giftSteps')->name('gift.steps');
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
 });
+Route::get('admin/gift-steps', 'admin\DashboardController@giftSteps')->name('gift.steps');
+Route::get('admin/main-sectors', 'admin\DashboardController@mainSectors')->name('gift.mainSectors');
+Route::get('admin/sub-sectors', 'admin\DashboardController@subSectors')->name('gift.subSectors');
 
 Route::get('test', 'admin\TestController@index');
 Route::get('dashboard', 'admin\DashboardController@index');

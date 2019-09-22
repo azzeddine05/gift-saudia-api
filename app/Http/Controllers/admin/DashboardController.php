@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\GiftStep;
+use App\MainSector;
+use App\SecondarySector;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +18,19 @@ class DashboardController extends Controller
     }
     public function giftSteps()
     {
-        return view('admin.gift.steps.index');
+        $giftSteps =  GiftStep::all();
+        return view('admin.gift.steps.index', ['giftSteps' => $giftSteps]);
+
+    }
+    public function mainSectors()
+    {
+        $mainSectors =  MainSector::all();
+        return view('admin.mainSector.index', ['mainSectors' => $mainSectors]);
+
+    }public function subSectors()
+    {
+        $subSectors =  SecondarySector::all();
+        return view('admin.secendarySectors.index', ['subSectors' => $subSectors]);
 
     }
 

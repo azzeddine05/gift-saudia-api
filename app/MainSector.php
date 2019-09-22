@@ -13,4 +13,13 @@ class MainSector extends Model
      */
     protected $table = 'main_sectors';
 
+    protected $fillable = [
+        'arabic_name', 'english_name', 'created_at'
+    ];
+
+    public function secondarySectors()
+    {
+        return $this->hasMany(SecondarySector::class);
+    }
+
 }

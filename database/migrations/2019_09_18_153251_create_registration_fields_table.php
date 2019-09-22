@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSecondarySectorTable extends Migration
+class CreateRegistrationFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateSecondarySectorTable extends Migration
      */
     public function up()
     {
-        Schema::create('secondary_sectors', function (Blueprint $table) {
+        Schema::create('registration_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('arabic_name');
             $table->string('english_name');
-            $table->double('registration_fees');
-            $table->double('Subscription_fees');
-            $table->unsignedBigInteger('main_sector_id');
+            $table->string('type');
+
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateSecondarySectorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secondary_sector');
+        Schema::dropIfExists('registration_fields');
     }
 }

@@ -1,33 +1,8 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-    <meta name="author" content="Coderthemes">
 
-    <link rel="shortcut icon" href="{{asset('back')}}/assets/images/favicon.ico">
-
-    <title>Ubold - Responsive Admin Dashboard Template</title>
-
-    <!-- DataTables -->
-    <link href="{{asset('back')}}/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('back')}}/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <!-- Responsive datatable examples -->
-    <link href="{{asset('back')}}/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <!-- Multi Item Selection examples -->
-    <link href="{{asset('back')}}/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-
-    <link href="{{asset('back')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('back')}}/assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('back')}}/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    <script src="{{asset('back')}}/assets/js/modernizr.min.js"></script>
-
-
-</head>
-
+@include('layouts/back/head');
 
 <body class="fixed-left">
 
@@ -61,39 +36,44 @@
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="col-12">
+                        <div style="display: none" class="alert alert-success success-message">
+                            <strong>Success!</strong> add with success.
+                        </div>
                         <div class="card-box table-responsive">
                             <div class="col-sm-4">
-                                <a id="addStep" href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
+                                <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
                             </div>
 
                             <table id="datatable" class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>@lang('dashboard.step_name')</th>
+                                    <th>@lang('dashboard.step_name_arabic')</th>
+                                    <th>@lang('dashboard.step_name_english')</th>
                                     <th>@lang('dashboard.step_start')</th>
                                     <th>@lang('dashboard.step_end')</th>
+                                    <th>@lang('dashboard.action')</th>
+
                                 </tr>
                                 </thead>
 
-
                                 <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                </tr>
+                                @foreach ($giftSteps as $giftStep)
+                                    <tr>
+                                    <td>{{ $giftStep->arabic_name }}</td>
+                                    <td>{{ $giftStep->english_name }}</td>
+                                    <td>{{ $giftStep->start_date }}</td>
+                                    <td>{{ $giftStep->end_date }}</td>
+                                    <td>{{ $giftStep->action }}</td>
 
-
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div> <!-- end row -->
-
-
 
 
             </div> <!-- container -->
@@ -103,6 +83,7 @@
         <footer class="footer text-right">
             &copy; 2016 - 2018. All rights reserved.
         </footer>
+
 
     </div>
 
@@ -225,6 +206,38 @@
 </div>
 <!-- END wrapper -->
 
+<!-- Modal -->
+<div id="custom-modal" class="modal-demo">
+    <button type="button" class="close" onclick="Custombox.close();">
+        <span>&times;</span><span class="sr-only">Close</span>
+    </button>
+    <h4 class="custom-modal-title">Add Contact</h4>
+    <div class="custom-modal-text text-left">
+        <form id="myForm" role="form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="arabic_name" id="arabic_name" placeholder="Enter name">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="text" class="form-control" name="english_name" id="english_name" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+                <label for="position">Contact number</label>
+                <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Enter number">
+            </div>
+            <div class="form-group">
+                <label for="position">Contact number</label>
+                <input type="text" class="form-control" name="end_date" id="end_date" placeholder="Enter number">
+            </div>
+
+            <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">Save</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+        </form>
+    </div>
+</div>
 
 
 <script>
@@ -232,72 +245,42 @@
 </script>
 
 <!-- jQuery  -->
-<script src="{{asset('back')}}/assets/js/jquery.min.js"></script>
-<script src="{{asset('back')}}/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
-<script src="{{asset('back')}}/assets/js/bootstrap.min.js"></script>
-<script src="{{asset('back')}}/assets/js/detect.js"></script>
-<script src="{{asset('back')}}/assets/js/fastclick.js"></script>
-<script src="{{asset('back')}}/assets/js/jquery.slimscroll.js"></script>
-<script src="{{asset('back')}}/assets/js/jquery.blockUI.js"></script>
-<script src="{{asset('back')}}/assets/js/waves.js"></script>
-<script src="{{asset('back')}}/assets/js/wow.min.js"></script>
-<script src="{{asset('back')}}/assets/js/jquery.nicescroll.js"></script>
-<script src="{{asset('back')}}/assets/js/jquery.scrollTo.min.js"></script>
+@include('layouts/back/script');
 
-<!-- Required datatable js -->
-<script src="{{asset('back')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- Buttons examples -->
-<script src="{{asset('back')}}/plugins/datatables/dataTables.buttons.min.js"></script>
-<script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/jszip.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/pdfmake.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/vfs_fonts.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/buttons.html5.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/buttons.print.min.js"></script>
-
-<!-- Key Tables -->
-<script src="{{asset('back')}}/plugins/datatables/dataTables.keyTable.min.js"></script>
-
-<!-- Responsive examples -->
-<script src="{{asset('back')}}/plugins/datatables/dataTables.responsive.min.js"></script>
-<script src="{{asset('back')}}/plugins/datatables/responsive.bootstrap4.min.js"></script>
-
-<!-- Selection table -->
-<script src="{{asset('back')}}/plugins/datatables/dataTables.select.min.js"></script>
-
-<!-- App js -->
-{{--<script src="{{asset('back')}}/assets/js/jquery.core.js"></script>--}}
-<script src="{{asset('back')}}/assets/js/jquery.app.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $("#addStep").click(function() {
-            // var resultElement = document.getElementById('getResult1');
-            // resultElement.innerHTML = '';
-            alert("ddssf");
-            axios.post('http://localhost:8000/api/gift-steps/create')
-                .then((response) => {
-                    console.log(response.data);
-                    console.log(response.status);
-                    console.log(response.statusText);
-                    console.log(response.headers);
-                    console.log(response.config);
-                });
+        const getDatafromForm = (arabicName, englishName, startDate, endDate) => {
+            var bodyFormData = new FormData();
+            var arabic_name = $("#arabic_name").val();
+            var english_name = $("#english_name").val();
+            var start_date = $("#start_date").val();
+            var end_date = $("#end_date").val();
 
-            // axios.get('Api/gift-steps/create')
-            //     .then(function (response) {
-            //         //resultElement.innerHTML = generateSuccessHTMLOutput(response);
-            //         console.log(response);
-            //     })
-            //
-            //     .catch(function (error) {
-            //         console.log(error);
-            //         //resultElement.innerHTML = generateErrorHTMLOutput(error);
-            //     });
+            bodyFormData.set('arabic_name', arabic_name);
+            bodyFormData.set('english_name', english_name);
+            bodyFormData.set('start_date', start_date);
+            bodyFormData.set('end_date', end_date);
+            return bodyFormData;
+        };
+
+        $("#addStep").click(function(e) {
+            e.preventDefault();
+            var data = getDatafromForm();
+            axios.post('http://localhost:8000/api/admin/gift-steps', data)
+            .then(response => {
+                console.log(response);
+                //$("#addStep").innerHTML = '';
+                Custombox.close();
+                $(".success-message").fadeIn();
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
         });
 
 
