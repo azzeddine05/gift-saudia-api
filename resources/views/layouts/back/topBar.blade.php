@@ -32,23 +32,13 @@
                     </div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-success"><i class="icon-bubble"></i></div>
-                        <p class="notify-details">Robert S. Taylor commented on Admin<small class="text-muted">1 min ago</small></p>
-                    </a>
-
+                    @foreach(Auth::user()->notifications as $notification)
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon bg-info"><i class="icon-user"></i></div>
-                        <p class="notify-details">New user registered.<small class="text-muted">1 min ago</small></p>
+                        <p class="notify-details">New user registered. {{ $notification->data['user_name'] }}<small class="text-muted">1 min ago</small></p>
                     </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-danger"><i class="icon-like"></i></div>
-                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">1 min ago</small></p>
-                    </a>
-
+                    @endforeach
                     <!-- All-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
                         View All

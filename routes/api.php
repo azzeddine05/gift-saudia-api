@@ -63,3 +63,14 @@ Route::post('admin/sub-sector','Api\subSectors\SubSectorController@store');
 Route::put('admin/sub-sector/{id}','Api\subSectors\SubSectorController@update');
 
 Route::delete('admin/sub-sector/{id}', 'Api\subSectors\SubSectorController@delete');
+
+// Regsitration Fields
+Route::get('admin/registration-fields', 'Api\registerFields\FieldController@index');
+
+Route::get('admin/registration-fields/{id}', 'Api\registerFields\FieldController@show');
+
+Route::post('admin/registration-fields','Api\registerFields\FieldController@store');
+
+Route::put('admin/registration-fields/{id}','Api\registerFields\FieldController@update');
+
+Route::delete('admin/registration-fields/{id}', 'Api\registerFields\FieldController@delete');

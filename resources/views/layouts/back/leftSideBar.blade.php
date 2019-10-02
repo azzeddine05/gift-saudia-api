@@ -27,7 +27,7 @@
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span>حقول القطاعات </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول نموذج الجاهزية</span> <span class="menu-arrow"></span> </a>

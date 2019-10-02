@@ -57,8 +57,6 @@
 
                             </tr>
                             </thead>
-
-
                             <tbody>
                             @foreach ($mainSectors as $mainSector)
                                 <tr>
@@ -72,7 +70,6 @@
                     </div>
                 </div>
             </div> <!-- end row -->
-
 
 
 
