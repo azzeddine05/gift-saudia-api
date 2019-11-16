@@ -17,8 +17,8 @@ class CreateSecondarySectorTable extends Migration
             $table->bigIncrements('id');
             $table->string('arabic_name');
             $table->string('english_name');
-            $table->double('registration_fees');
-            $table->double('Subscription_fees');
+            $table->double('registration_fees')->default(0);
+            $table->double('Subscription_fees')->default(0);
             $table->unsignedBigInteger('main_sector_id');
             $table->timestamps();
         });

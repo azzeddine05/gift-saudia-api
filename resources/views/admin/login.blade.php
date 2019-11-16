@@ -7,13 +7,14 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
     <link rel="shortcut icon" href="{{asset('back')}}/assets/images/favicon.ico">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link href="{{asset('back')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('back')}}/assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('back')}}/assets/css/style.css" rel="stylesheet" type="text/css" />
-
     <script src="{{asset('back')}}/assets/js/modernizr.min.js"></script>
 
 </head>
@@ -26,8 +27,6 @@
         <div class="panel-heading">
             <h4 class="text-center"> Sign In to <strong class="text-custom">UBold</strong></h4>
         </div>
-
-
         <div class="p-20">
             <form class="form-horizontal m-t-20" action="index.html">
 
@@ -48,7 +47,7 @@
                         <div class="checkbox checkbox-primary">
                             <input id="checkbox-signup" type="checkbox">
                             <label for="checkbox-signup">
-                                Remember me
+                                تدكرني
                             </label>
                         </div>
 

@@ -30,20 +30,19 @@
                 <!-- Page-Title -->
                 <div class="row">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Datatable</li>
+                            <li class="breadcrumb-item active">مراحل الجائزة </li>
                         </ol>
-
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
                         <div style="display: none" class="alert alert-success success-message">
-                            <strong>Success!</strong> add with success.
+                            <strong>نجاح العملية !</strong> تمت إضافة مرحلة جديدة بنجاح
                         </div>
                         <div class="card-box table-responsive">
                             <div class="col-sm-4">
-                                <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
+                                <a href="#custom-modal" data-toggle="modal" data-target="#exampleModal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
                             </div>
 
                             <table id="datatable" class="table table-bordered">
@@ -65,7 +64,27 @@
                                     <td>{{ $giftStep->english_name }}</td>
                                     <td>{{ $giftStep->start_date }}</td>
                                     <td>{{ $giftStep->end_date }}</td>
-                                    <td>{{ $giftStep->action }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
+                                            <a href="{{ url('api/admin/main-sector/'.$giftStep->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                            <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:55%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h6>هل أنت متأكد من عملية الحدف  ?</h6>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
+                                                            <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">حدف</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
 
                                     </tr>
                                 @endforeach
@@ -79,10 +98,7 @@
             </div> <!-- container -->
 
         </div> <!-- content -->
-
-        <footer class="footer text-right">
-            &copy; 2016 - 2018. All rights reserved.
-        </footer>
+        @include('layouts/back/footer');
 
 
     </div>
@@ -207,37 +223,131 @@
 <!-- END wrapper -->
 
 <!-- Modal -->
-<div id="custom-modal" class="modal-demo">
-    <button type="button" class="close" onclick="Custombox.close();">
-        <span>&times;</span><span class="sr-only">Close</span>
-    </button>
-    <h4 class="custom-modal-title">Add Contact</h4>
-    <div class="custom-modal-text text-left">
-        <form id="myForm" role="form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="arabic_name" id="arabic_name" placeholder="Enter name">
-            </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" for="position">إضافة مرحلة  جديدة </h5>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="text" class="form-control" name="english_name" id="english_name" placeholder="Enter email">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-            <div class="form-group">
-                <label for="position">Contact number</label>
-                <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Enter number">
+            <div class="modal-body">
+                <div class="custom-modal-text text-left">
+                    <form id="myForm" role="form">
+                        <div class="form-group">
+                            <label for="sel1">إسم المرحلة </label>
+                            <select class="form-control" name="arabic_name" id="arabic_name" required>
+                                <option value="0" disabled selected>إختر المرحلة </option>
+                                <option value="registredPeriod">مرحلة التسجيل</option>
+                                <option value="reviewsPeriod">مرحلة التقييم</option>
+                                <option value="resultPeriod">مرحلة إعلان النتائج</option>
+                            </select>
+                        </div><br>
+                        {{--            <div class="form-group">--}}
+                        {{--                <label for="exampleInputEmail1">إسم المرحلة بالإنجليزية</label>--}}
+                        {{--                <input type="text" class="form-control" name="english_name" id="english_name" placeholder="">--}}
+                        {{--            </div>--}}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="position">تاريخ بداية المرحلة </label>
+                                    <input value="" name="start_date" id="start_date" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="position">توقيت بداية المرحلة </label>
+                                    <input name="start_time" id="start_time" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                        </div><br>
+                        {{--            <div class="form-group">--}}
+                        {{--                <input class="form-control" type="date" name="date">--}}
+                        {{--            </div>--}}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="position"> تاريخ نهاية المرحلة </label>
+                                    <input name="end_date" id="end_date" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="position"> توقيت نهاية المرحلة </label>
+                                    <input name="end_time" id="end_time" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="position">Contact number</label>
-                <input type="text" class="form-control" name="end_date" id="end_date" placeholder="Enter number">
+            <div class="modal-footer">
+                <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">حفض</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
             </div>
-
-            <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">Save</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
-        </form>
+        </div>
     </div>
 </div>
+
+<!-- Modal -->
+{{--<div id="custom-modal" class="modal-demo">--}}
+{{--    <button type="button" class="close" onclick="Custombox.close();">--}}
+{{--        <span>&times;</span><span class="sr-only">Close</span>--}}
+{{--    </button>--}}
+{{--    <h4 class="custom-modal-title text-center">إضافة مرحلة  </h4>--}}
+{{--    <div class="custom-modal-text text-left">--}}
+{{--        <form id="myForm" role="form">--}}
+{{--            <div class="form-group">--}}
+{{--                <label for="sel1">إسم المرحلة </label>--}}
+{{--                <select class="form-control" name="arabic_name" id="arabic_name" required>--}}
+{{--                    <option value="0" disabled selected>إختر المرحلة </option>--}}
+{{--                    <option value="registredPeriod">مرحلة التسجيل</option>--}}
+{{--                    <option value="reviewsPeriod">مرحلة التقييم</option>--}}
+{{--                    <option value="resultPeriod">مرحلة إعلان النتائج</option>--}}
+{{--                </select>--}}
+{{--            </div><br>--}}
+{{--            <div class="form-group">--}}
+{{--                <label for="exampleInputEmail1">إسم المرحلة بالإنجليزية</label>--}}
+{{--                <input type="text" class="form-control" name="english_name" id="english_name" placeholder="">--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-8">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="position">تاريخ بداية المرحلة </label>--}}
+{{--                        <input name="start_date" id="start_date" class="form-control" width="276" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="position">توقيت بداية المرحلة </label>--}}
+{{--                        <input name="start_time" id="start_time" class="form-control" width="276" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div><br>--}}
+{{--            <div class="form-group">--}}
+{{--                <input class="form-control" type="date" name="date">--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-8">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="position"> تاريخ نهاية المرحلة </label>--}}
+{{--                        <input name="end_date" id="end_date" class="form-control" width="276" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="position"> توقيت نهاية المرحلة </label>--}}
+{{--                        <input name="end_time" id="end_time" class="form-control" width="276" required/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div><br>--}}
+{{--            <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">حفض</button>--}}
+{{--            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>--}}
+{{--        </form>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 
 <script>
@@ -246,21 +356,30 @@
 
 <!-- jQuery  -->
 @include('layouts/back/script');
-
-
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>--}}
 
 <script type="text/javascript">
     $(document).ready(function() {
 
-        const getDatafromForm = (arabicName, englishName, startDate, endDate) => {
-            var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name").val();
-            var english_name = $("#english_name").val();
-            var start_date = $("#start_date").val();
-            var end_date = $("#end_date").val();
+        $( "#start_date" ).datepicker();
+        $( "#end_date" ).datepicker();
+        $( "#start_time" ).timepicker();
+        $( "#end_time" ).timepicker();
 
+        const getDatafromForm = (arabicName, englishName, startDate, endDate) => {
+            var startDate = $( "#start_date" ).val();
+            var startTime = $( "#start_time" ).val();
+            var endDate = $( "#end_date" ).val();
+            var endTime = $( "#start_time" ).val();
+            var arabic_name = $("#arabic_name").val();
+            //var english_name = $("#english_name").val();
+            var start_date = moment(startDate+' '+startTime).format("YYYY-MM-DD HH:mm:ss");
+            var end_date = moment(endDate+' '+endTime).format("YYYY-MM-DD HH:mm:ss");
+
+            var bodyFormData = new FormData();
             bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
+            bodyFormData.set('english_name', arabic_name);
+            bodyFormData.set('period_type', arabic_name);
             bodyFormData.set('start_date', start_date);
             bodyFormData.set('end_date', end_date);
             return bodyFormData;
@@ -269,12 +388,15 @@
         $("#addStep").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('http://localhost:8000/api/admin/gift-steps', data)
+            console.log(data);
+            axios.post('/api/admin/gift-steps', data)
             .then(response => {
-                console.log(response);
-                //$("#addStep").innerHTML = '';
-                Custombox.close();
+                $("#exampleModal").modal('hide');
                 $(".success-message").fadeIn();
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+                setTimeout(function(){ location.reload(); }, 3500);
 
             })
             .catch(error => {

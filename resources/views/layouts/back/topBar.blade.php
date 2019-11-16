@@ -1,9 +1,14 @@
+<style>
+    h5, h4, a, li, b, p, footer, button, label, th, td, strong, div, h6  {
+        font-family: 'Cairo', sans-serif;
+    }
+</style>
 <div class="topbar">
 
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>ال<i class="md md-album"></i>جائزة</span></a>
+            <a href="{{ url('/dashboard') }}" class="logo"><i class="icon-magnet icon-c-logo"></i><span>ال<i class="md md-album"></i>جائزة</span></a>
             <!-- Image Logo here -->
             <!--<a href="index.html" class="logo">-->
             <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
@@ -28,7 +33,7 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg" aria-labelledby="Preview">
                     <!-- item-->
                     <div class="dropdown-item noti-title">
-                        <h5><span class="badge badge-danger float-right">5</span>Notification</h5>
+                        <h5><span class="badge badge-danger float-right">5</span>الإشعارات</h5>
                     </div>
 
                     <!-- item-->
@@ -41,7 +46,7 @@
                     @endforeach
                     <!-- All-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
-                        View All
+                        الكل
                     </a>
 
                 </div>
@@ -67,11 +72,11 @@
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                     <!-- item-->
                     <div class="dropdown-item noti-title">
-                        <h5 class="text-overflow"><small>مرحبا !  أبو أسامة </small> </h5>
+                        <h5 class="text-overflow"><small>مرحبا !  {{ Auth::user()->name }} </small> </h5>
                     </div>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ url('user/profile') }}" class="dropdown-item notify-item">
                         <i class="md md-account-circle"></i> <span>الملف الشخصي</span>
                     </a>
 
@@ -80,9 +85,15 @@
                         <i class="md md-settings"></i> <span>الإعدادات</span>
                     </a>
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ route('logout') }}" class="dropdown-item notify-item"
+                       onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+                    >
                         <i class="md md-settings-power"></i> <span>تسجيل الخروج </span>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
                 </div>
             </li>
@@ -94,12 +105,12 @@
                     <i class="dripicons-menu"></i>
                 </button>
             </li>
-            <li class="hide-phone app-search">
-                <form role="search" class="">
-                    <input type="text" placeholder="Search..." class="form-control">
-                    <a href=""><i class="fa fa-search"></i></a>
-                </form>
-            </li>
+{{--            <li class="hide-phone app-search">--}}
+{{--                <form role="search" class="">--}}
+{{--                    <input type="text" placeholder="Search..." class="form-control">--}}
+{{--                    <a href=""><i class="fa fa-search"></i></a>--}}
+{{--                </form>--}}
+{{--            </li>--}}
         </ul>
 
     </nav>

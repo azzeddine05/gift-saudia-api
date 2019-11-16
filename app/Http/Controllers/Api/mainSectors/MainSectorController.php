@@ -6,6 +6,8 @@ use App\MainSector;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
+
 
 
 class MainSectorController extends Controller
@@ -31,8 +33,26 @@ class MainSectorController extends Controller
 
     public function store(Request $request)
     {
-        $mainSectors = MainSector::create($request->all());
-        return response()->json($mainSectors, 201);
+        $validator = Validator::make($request->all(), [
+            'arabic_name' => 'required',
+            'english_name' => 'required',
+        ],
+            [
+                'arabic_name.required' => 'مطلوب إسم القطاع بالعربية !',
+                'english_name.required' => ' مطلوب إسم القطاع بالإنجليزية !',
+            ]
+
+        );
+
+        if ($validator->passes()) {
+            $mainSectors = MainSector::create($request->all());
+            //return response()->json($mainSectors, 201);
+            return response()->json(['success'=>'Added new records.']);
+        }else{
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
+
     }
 
     public function update(Request $request, MainSector $mainSector)
@@ -42,10 +62,10 @@ class MainSectorController extends Controller
         return response()->json($mainSector, 200);
     }
 
-    public function delete(MainSector $mainSector)
+    public function delete($id)
     {
+        $mainSector = MainSector::find($id);
         $mainSector->delete();
-
         return response()->json(null, 204);
     }
 

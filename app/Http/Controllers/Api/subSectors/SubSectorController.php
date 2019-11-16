@@ -32,8 +32,23 @@ class SubSectorController extends Controller
 
     public function store(Request $request)
     {
-        $secondarySectors = SecondarySector::create($request->all());
-        return response()->json($secondarySectors, 201);
+        $validator = Validator::make($request->all(), [
+            'arabic_name' => 'required',
+            'english_name' => 'required',
+        ],
+            [
+                'arabic_name.required' => 'مطلوب إسم القطاع بالعربية !',
+                'english_name.required' => ' مطلوب إسم القطاع بالإنجليزية !',
+            ]
+        );
+        if ($validator->passes()) {
+            $secondarySectors = SecondarySector::create($request->all());
+            return response()->json($secondarySectors, 201);
+        }else{
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
+
     }
 
     public function update(Request $request, SecondarySector $secondarySectors)

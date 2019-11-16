@@ -31,6 +31,7 @@ class GiftStepsController extends Controller
 
     public function store(Request $request)
     {
+
         //dd("welcome aissam", $request->all());
 //        $this->validate($request,[
 //            'title' => 'required',

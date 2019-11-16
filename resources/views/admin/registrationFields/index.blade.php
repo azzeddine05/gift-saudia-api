@@ -29,7 +29,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"> ho9ol tasjiil</li>
+                        <li class="breadcrumb-item active">إدارة حقول التسجيل</li>
                     </ol>
 
                 </div>
@@ -42,16 +42,21 @@
                         <div style="display: none" class="alert alert-success success-message">
                             <strong>Success!</strong> add with success.
                         </div>
-                        <div class="col-sm-4">
-                            <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('fields.add_new_field') </a>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('fields.add_new_field') </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="{{ url('/company/dashboard') }}" target="_blank" class="btn btn-info btn-md waves-effect waves-light m-b-30" data-overlayspeed="200" data-overlaycolor="#36404a">رؤية نمودج التسجيل</a>
+                            </div>
                         </div>
-
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
                                 <th>@lang('fields.arabic_name')</th>
                                 <th>@lang('fields.english_name')</th>
                                 <th>@lang('fields.type')</th>
+                                <th>العملية </th>
                             </tr>
                             </thead>
 
@@ -62,6 +67,10 @@
                                     <td>{{ $registrationField->arabic_name }}</td>
                                     <td>{{ $registrationField->english_name }}</td>
                                     <td>{{ $registrationField->type }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
+                                        <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">حدف</button>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

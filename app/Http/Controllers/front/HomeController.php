@@ -27,7 +27,8 @@ class HomeController extends Controller
     }
     public function index()
     {
-        return view('front.index');
+        $activeStep = GiftStep::getActiveStep();
+        return view('front.index', ['activeStep' => $activeStep]);
 
     }
 
@@ -48,25 +49,21 @@ class HomeController extends Controller
     }
     public function registerCompany(Request $request)
     {
-        $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')),
-        ]);
-        Company::create([
-            'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'headquarters' => $request->get('headquarters'),
-            'sub_sector_id' => $request->get('sub_sector_id'),
-            'user_id' => $user->id,
-        ]);
+        $user = User::createUser($request);
+        Company::createCompany($request, $user);
         //Send notification to admin
         $user_admin = User::find(1);
         $user_admin->notify(new NewCompanyRegistred($user));
          //Send Email Confirmation
         event(new CompanyHasRegistredEvent($user));
-        return redirect()->back()->with('message', 'Registred binajahh intadir ta2kiid');
+        return redirect()->back()->with('message', 'message here');
 
+    }
 
+    public function CompanyConfirmedRegistre($company)
+    {
+        Company::where('id', $company)
+            ->update(['confirmed_registre' => true]);
+        return redirect('/login')->with('message_confirmed_register', 'message confirmation here');
     }
 }

@@ -2,6 +2,12 @@
 <!DOCTYPE html>
 <html>
 @include('layouts/back/head');
+<style>
+    h3, button, p, b {
+        font-family: 'Cairo', sans-serif;
+    }
+</style>
+
 
 <body>
 
@@ -12,7 +18,7 @@
     <div class="card-box">
         @if(session()->has('message'))
             <div class="alert-success">
-                <h4>{{session()->get('message')}}</h4>
+                <h6>@lang('constructorRegister.success_registre')</h6>
             </div>
         @endif
         <div class="panel-heading">
@@ -59,23 +65,23 @@
                 </div>
                 <div class="form-group">
                     <div class="col-12">
-                        <input class="form-control" name="password" type="text" placeholder="password" required>
+                        <input class="form-control" name="password" type="text" placeholder="@lang('constructorRegister.password')" required>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-12">
-                        <div class="checkbox checkbox-primary">
-                            <input id="checkbox-signup" type="checkbox" checked="checked">
-                            <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <div class="col-12">--}}
+{{--                        <div class="checkbox checkbox-primary">--}}
+{{--                            <input id="checkbox-signup" type="checkbox" checked="checked">--}}
+{{--                            <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="form-group text-center m-t-40">
                     <div class="col-12">
                         <button id="registerCompany" class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">
-                            Register
+                            سجل الآن
                         </button>
                     </div>
                 </div>
@@ -88,7 +94,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <p>
-                Already have account?<a href="page-login.html" class="text-primary m-l-5"><b>Sign In</b></a>
+                لدي حساب مسبقا ?<a href="page-login.html" class="text-primary m-l-5"><b>أدخل الآن  </b></a>
             </p>
         </div>
     </div>

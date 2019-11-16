@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubStandard extends Model
 {
+    protected $table = 'sub_standards';
     protected $fillable = [
         'arabic_name', 'english_name', 'weight', 'main_standard_id'
     ];

@@ -17,6 +17,7 @@ class CreateGiftStepsTable extends Migration
             $table->bigIncrements('id');
             $table->string('arabic_name');
             $table->string('english_name');
+            $table->string('period_type');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

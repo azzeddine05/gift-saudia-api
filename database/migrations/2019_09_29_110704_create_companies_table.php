@@ -21,6 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('sub_sector_id');
             $table->unsignedBigInteger('user_id');
             $table->boolean('confirmed_registre')->default(0);
+            $table->boolean('payment')->default(0);
+            $table->boolean('order_delivery')->default(0);
             $table->timestamps();
         });
     }

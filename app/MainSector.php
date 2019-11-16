@@ -17,6 +17,7 @@ class MainSector extends Model
         'arabic_name', 'english_name', 'created_at'
     ];
 
+
     public function secondarySectors()
     {
         return $this->hasMany(SecondarySector::class);

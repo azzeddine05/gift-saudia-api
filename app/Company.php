@@ -15,6 +15,16 @@ class Company extends Model
         return $this->belongsTo(SecondarySector::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function readyModelReply()
+    {
+        return $this->hasMany(ReadyModelReply::class);
+    }
+
     public static function createCompany($data, $user)
     {
        return Company::create([

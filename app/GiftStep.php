@@ -11,7 +11,19 @@ class GiftStep extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'arabic_name', 'english_name', 'start_date', 'end_date', 'created_at'
+    public $steps = [
+        "stepOne" => "registred",
+        "stepTwo" => "ta9yiim",
+        "stepTree" => "taltaa"
+
     ];
+
+    protected $fillable = [
+        'arabic_name', 'english_name', 'period_type', 'start_date', 'end_date', 'created_at'
+    ];
+
+    public function getActiveStep()
+    {
+
+    }
 }

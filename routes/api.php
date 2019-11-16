@@ -17,19 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::group([
-//
-//    'middleware' => 'api',
-//    'prefix' => 'auth'
-//
-//], function ($router) {
-//
-//    Route::post('login', 'Api/AuthController@login');
-//    Route::post('logout', 'Api/AuthController@logout');
-//    Route::post('refresh', 'Api/AuthController@refresh');
-//    Route::post('me', 'Api/AuthController@me');
-//
+
+
+//Route::namespace('Api\giftSteps')->group(function (){
+//    Route::prefix('admin')->group(function () {
+//        Route::get('users', function () {
+//            // Matches The "/admin/users" URL
+//        });
+//    });
 //});
+
 // Gift Steps
 Route::get('admin/gift-steps', 'Api\giftSteps\GiftStepsController@index');
 
@@ -74,3 +71,27 @@ Route::post('admin/registration-fields','Api\registerFields\FieldController@stor
 Route::put('admin/registration-fields/{id}','Api\registerFields\FieldController@update');
 
 Route::delete('admin/registration-fields/{id}', 'Api\registerFields\FieldController@delete');
+
+
+// Regsitration Fields
+//Route::get('admin/registration-fields', 'Api\registerFields\FieldController@index');
+
+//Route::get('admin/registration-fields/{id}', 'Api\registerFields\FieldController@show');
+
+//Route::post('company-registre','Api\companyRegistred\CompanyRegistredController@store');
+
+//Route::put('admin/registration-fields/{id}','Api\registerFields\FieldController@update');
+
+//Route::delete('admin/registration-fields/{id}', 'Api\registerFields\FieldController@delete');
+
+// Regsitration Fields
+//Route::get('admin/registration-fields', 'Api\registerFields\FieldController@index');
+
+//Route::get('admin/registration-fields/{id}', 'Api\registerFields\FieldController@show');
+
+// Regsitration For Fields Ready Model
+Route::post('fields-ready-model','Api\readyModelFields\ReadyModelFieldsController@store');
+
+//Route::put('admin/registration-fields/{id}','Api\registerFields\FieldController@update');
+
+//Route::delete('admin/registration-fields/{id}', 'Api\registerFields\FieldController@delete');

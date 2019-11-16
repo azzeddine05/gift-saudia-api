@@ -13,7 +13,7 @@ class SecondarySector extends Model
 
     public function mainSectors()
     {
-        return $this->belongsTo(MainSector::class);
+        return $this->belongsTo(MainSector::class, 'main_sector_id');
     }
 
     public function companies()

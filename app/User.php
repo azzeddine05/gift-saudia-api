@@ -3,14 +3,19 @@
 namespace App;
 
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
+
+    protected $guard_name = 'web';
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
+//    public function roles()
+//    {
+//        return $this->belongsToMany(Role::class);
+//    }
 
     public static function createUser($data)
     {

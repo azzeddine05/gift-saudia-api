@@ -12,17 +12,39 @@
 */
 
 // Backend
+Route::prefix('admin')->namespace('admin')->group(function () {
+    Route::get('gift-steps', 'DashboardController@giftSteps')->name('gift.steps');
+    Route::get('main-sectors', 'DashboardController@mainSectors')->name('gift.mainSectors');
+    Route::get('sub-sectors/main-sector/{id}', 'DashboardController@subSectors')->name('gift.subSectors');
+
+    Route::post('total-marks/add', 'DashboardController@addTotalMarks')->name('total.marks.add');
+
+    Route::get('registration-fields', 'DashboardController@registrationFields')->name('registration.fields');
+    Route::get('ready-model-fields', 'DashboardController@ReadyModelFields')->name('ready.model.fields');
+    Route::get('ready-model-fields/add', 'DashboardController@addReadyModelFields')->name('ready.model.fields.add');
+    Route::get('execute-payment', 'PaymentContrller@execute')->name('paypal.payment.execute');
+    Route::post('create-payment', 'PaymentController@createPayment')->name('paypal.payment.create');
+
+});
+
+Route::get('user/profile', 'ProfileController@index')->name('user.profile');
+
+// Company Routes
+Route::get('/admin/all-companies', 'CompanyController@getAllCompanies')->name('companies.all');
+Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
+Route::post('/company/company-registre','CompanyController@storeRegistredFields');
+Route::get('/company/ready-model-registred','ReadyModelControlller@index');
+Route::post('/company/ready-model-reply','ReadyModelReplyController@store');
+Route::get('/companies/ready-model-notcofirmed', 'ReadyModelReplyController@getAllReplyReadyModelsReplyNotDelivred')->name('raedy.model.reply.new');
+
+
+
+
 
 Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
     return redirect()->back();
 });
-Route::get('admin/gift-steps', 'admin\DashboardController@giftSteps')->name('gift.steps');
-Route::get('admin/main-sectors', 'admin\DashboardController@mainSectors')->name('gift.mainSectors');
-Route::get('admin/sub-sectors', 'admin\DashboardController@subSectors')->name('gift.subSectors');
-
-Route::get('admin/registration-fields', 'admin\DashboardController@registrationFields')->name('registration.fields');
-
 
 Route::get('test', 'admin\TestController@index');
 Route::get('dashboard', 'admin\DashboardController@index');
@@ -39,9 +61,11 @@ Route::get('main-sector/sub-sector', 'front\HomeController@getSubSectorByMainSec
 
 
 Route::post('company/register', 'front\HomeController@registerCompany');
-
+Route::get('/company/{id}/confirmed-registre', 'front\HomeController@CompanyConfirmedRegistre')->name('company.confimred.registre');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

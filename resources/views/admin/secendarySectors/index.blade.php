@@ -19,6 +19,8 @@
     <!-- Multi Item Selection examples -->
     <link href="{{asset('back')}}/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+
     <link href="{{asset('back')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('back')}}/assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('back')}}/assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -55,7 +57,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"> Secondary Sector</li>
+                        <li class="breadcrumb-item active">القطاعات الفرعية التابعة للقطاع  {{ $mainSector->arabic_name }}</li>
                     </ol>
 
                 </div>
@@ -68,18 +70,15 @@
                         <div style="display: none" class="alert alert-success success-message">
                             <strong>Success!</strong> add with success.
                         </div>
-                        <div class="col-sm-4">
-                            <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
-                        </div>
 
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>@lang('dashboard.step_name')</th>
-                                <th>@lang('dashboard.step_start')</th>
-                                <th>@lang('dashboard.step_end')</th>
-                                <th>9ita3aat alfar3iya altaabi3a lah </th>
-
+                                <th>@lang('dashboard.sub_sector_arabic')</th>
+                                <th>@lang('dashboard.sub_sector_english')</th>
+                                <th>تكاليف التسجيل </th>
+                                <th>تكاليف الإشتراك </th>
+                                <th>العملية </th>
                             </tr>
                             </thead>
 
@@ -89,7 +88,12 @@
                                 <tr>
                                     <td>{{ $subSector->arabic_name }}</td>
                                     <td>{{ $subSector->english_name }}</td>
-                                    <td>Edinburgh</td>
+                                    <td>{{ $subSector->registration_fees }}</td>
+                                    <td>{{ $subSector->Subscription_fees }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
+                                        <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">حدف</button>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

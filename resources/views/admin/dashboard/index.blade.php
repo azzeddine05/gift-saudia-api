@@ -12,6 +12,7 @@
 
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="../plugins/morris/morris.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
     <link href="{{asset('back')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('back')}}/assets/css/icons.css" rel="stylesheet" type="text/css" />
@@ -49,19 +50,16 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">الإعدادات
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light">الإعدادات
 
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="#">Dropdown One</a>
-                                <a class="dropdown-item" href="#">Dropdown Two</a>
-                                <a class="dropdown-item" href="#">Dropdown Three</a>
-                                <a class="dropdown-item" href="#">Dropdown Four</a>
-                            </div>
                         </div>
 
                         <h4 class="page-title"> @lang('dashboard.dashboard')</h4>
-                        <p class="text-muted page-title-alt">Welcome to Ubold admin panel !</p>
+                        <p class="text-muted page-title-alt">مرحبا بك في إدارة الجائزة !</p>
+{{--                        @role('USER_ADMIN')--}}
+{{--                            <h1>hii admin</h1>--}}
+{{--                        @endrole--}}
                     </div>
                 </div>
 
@@ -73,7 +71,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">31,570</b></h3>
-                                <p class="text-muted mb-0">Total Revenue</p>
+                                <p class="text-muted mb-0">عدد المداخيل</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -86,7 +84,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">280</b></h3>
-                                <p class="text-muted mb-0">Today's Sales</p>
+                                <p class="text-muted mb-0">منشآت سجلت</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -98,8 +96,8 @@
                                 <i class="md md-equalizer text-purple"></i>
                             </div>
                             <div class="text-right">
-                                <h3 class="text-dark"><b class="counter">0.16</b>%</h3>
-                                <p class="text-muted mb-0">Conversion</p>
+                                <h3 class="text-dark"><b class="counter">2</b></h3>
+                                <p class="text-muted mb-0">منشآت دفعت</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -111,12 +109,49 @@
                                 <i class="md md-remove-red-eye text-success"></i>
                             </div>
                             <div class="text-right">
-                                <h3 class="text-dark"><b class="counter">64,570</b></h3>
-                                <p class="text-muted mb-0">Today's Visits</p>
+                                <h3 class="text-dark"><b class="counter">22</b></h3>
+                                <p class="text-muted mb-0">عدد زوار الموقع </p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card-box">
+                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light">الكل </a>
+                            <h4 class="text-dark header-title m-t-0">أخر المنشآت المسجلة</h4>
+                            <div class="table-responsive">
+                                <table class="table table-actions-bar">
+                                    <thead>
+                                    <tr>
+                                        <th> إسم المنشأة</th>
+                                        <th>المقر</th>
+                                        <th>القطاع الفرعي </th>
+                                        <th>تاريخ التسجيل </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><a href="#"></a></td>
+                                        <td></td>
+                                        <td></td>
+{{--                                        <td>--}}
+{{--                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>--}}
+{{--                                            <a href="#" class="table-action-btn"><i class="md md-close"></i></a>--}}
+{{--                                        </td>--}}
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div> <!-- end col -->
+
+
+
                 </div>
 
             </div> <!-- container -->
@@ -124,7 +159,7 @@
         </div> <!-- content -->
 
         <footer class="footer text-right">
-            &copy; 2016 - 2018. All rights reserved.
+            &copy; 2019. جميع الحقوق محفوضة.
         </footer>
 
     </div>
