@@ -45,11 +45,14 @@ class GiftStepsController extends Controller
         return response()->json($giftStep, 201);
     }
 
-    public function update(Request $request, GiftStep $giftStep)
+    public function update(Request $request, $id)
     {
-        $giftStep->update($request->all());
+        dump('here now');
+        dd($request->all());
+        $step = GiftStep::find($id);
+        $step->update($request->all());
 
-        return response()->json($giftStep, 200);
+        return response()->json($step, 200);
     }
 
     public function delete(GiftStep $giftStep)

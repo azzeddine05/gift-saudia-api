@@ -57,7 +57,7 @@
 <script src="{{asset('back')}}/plugins/datatables/dataTables.select.min.js"></script>
 
 <!-- Modal-Effect -->
-{{--<script src="{{asset('back')}}/plugins/custombox/js/custombox.min.js"></script>--}}
+<script src="{{asset('back')}}/plugins/custombox/js/custombox.min.js"></script>
 <script src="{{asset('back')}}/plugins/custombox/js/legacy.min.js"></script>
 
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>--}}

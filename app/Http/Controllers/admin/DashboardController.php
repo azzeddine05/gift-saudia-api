@@ -46,10 +46,15 @@ class DashboardController extends Controller
     public function subSectors($mainSectorId)
     {
         $subSectors =  SecondarySector::where('main_sector_id', $mainSectorId)->get();
-        foreach ($subSectors as $sector) {
-            $mainSector = $sector->mainSectors;
-            break;
+        if (sizeof($subSectors) > 0) {
+            foreach ($subSectors as $sector) {
+                $mainSector = $sector->mainSectors;
+                break;
+            }
+        }else {
+            return back()->with('msg', 'هدا القطاع الرئيسي لا يتوفر على قطاعات فرعية ');
         }
+
         return view('admin.secendarySectors.index', ['subSectors' => $subSectors,
                     'mainSector' => $mainSector
             ]);

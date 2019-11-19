@@ -51,8 +51,6 @@ class MainSectorController extends Controller
         }else{
             return response()->json(['error'=>$validator->errors()->all()]);
         }
-
-
     }
 
     public function update(Request $request, MainSector $mainSector)

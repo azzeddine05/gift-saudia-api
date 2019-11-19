@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api\subSectors;
+namespace App\Http\Controllers\admin;
 
-use App\MainSector;
-use App\Http\Controllers\Controller;
-use App\SecondarySector;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Validator;
+use App\Http\Controllers\Controller;
+use App\User;
 
-
-class SubSectorController extends Controller
+class EmployeController extends Controller
 {
     /**
      * Create a new AuthController instance.
@@ -23,12 +19,13 @@ class SubSectorController extends Controller
 
     public function index()
     {
-        return SecondarySector::all();
+        $employes = User::all();
+        return view('admin.employes.index', ['employes' => $employes]);
     }
 
-    public function show(SecondarySector $secondarySector)
+    public function show(MainSector $mainSector)
     {
-        return $secondarySector;
+        return $mainSector;
     }
 
     public function store(Request $request)
@@ -41,29 +38,29 @@ class SubSectorController extends Controller
                 'arabic_name.required' => 'مطلوب إسم القطاع بالعربية !',
                 'english_name.required' => ' مطلوب إسم القطاع بالإنجليزية !',
             ]
-        );
-        if ($validator->passes()) {
-            $secondarySectors = SecondarySector::create($request->all());
-            return response()->json(['success'=>'Added new records.']);
 
+        );
+
+        if ($validator->passes()) {
+            $mainSectors = MainSector::create($request->all());
+            //return response()->json($mainSectors, 201);
+            return response()->json(['success'=>'Added new records.']);
         }else{
             return response()->json(['error'=>$validator->errors()->all()]);
         }
-
     }
 
-    public function update(Request $request, SecondarySector $secondarySectors)
+    public function update(Request $request, MainSector $mainSector)
     {
-        $secondarySectors->update($request->all());
+        $mainSector->update($request->all());
 
-        return response()->json($secondarySectors, 200);
+        return response()->json($mainSector, 200);
     }
 
-    public function delete(SecondarySector $secondarySectors)
+    public function delete($id)
     {
-        $secondarySectors->delete();
-
+        $mainSector = MainSector::find($id);
+        $mainSector->delete();
         return response()->json(null, 204);
     }
-
 }

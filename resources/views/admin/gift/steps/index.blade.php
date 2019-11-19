@@ -242,7 +242,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
+                <button href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
             </div>
         </div>
@@ -396,22 +396,24 @@
             bodyFormData.set('arabic_name', arabic_name);
             bodyFormData.set('english_name', arabic_name);
             bodyFormData.set('period_type', arabic_name);
-            bodyFormData.set('start_date', start_date);
-            bodyFormData.set('end_date', end_date);
+            bodyFormData.set('start_date', startDate);
+            bodyFormData.set('end_date', endDate);
             return bodyFormData;
         };
 
         $("#editStepAction").click(function(e) {
             e.preventDefault();
             var data = getDatafromFormUpdate();
-            axios.put('')
+            var path = $(this).attr("href");
+            axios.put(path, data)
                 .then(response => {
                     console.log(response.data);
-                    $( "#start_date_update" ).val(response.data.start_date);
-                    $( "#start_time_update" ).val(response.data.start_date);
-                    $( "#end_date_update" ).val(response.data.end_date);
-                    $( "#end_time_update" ).val(response.data.end_date);
-                    $("#stepType").val(response.data.arabic_name);
+                    $("#editStepAction").modal('hide');
+                    $(".success-message").fadeIn();
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, "slow");
+                    //setTimeout(function(){ location.reload(); }, 3500);
 
                 })
                 .catch(error => {
