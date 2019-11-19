@@ -24,9 +24,11 @@ class GiftStepsController extends Controller
         return GiftStep::all();
     }
 
-    public function show(GiftStep $giftStep)
+    public function show($id)
     {
-        return $giftStep;
+        $step = GiftStep::find($id);
+        return response()->json($step, 200);
+
     }
 
     public function store(Request $request)

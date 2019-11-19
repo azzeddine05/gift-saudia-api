@@ -65,8 +65,8 @@
                                     <td>{{ $giftStep->start_date }}</td>
                                     <td>{{ $giftStep->end_date }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
-                                            <a href="{{ url('api/admin/main-sector/'.$giftStep->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                            <a href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" data-toggle="modal" data-target="#exampleModalEdit" data-animation="fadein" class="btn btn-primary btn-rounded waves-effect waves-light editStep">تعديل</a>
+                                            <a href="" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
                                             <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog" style="width:55%;">
                                                     <div class="modal-content">
@@ -100,7 +100,6 @@
         </div> <!-- content -->
         @include('layouts/back/footer');
 
-
     </div>
 
 
@@ -108,121 +107,10 @@
     <!-- End Right content here -->
     <!-- ============================================================== -->
 
-
-    <!-- Right Sidebar -->
-    <div class="side-bar right-bar nicescroll">
-        <h4 class="text-center">Chat</h4>
-        <div class="contact-list nicescroll">
-            <ul class="list-group contacts-list">
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-1.jpg" alt="">
-                        </div>
-                        <span class="name">Chadengle</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-2.jpg" alt="">
-                        </div>
-                        <span class="name">Tomaslau</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-3.jpg" alt="">
-                        </div>
-                        <span class="name">Stillnotdavid</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-4.jpg" alt="">
-                        </div>
-                        <span class="name">Kurafire</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-5.jpg" alt="">
-                        </div>
-                        <span class="name">Shahedk</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-6.jpg" alt="">
-                        </div>
-                        <span class="name">Adhamdannaway</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-7.jpg" alt="">
-                        </div>
-                        <span class="name">Ok</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-8.jpg" alt="">
-                        </div>
-                        <span class="name">Arashasghari</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-9.jpg" alt="">
-                        </div>
-                        <span class="name">Joshaustin</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-10.jpg" alt="">
-                        </div>
-                        <span class="name">Sortino</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /Right-bar -->
-
 </div>
 <!-- END wrapper -->
 
-<!-- Modal -->
+<!-- Modal Add-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -285,6 +173,76 @@
             </div>
             <div class="modal-footer">
                 <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">حفض</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal eddit-->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" for="position">إضافة مرحلة  جديدة </h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-modal-text text-left">
+                    <form id="myForm" role="form">
+                        <div class="form-group">
+                            <label for="sel1">إسم المرحلة </label>
+                            <select class="form-control" name="arabic_name" id="stepType" required>
+                                <option value="0" disabled selected>إختر المرحلة </option>
+                                <option value="registredPeriod">مرحلة التسجيل</option>
+                                <option value="reviewsPeriod">مرحلة التقييم</option>
+                                <option value="resultPeriod">مرحلة إعلان النتائج</option>
+                            </select>
+                        </div><br>
+                        {{--            <div class="form-group">--}}
+                        {{--                <label for="exampleInputEmail1">إسم المرحلة بالإنجليزية</label>--}}
+                        {{--                <input type="text" class="form-control" name="english_name" id="english_name" placeholder="">--}}
+                        {{--            </div>--}}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="position">تاريخ بداية المرحلة </label>
+                                    <input value="" name="start_date" id="start_date_update" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="position">توقيت بداية المرحلة </label>
+                                    <input name="start_time" id="start_time_update" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                        </div><br>
+                        {{--            <div class="form-group">--}}
+                        {{--                <input class="form-control" type="date" name="date">--}}
+                        {{--            </div>--}}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="position"> تاريخ نهاية المرحلة </label>
+                                    <input name="end_date" id="end_date_update" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="position"> توقيت نهاية المرحلة </label>
+                                    <input name="end_time" id="end_time_update" class="form-control" width="276" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
             </div>
         </div>
@@ -370,7 +328,7 @@
             var startDate = $( "#start_date" ).val();
             var startTime = $( "#start_time" ).val();
             var endDate = $( "#end_date" ).val();
-            var endTime = $( "#start_time" ).val();
+            var endTime = $( "#end_time" ).val();
             var arabic_name = $("#arabic_name").val();
             //var english_name = $("#english_name").val();
             var start_date = moment(startDate+' '+startTime).format("YYYY-MM-DD HH:mm:ss");
@@ -404,6 +362,63 @@
             });
 
         });
+
+        $(".editStep").click(function(e) {
+            e.preventDefault();
+            var data = getDatafromForm();
+            var path = $(this).attr("href");
+            axios.get(path)
+                .then(response => {
+                    console.log(response.data);
+                    $( "#start_date_update" ).val(response.data.start_date);
+                    $( "#start_time_update" ).val(response.data.start_date);
+                    $( "#end_date_update" ).val(response.data.end_date);
+                    $( "#end_time_update" ).val(response.data.end_date);
+                    $("#stepType").val(response.data.arabic_name);
+
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+        });
+
+        const getDatafromFormUpdate = (arabicName, englishName, startDate, endDate) => {
+            var startDate = $( "#start_date_update" ).val();
+            var startTime = $( "#start_time_update" ).val();
+            var endDate = $( "#end_date_update" ).val();
+            var endTime = $( "#end_time_update" ).val();
+            var arabic_name = $("#stepType").val();
+            //var english_name = $("#english_name").val();
+            var start_date = moment(startDate+' '+startTime).format("YYYY-MM-DD HH:mm:ss");
+            var end_date = moment(endDate+' '+endTime).format("YYYY-MM-DD HH:mm:ss");
+
+            var bodyFormData = new FormData();
+            bodyFormData.set('arabic_name', arabic_name);
+            bodyFormData.set('english_name', arabic_name);
+            bodyFormData.set('period_type', arabic_name);
+            bodyFormData.set('start_date', start_date);
+            bodyFormData.set('end_date', end_date);
+            return bodyFormData;
+        };
+
+        $("#editStepAction").click(function(e) {
+            e.preventDefault();
+            var data = getDatafromFormUpdate();
+            axios.put('')
+                .then(response => {
+                    console.log(response.data);
+                    $( "#start_date_update" ).val(response.data.start_date);
+                    $( "#start_time_update" ).val(response.data.start_date);
+                    $( "#end_date_update" ).val(response.data.end_date);
+                    $( "#end_time_update" ).val(response.data.end_date);
+                    $("#stepType").val(response.data.arabic_name);
+
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+        });
+
 
 
         // Default Datatable
