@@ -96,7 +96,7 @@
                                     <span class="label label-success">يملك</span>
                                 </div>
                                 <div class="table-detail lable-detail">
-                                    <a href="{{url('admin/employe/permissions/delete/'.$employePermission->id)}}" title="احدف له الصلاحية" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ url('admin/employe/permission/delete/'.$employe->id.'/'.$employePermission->id)}}" title="احدف له الصلاحية" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
                                 </div>
 
                             </div>

@@ -37,13 +37,14 @@ class EmployeController extends Controller
         return view('admin.employes.pemissions', ['employePermissions' => $employePermissions, 'employe' => $employe]);
 
     }
-    public function removePermissionOfEmploye($employeID)
+    public function removePermissionOfEmploye($employeId, $permissionId)
     {
-        $employe = User::find($employeID);
+        dd("heree");
+        $employe = User::find($employeId);
 
-        $permission = Permission::findById($employeID);
+        $permission = Permission::findById($permissionId);
         $employe->revokePermissionTo($permission);
-        return back()->with('success-deleted','تم هدف الصلاحية للموضف بنجاح ');
+        return back()->with('success-deleted','تم حدف الصلاحية للموضف بنجاح ');
 
     }
 

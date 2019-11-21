@@ -28,7 +28,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('employes', 'EmployeController@index')->name('admin.employes');
     Route::post('employe/add', 'EmployeController@store')->name('admin.employe.add');
     Route::get('employe/permissions/{id}', 'EmployeController@employePermissions')->name('admin.employe.permissions');
-    Route::get('employe/permissions/delete/{id}', 'EmployeController@removePermissionOfEmploye')->name('admin.employe.permission.delete');
+    Route::get('employe//permission/delete/{id}/{permissionId}', 'EmployeController@removePermissionOfEmploye');
     //Route::post('employe/permissions/add', 'EmployeController@employePermissions')->name('admin.employe.permissions');
 
 });
