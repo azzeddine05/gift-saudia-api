@@ -5,6 +5,11 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Validator;
+use DateTime;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class EmployeController extends Controller
 {
@@ -19,7 +24,8 @@ class EmployeController extends Controller
 
     public function index()
     {
-        $employes = User::all();
+        //$employes = User::all();
+        $employes = User::role('employe')->get();
         return view('admin.employes.index', ['employes' => $employes]);
     }
 
@@ -31,19 +37,29 @@ class EmployeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'arabic_name' => 'required',
-            'english_name' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'adresse' => 'required',
         ],
             [
-                'arabic_name.required' => 'مطلوب إسم القطاع بالعربية !',
-                'english_name.required' => ' مطلوب إسم القطاع بالإنجليزية !',
+                'name.required' => 'مطلوب الإسم  !',
+                'adresse.required' => ' مطلوب  العنوان  !',
+                'email.required' => ' مطلوب البريد الإلكتروني  !',
             ]
 
         );
 
+        $date = new DateTime();
+        $password = $date->getTimestamp();
+
         if ($validator->passes()) {
-            $mainSectors = MainSector::create($request->all());
-            //return response()->json($mainSectors, 201);
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->adresse = $request->adresse;
+            $user->password = $password;
+            $user->save();
+            $user->assignRole('employe');
             return response()->json(['success'=>'Added new records.']);
         }else{
             return response()->json(['error'=>$validator->errors()->all()]);

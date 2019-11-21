@@ -45,7 +45,7 @@
                     <div class="card-box table-responsive">
                         <div class="col-md-10">
                             <div style="display: none" class="alert alert-success success-message">
-                                <strong>نجاح العملية !</strong> تم إضافة القطاع بنجاح
+                                <strong>نجاح العملية !</strong> تم إضافة الموظف بنجاح
                             </div>
                         </div>
                         <div style="display: none" class="alert alert-success success-deleted-message">
@@ -62,9 +62,11 @@
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>@lang('dashboard.main_sector_arabic')</th>
-                                <th>@lang('dashboard.main_sector_english')</th>
-                                <th>@lang('dashboard.secnodary_sectors_associate') </th>
+                                <th>الإسم</th>
+                                <th>البريد الإلكتروني</th>
+                                <th> العنوان</th>
+                                <th> كلمة السر </th>
+                                <th>صلاحيات الموظف </th>
 
                             </tr>
                             </thead>
@@ -73,9 +75,11 @@
                                 <tr>
                                     <td>{{ $employe->name }}</td>
                                     <td>{{ $employe->email }}</td>
+                                    <td>{{ $employe->adresse }}</td>
+                                    <td>{{ $employe->password }}</td>
                                     <td>
                                         <a href="{{ url('admin/sub-sectors/main-sector/'.$employe->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
-                                            قطاعاته الفرعية
+                                            الصلاحيات
                                         </a>
                                         <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
                                         <a href="{{ url('api/admin/main-sector/'.$employe->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
@@ -147,7 +151,7 @@
                 <label for="arabic_name"> العنوان</label>
                 <input type="text" class="form-control" name="adresse" id="adresse" placeholder="">
             </div>
-            <button id="addMainSector" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
+            <button id="addEmploye" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
             <button onclick="Custombox.close();" type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
         </form>
     </div>
@@ -165,27 +169,18 @@
 
         const getDatafromForm = () => {
             var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name").val();
-            var english_name = $("#english_name").val();
-            bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var adresse = $("#adresse").val();
+            bodyFormData.set('name', name);
+            bodyFormData.set('email', email);
+            bodyFormData.set('adresse', adresse);
             return bodyFormData;
         };
-        const getDatafromFormSubSector = () => {
-            var bodyFormData = new FormData();
-            var arabic_name = $("#sub_sector_arabic_name").val();
-            var english_name = $("#sub_sector_english_name").val();
-            var main_sector_id = $("#main_sector_id").val();
-            bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
-            bodyFormData.set('main_sector_id', main_sector_id);
-            return bodyFormData;
-        };
-
-        $("#addMainSector").click(function(e) {
+        $("#addEmploye").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('/api/admin/main-sector', data)
+            axios.post('/admin/employe/add', data)
                 .then(response => {
                     console.log(response);
                     if($.isEmptyObject(response.data.error)){

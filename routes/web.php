@@ -26,6 +26,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::post('create-payment', 'PaymentController@createPayment')->name('paypal.payment.create');
 
     Route::get('employes', 'EmployeController@index')->name('admin.employes');
+    Route::post('employe/add', 'EmployeController@store')->name('admin.employe.add');
 
 
 });

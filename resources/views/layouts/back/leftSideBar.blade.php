@@ -37,13 +37,10 @@
                     <a href="{{ url('admin/main-sectors') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.type_sectors')</span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_teams') </span> <span class="menu-arrow"></span> </a>
-                </li>
-                <li class="has_sub">
                     <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{url('admin/employes')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>  فريق الجائزة  </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{url('admin/employes')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_teams')   </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
                     <a href="{{url('admin/ready-model-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول نموذج الجاهزية</span> <span class="menu-arrow"></span> </a>
