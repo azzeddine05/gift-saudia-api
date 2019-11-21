@@ -29,7 +29,7 @@ class EmployeController extends Controller
         return view('admin.employes.index', ['employes' => $employes]);
     }
 
-    private function employePermissions($employeID)
+    public function employePermissions($employeID)
     {
         $employe = User::find($employeID);
         $employePermissions = $employe->getAllPermissions();
@@ -37,12 +37,13 @@ class EmployeController extends Controller
         return view('admin.employes.pemissions', ['employePermissions' => $employePermissions, 'employe' => $employe]);
 
     }
-    private function removePermissionOfEmploye($employeID)
+    public function removePermissionOfEmploye($employeID)
     {
         $employe = User::find($employeID);
 
-        $permission = Permission::findById(1);
-        $employe->revokePermissionTo($permission);die;
+        $permission = Permission::findById($employeID);
+        $employe->revokePermissionTo($permission);
+        return back()->with('success-deleted','تم هدف الصلاحية للموضف بنجاح ');
 
     }
 
