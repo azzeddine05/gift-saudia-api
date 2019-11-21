@@ -78,7 +78,7 @@
                                     <td>{{ $employe->adresse }}</td>
                                     <td>{{ $employe->password }}</td>
                                     <td>
-                                        <a href="{{ url('admin/sub-sectors/main-sector/'.$employe->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
+                                        <a href="{{ url('admin/employe/permissions/'.$employe->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
                                             الصلاحيات
                                         </a>
                                         <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>

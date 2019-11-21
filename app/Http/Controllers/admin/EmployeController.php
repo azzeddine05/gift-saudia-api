@@ -29,6 +29,23 @@ class EmployeController extends Controller
         return view('admin.employes.index', ['employes' => $employes]);
     }
 
+    private function employePermissions($employeID)
+    {
+        $employe = User::find($employeID);
+        $employePermissions = $employe->getAllPermissions();
+
+        return view('admin.employes.pemissions', ['employePermissions' => $employePermissions, 'employe' => $employe]);
+
+    }
+    private function removePermissionOfEmploye($employeID)
+    {
+        $employe = User::find($employeID);
+
+        $permission = Permission::findById(1);
+        $employe->revokePermissionTo($permission);die;
+
+    }
+
     public function show(MainSector $mainSector)
     {
         return $mainSector;
