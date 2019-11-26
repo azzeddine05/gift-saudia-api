@@ -28,6 +28,11 @@
 
                 <!-- Page-Title -->
                 <div class="row">
+                    <div class="col-md-10">
+                        <div style="display: none" class="alert alert-success success-add">
+                            <strong>  تم إضافة الصلاحيات بنجاح</strong> {{ Session::get('success-add-permissions') }}.
+                        </div>
+                    </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
                             حقول نمودج الجاهزية (معايير رئيسية و فرعية )
@@ -55,7 +60,7 @@
                                 <th>القطاع الرئيسي</th>
                                 <th>وزنه</th>
                                 <th>القطاعات الفرعية التابعة له</th>
-
+                                <th>العملية </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,6 +69,27 @@
                                     <td>{{ $mainModelField->arabic_name }}</td>
                                     <td>{{ $mainModelField->weight }}</td>
                                     <td><a href="{{ url('admin/sub-sectors') }}">القطاعات الفرعية التابعة له </a></td>
+                                    <td>
+                                        <button data-id="{{ $mainModelField->id }}" href="{{ url('/api/admin/registration-fields/'.$mainModelField->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
+                                        <a href="{{ url('/api/admin/main-sector/'.$mainModelField->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" style="width:55%;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>هل أنت متأكد من عملية الحدف  ?</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button id="" type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
+                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">حدف</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -90,116 +116,6 @@
 <!-- ============================================================== -->
 
 
-<!-- Right Sidebar -->
-<div class="side-bar right-bar nicescroll">
-    <h4 class="text-center">Chat</h4>
-    <div class="contact-list nicescroll">
-        <ul class="list-group contacts-list">
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-1.jpg" alt="">
-                    </div>
-                    <span class="name">Chadengle</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-2.jpg" alt="">
-                    </div>
-                    <span class="name">Tomaslau</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-3.jpg" alt="">
-                    </div>
-                    <span class="name">Stillnotdavid</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-4.jpg" alt="">
-                    </div>
-                    <span class="name">Kurafire</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-5.jpg" alt="">
-                    </div>
-                    <span class="name">Shahedk</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-6.jpg" alt="">
-                    </div>
-                    <span class="name">Adhamdannaway</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-7.jpg" alt="">
-                    </div>
-                    <span class="name">Ok</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-8.jpg" alt="">
-                    </div>
-                    <span class="name">Arashasghari</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-9.jpg" alt="">
-                    </div>
-                    <span class="name">Joshaustin</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-10.jpg" alt="">
-                    </div>
-                    <span class="name">Sortino</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- /Right-bar -->
-
 </div>
 <!-- END wrapper -->
 <!-- Modal -->
@@ -212,7 +128,7 @@
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('dashboard.main_sector_arabic')</label>
-                <input type="text" class="form-control" name="arabic_name" id="arabic_name" placeholder="">
+                <input type="text" class="form-control" name="arabic_name" id=arabic_name" placeholder="">
             </div>
 
             <div class="form-group">
@@ -262,11 +178,15 @@
         $("#addMainSector").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('http://localhost:8000/api/admin/main-sector', data)
+            axios.post('/api/admin/main-sector', data)
                 .then(response => {
                     console.log(response);
                     Custombox.close();
-                    $(".success-message").fadeIn();
+                    $(".success-add").fadeIn();
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, "slow");
+                    setTimeout(function(){ location.reload(); }, 2200);
 
                 })
                 .catch(error => {

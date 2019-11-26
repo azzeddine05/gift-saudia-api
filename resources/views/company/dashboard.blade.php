@@ -75,7 +75,11 @@
                                             <div class="form-group clearfix">
                                                 <label class="control-label" for="name2"> {{ $RegistrationField->arabic_name }} *</label>
                                                 <div class="fields">
+                                                    @if ( $RegistrationField->type == 'text_area')
+                                                        <textarea id="textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
+                                                    @else
                                                     <input id="{{$RegistrationField->id}}"  type="{{$RegistrationField->type}}" class="required form-control" {{$readOnly}}>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -84,7 +88,7 @@
                                     <h3>سداد تكاليف التسجيل</h3>
                                     <section>
 
-                                        <label class="control-label" for="name2"> {{ Auth::user()->company->subSector->registration_fees }}  تكاليف الرسوم المطلوبة للسداد</label>
+                                        <label class="control-label" for="name2">   تكاليف الرسوم المطلوبة للسداد</label>
                                         <br><br>
                                         <div class="form-group m-b-20">
                                             <div class="row">

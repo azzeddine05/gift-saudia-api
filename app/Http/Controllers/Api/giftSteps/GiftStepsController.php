@@ -40,8 +40,6 @@ class GiftStepsController extends Controller
 //            'details' => 'required'
 //        ]);
         $giftStep = GiftStep::create($request->all());
-        //Session::flash('message', 'My message');
-
         return response()->json($giftStep, 201);
     }
 

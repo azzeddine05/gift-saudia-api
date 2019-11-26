@@ -33,13 +33,14 @@ class EmployeController extends Controller
     {
         $employe = User::find($employeID);
         $employePermissions = $employe->getAllPermissions();
-
-        return view('admin.employes.pemissions', ['employePermissions' => $employePermissions, 'employe' => $employe]);
+        $permissions = Permission::all();
+        //Laravel Not In
+        return view('admin.employes.pemissions', ['employePermissions' => $employePermissions,
+            'employe' => $employe, 'permissions' => $permissions]);
 
     }
     public function removePermissionOfEmploye($employeId, $permissionId)
     {
-        dd("heree");
         $employe = User::find($employeId);
 
         $permission = Permission::findById($permissionId);
@@ -55,33 +56,13 @@ class EmployeController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'adresse' => 'required',
-        ],
-            [
-                'name.required' => 'مطلوب الإسم  !',
-                'adresse.required' => ' مطلوب  العنوان  !',
-                'email.required' => ' مطلوب البريد الإلكتروني  !',
-            ]
+        $employeId = $request->get('employe');
+        $employe = User::find($employeId);
 
-        );
-
-        $date = new DateTime();
-        $password = $date->getTimestamp();
-
-        if ($validator->passes()) {
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->adresse = $request->adresse;
-            $user->password = $password;
-            $user->save();
-            $user->assignRole('employe');
-            return response()->json(['success'=>'Added new records.']);
-        }else{
-            return response()->json(['error'=>$validator->errors()->all()]);
+        $permissionsSelected = $request->get('permissions');
+        foreach ($permissionsSelected as $permissionSelected) {
+            $permission = Permission::findById($permissionSelected);
+            $employe->givePermissionTo($permission->name);
         }
     }
 

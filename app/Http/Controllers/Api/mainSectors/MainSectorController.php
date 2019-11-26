@@ -48,7 +48,7 @@ class MainSectorController extends Controller
             $mainSectors = MainSector::create($request->all());
             //return response()->json($mainSectors, 201);
             return response()->json(['success'=>'Added new records.']);
-        }else{
+        } else{
             return response()->json(['error'=>$validator->errors()->all()]);
         }
     }

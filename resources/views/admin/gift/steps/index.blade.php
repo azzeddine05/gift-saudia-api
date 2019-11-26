@@ -242,7 +242,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
+                <button href="" id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
             </div>
         </div>

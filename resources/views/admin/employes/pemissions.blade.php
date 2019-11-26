@@ -57,6 +57,11 @@
                             </div>
                         </div>
                     @endif
+                            <div class="col-md-10">
+                                <div style="display: none" class="alert alert-success success-add-permissions">
+                                    <strong>  تم إضافة الصلاحيات بنجاح</strong> {{ Session::get('success-add-permissions') }}.
+                                </div>
+                            </div>
                     <div class="col-sm-12">
                         <h4 class="page-title">إدارة الصلاحيات </h4>
                         <ol class="breadcrumb">
@@ -96,7 +101,8 @@
                                     <span class="label label-success">يملك</span>
                                 </div>
                                 <div class="table-detail lable-detail">
-                                    <a href="{{ url('admin/employe/permission/delete/'.$employe->id.'/'.$employePermission->id)}}" title="احدف له الصلاحية" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
+
+                                    <a href="{{ url('admin/employe/'.$employe->id.'/permission/' .$employePermission->id. '/destroy')}}" title="احدف له الصلاحية" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
                                 </div>
 
                             </div>
@@ -107,17 +113,15 @@
                     <div class="col-lg-4">
                         <div class="card-box">
                             <h4 class="m-t-0 m-b-20 text-dark header-title"> أضف له صلاحيات أخرى </h4>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> تعديل التقارير
-                                </label>
-                            </div><br>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox">  رفض التقارير
-                                </label>
-                            </div><br><br>
-                            <button class="btn btn-purple waves-effect waves-light"> <span>تأكيد الصلاحيات </span> <i class="fa fa-send m-l-10"></i> </button>
+                            @foreach($permissions as $permission)
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input id="{{$permission->id}}" class="form-check-input otherPerissions" type="checkbox">
+                                            {{$permission->name}}
+                                    </label>
+                                </div><br>
+                            @endforeach
+                            <button id="assignNewPermissions" class="btn btn-purple waves-effect waves-light"> <span>تأكيد الصلاحيات </span> <i class="fa fa-send m-l-10"></i> </button>
                             <div id="pie-chart"></div>
                         </div>
                     </div>
@@ -307,6 +311,49 @@
 
 <script>
     $(document).ready(function () {
+
+        $("#assignNewPermissions").click(function(e) {
+                var checkedPermissions = [];
+            $(".otherPerissions").each(function() {
+                var permission = $(this).attr('id');
+                if($(this).is(":checked")){
+                    alert("Check box in Checked");
+                    checkedPermissions.push(permission);
+
+                }
+                else if($(this).is(":not(:checked)")){
+                    alert("Checkbox is unchecked.");
+                }
+            });
+            console.log(checkedPermissions);
+            if (checkedPermissions.length > 0) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url:"/admin/employe/permisssions/add",
+                    data :  {
+                        "permissions": checkedPermissions,
+                        "_token": "{{ csrf_token() }}",
+                        "employe": "{{$employe->id}}",
+                    },
+                    datatype:"json",
+                    success:function(response) {
+                        $('.success-add-permissions').fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2300);
+                    }
+                });
+            } else {
+                alert("إختر على الأقل صلاحية واحدة ");
+            }
+
+        });
 
         $("#upcoming, #inprogress, #completed").sortable({
             connectWith: ".taskList",

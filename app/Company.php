@@ -12,7 +12,7 @@ class Company extends Model
 
     public function subSector()
     {
-        return $this->belongsTo(SecondarySector::class);
+        return $this->belongsTo(SecondarySector::class, 'sub_sector_id');
     }
 
     public function user()

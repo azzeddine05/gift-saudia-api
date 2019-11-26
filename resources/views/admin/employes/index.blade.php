@@ -37,6 +37,9 @@
 
             <div class="row">
                 <div class="col-12">
+                    <div style="display: none" class="alert alert-danger success-add-permissions">
+                        <h5>تم إضافة الصلاحيات بنجاح</h5>
+                    </div>
                     @if(Session::has('msg'))
                         <div class="alert alert-danger">
                             <strong>إنتباه  !</strong> {{ Session::get('msg') }}.

@@ -20,9 +20,18 @@ class CompanyController extends Controller
     public function index()
     {
         $readOnly = "";
+        $registred = false;
+        $payed = false;
+        $delivred = false;
+        $RegistrationFields =  RegistrationField::all();
         $user = Auth::User();
         if($user->hasRole('admin')) {
             $readOnly = "readOnly";
+            $company = Company::where('user_id', 4)->firstOrFail();
+            return view('company.dashboard', ['RegistrationFields' => $RegistrationFields, 'registred'
+                => $registred, 'payed' => $payed, 'delivred' => $delivred, 'readOnly' => $readOnly
+                ]
+            );die;
         }
         $userId = Auth::id();
         $registred = false;
@@ -43,7 +52,6 @@ class CompanyController extends Controller
             redirect('company/ready-model-registred');
         }
 
-        $RegistrationFields =  RegistrationField::all();
         $reponseRegistrationFields =  RegistredCompany::all();
 //        $reponse = false;
 //        if($reponseRegistrationFields->count() > 0) {

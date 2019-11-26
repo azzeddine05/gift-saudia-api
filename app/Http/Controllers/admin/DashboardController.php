@@ -74,10 +74,13 @@ class DashboardController extends Controller
 
     public function addReadyModelFields()
     {
+        $totalWeightMainStandard = MainStandard::sum('weight');
         $readyModelFields =  MainStandard::all();
         $totalMarks = TotalMark::first();
         //$raedOnly = $totalMarks > 0 ? "readOnly" : "";
-        return view('admin.readyModelFields.add', ['readyModelFields' => $readyModelFields, 'totalMarks' => $totalMarks]);
+        return view('admin.readyModelFields.add', ['readyModelFields' => $readyModelFields, 'totalMarks' => $totalMarks,
+                        'totalWeightMainStandard' => $totalWeightMainStandard
+            ]);
     }
 
     public function addTotalMarks(Request $request)

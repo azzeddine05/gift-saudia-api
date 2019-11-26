@@ -58,7 +58,11 @@
                                     </form>
                                 </div>
                             </div>
-                            <button id="1" type="" class="btn btn-primary addMainStandard">أضف معيار رئيسي </button>
+                            @if(empty($totalMarks))
+                                <button id="1" type="" title="يرجى إضافة الدرجة الكلية أولا " class="btn btn-primary disabled">أضف معيار رئيسي </button>
+                            @else
+                                <button id="1" type="" class="btn btn-primary addMainStandard ">أضف معيار رئيسي </button>
+                            @endif
                             <div class="row m-b-30">
                                 <div class="col-sm-12">
 
@@ -99,117 +103,6 @@
     <!-- ============================================================== -->
     <!-- End Right content here -->
     <!-- ============================================================== -->
-
-
-    <!-- Right Sidebar -->
-    <div class="side-bar right-bar nicescroll">
-        <h4 class="text-center">Chat</h4>
-        <div class="contact-list nicescroll">
-            <ul class="list-group contacts-list">
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-1.jpg" alt="">
-                        </div>
-                        <span class="name">Chadengle</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-2.jpg" alt="">
-                        </div>
-                        <span class="name">Tomaslau</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-3.jpg" alt="">
-                        </div>
-                        <span class="name">Stillnotdavid</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-4.jpg" alt="">
-                        </div>
-                        <span class="name">Kurafire</span>
-                        <i class="fa fa-circle online"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-5.jpg" alt="">
-                        </div>
-                        <span class="name">Shahedk</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-6.jpg" alt="">
-                        </div>
-                        <span class="name">Adhamdannaway</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-7.jpg" alt="">
-                        </div>
-                        <span class="name">Ok</span>
-                        <i class="fa fa-circle away"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-8.jpg" alt="">
-                        </div>
-                        <span class="name">Arashasghari</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-9.jpg" alt="">
-                        </div>
-                        <span class="name">Joshaustin</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-10.jpg" alt="">
-                        </div>
-                        <span class="name">Sortino</span>
-                        <i class="fa fa-circle offline"></i>
-                    </a>
-                    <span class="clearfix"></span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /Right-bar -->
 
 </div>
 <!-- END wrapper -->
@@ -258,7 +151,7 @@
                 },
                 datatype:"html",
                 success:function(response) {
-                    alert(response);
+                    //alert(response);
                     if(response){
                         location.reload();
                     }else {
@@ -278,7 +171,6 @@
             console.log("inside");
         });
         $(document).on("click",".addMainStandard", function(e) {
-            alert("here first");
             e.preventDefault();
             var newdivMainStandard = '<form id="mainStandard" class="form-inline">'+
                 '<div style="" class="form-group mx-sm-3 mainStandard">'+
@@ -353,8 +245,7 @@
         // check value Now for MainStandard
 
         $(document).on("change","#weightMainStandard", function(e) {
-            var weight = $(this).val();
-
+            checkTotalMark();
         });
         // Check Values Now
         $(document).on("keyup","#weightSubStandard1", function(e) {
@@ -445,7 +336,6 @@
             }else if($("#weightSubStandard3").val().length == 0 || weightTree == 0) {
                 alert("أدخل وزن صحيح أكبر من الصفر ");
             }else {
-                alert("save now");
                 $.ajax({
                     type:"POST",
                     url:"/api/fields-ready-model",
@@ -467,7 +357,17 @@
 
         });
 
-
+        function checkTotalMark() {
+            let weight = $("#weightMainStandard").val();
+            let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
+            let totalMark = $("#totalMark").val();
+            if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
+                alert("لا يمكن لمجموع  أوزان المعايير الرئسية أن تكون أكبر من الدرجة الكلية ")
+                $("#saveMainSubStandard").hide();
+            }else {
+                $("#saveMainSubStandard").fadeIn();
+            }
+        }
 
             $("#type").change(function() {
             if(parseInt($(this).val())!== 0) {
@@ -482,7 +382,6 @@
                     },
                     datatype:"html",
                     success:function(data) {
-
                         console.log(data);
                         $("#subSectorList").html(data);
 

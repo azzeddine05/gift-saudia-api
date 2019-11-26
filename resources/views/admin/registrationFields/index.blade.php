@@ -28,6 +28,22 @@
 
                 <!-- Page-Title -->
                 <div class="row">
+                    <div class="col-md-10">
+                        <div style="display: none" class="alert alert-success error-deleted-message">
+                            <strong>خطأ في  العملية !</strong> خطأ أتناء عملية الحدف
+                        </div>
+                        <div style="display: none" class="alert alert-success success-deleted-message">
+                            <strong>نجاح العملية !</strong> تمت عملية الحدف بنجاح
+                        </div>
+                        <div style="display: none" class="alert alert-success success-add">
+                            <strong>  تم إضافة الحقل  بنجاح</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div style="display: none" class="alert alert-success success-update">
+                            <strong>  تم  التعديل  بنجاح</strong>
+                        </div>
+                    </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">إدارة حقول التسجيل</li>
                     </ol>
@@ -68,8 +84,25 @@
                                     <td>{{ $registrationField->english_name }}</td>
                                     <td>{{ $registrationField->type }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
-                                        <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">حدف</button>
+                                        <button data-id="{{ $registrationField->id }}" href="{{ url('/api/admin/registration-fields/'.$registrationField->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
+                                        <a href="{{ url('api/admin/registration-fields/'.$registrationField->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                            <div class="modal-dialog" style="width:55%;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h6>هل أنت متأكد من عملية الحدف  ?</h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button id="" type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
+                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">حدف</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -97,117 +130,6 @@
 <!-- End Right content here -->
 <!-- ============================================================== -->
 
-
-<!-- Right Sidebar -->
-<div class="side-bar right-bar nicescroll">
-    <h4 class="text-center">Chat</h4>
-    <div class="contact-list nicescroll">
-        <ul class="list-group contacts-list">
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-1.jpg" alt="">
-                    </div>
-                    <span class="name">Chadengle</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-2.jpg" alt="">
-                    </div>
-                    <span class="name">Tomaslau</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-3.jpg" alt="">
-                    </div>
-                    <span class="name">Stillnotdavid</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-4.jpg" alt="">
-                    </div>
-                    <span class="name">Kurafire</span>
-                    <i class="fa fa-circle online"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-5.jpg" alt="">
-                    </div>
-                    <span class="name">Shahedk</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-6.jpg" alt="">
-                    </div>
-                    <span class="name">Adhamdannaway</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-7.jpg" alt="">
-                    </div>
-                    <span class="name">Ok</span>
-                    <i class="fa fa-circle away"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-8.jpg" alt="">
-                    </div>
-                    <span class="name">Arashasghari</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-9.jpg" alt="">
-                    </div>
-                    <span class="name">Joshaustin</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-10.jpg" alt="">
-                    </div>
-                    <span class="name">Sortino</span>
-                    <i class="fa fa-circle offline"></i>
-                </a>
-                <span class="clearfix"></span>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- /Right-bar -->
-
 </div>
 <!-- END wrapper -->
 <!-- Modal -->
@@ -215,6 +137,9 @@
     <button type="button" class="close" onclick="Custombox.close();">
         <span>&times;</span><span class="sr-only">Close</span>
     </button>
+    <div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
+    </div>
     <h4 class="custom-modal-title">@lang('fields.add_new_field')</h4>
     <div class="custom-modal-text text-left">
         <form id="myForm" role="form">
@@ -234,6 +159,7 @@
                     <option value="text" >@lang('fields.text')</option>
                     <option value="number">@lang('fields.number')</option>
                     <option value="email">@lang('fields.email')</option>
+                    <option value="text_area">نص كبير </option>
 
                 </select>
             </div>
@@ -243,6 +169,54 @@
     </div>
 </div>
 
+<!-- Modal eddit-->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" for="position">   تعديل حقل التسجيل  </h5>
+                <div class="alert alert-danger print-error-msg" style="display:none">
+                    <ul></ul>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-modal-text text-left">
+                    <form id="myForm" role="form">
+                        <div class="form-group">
+                            <label for="arabic_name">@lang('fields.arabic_name')</label>
+                            <input type="text" class="form-control" name="arabic_name_update" id="arabic_name_update">
+                            <input type="hidden" value="" id="idField">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="english_name">@lang('fields.english_name')</label>
+                            <input type="text" class="form-control" name="english_name_update" id="english_name_update">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">@lang('fields.type')</label>
+                            <select class="form-control" id="type_update" name="type_update">
+                                <option>@lang('fields.type')</option>
+                                <option value="text" >@lang('fields.text')</option>
+                                <option value="number">@lang('fields.number')</option>
+                                <option value="email">@lang('fields.email')</option>
+
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light">@lang('dashboard.save') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
 
 
 <script>
@@ -265,21 +239,120 @@
             bodyFormData.set('type', type);
             return bodyFormData;
         };
+        const getDatafromFormUpdate = () => {
+            var bodyFormData = new FormData();
+            var arabic_name = $("#arabic_name_update").val();
+            var english_name = $("#english_name_update").val();
+            var type = $("#type_update").val();
+
+
+            bodyFormData.set('arabic_name', arabic_name);
+            bodyFormData.set('english_name', english_name);
+            bodyFormData.set('type', type);
+            return bodyFormData;
+        };
 
         $("#addField").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('http://localhost:8000/api/admin/registration-fields', data)
+            axios.post('/api/admin/registration-fields', data)
                 .then(response => {
-                    console.log(response);
-                    Custombox.close();
-                    $(".success-message").fadeIn();
+
+                    if($.isEmptyObject(response.data.error)){
+                        Custombox.close();
+                        $(".success-add").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2200);
+                    }else{
+                        printErrorMsg(response.data.error);
+                    }
+                })
+
+        });
+
+
+        $(".editField").click(function(e) {
+            e.preventDefault();
+            var data = getDatafromForm();
+            var path = $(this).attr("href");
+            var id = $(this).attr("data-id");
+            $("#idField").val(id);
+            axios.get(path)
+                .then(response => {
+                    console.log(response.data);
+                    $( "#arabic_name_update" ).val(response.data.arabic_name);
+                    $( "#english_name_update" ).val(response.data.english_name);
+                    $( "#type_update" ).val(response.data.type);
+                    $( "#modalEdit" ).modal('show');
 
                 })
                 .catch(error => {
                     console.log(error.response)
                 });
+        });
 
+        $("#updateFieldRegistred").click(function(e) {
+            e.preventDefault();
+            var arabic_name = "";
+            var english_name = "";
+            var tye = "";
+            //var data = getDatafromFormUpdate();
+            var id = $("#idField").val();
+            var path = '/api/admin/registration-fields/'+id;
+            axios.put(path,
+                arabic_name => $("#arabic_name_update" ).val(),
+                english_name => $("#arabic_name_update" ).val(),
+                type => $("#type_update" ).val(),
+            )
+                .then(response => {
+
+                    if($.isEmptyObject(response.error)){
+                        Custombox.close();
+                        $(".success-update").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2200);
+                    }else{
+                        printErrorMsg(response);
+                    }
+                })
+
+        });
+
+
+        function printErrorMsg (msg) {
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','block');
+            $.each( msg, function( key, value ) {
+                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+            });
+        }
+
+        $('.deleteNow').click(function(e) {
+            e.preventDefault();
+            var path = $('.btnDelete').attr("href");
+            axios.delete(path)
+                .then(response => {
+                    console.log(response);
+                    if($.isEmptyObject(response.data.error)){
+                        //Custombox.close();
+                        $("#custom-width-modal").modal('hide');
+                        $(".success-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2500);
+                    }else{
+                        $(".error-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 3000);
+                    }
+                })
         });
 
         // Default Datatable
