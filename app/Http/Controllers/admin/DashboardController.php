@@ -91,6 +91,17 @@ class DashboardController extends Controller
         }else{
             return response()->json("false");
         }
+    }
+
+    public function registredFees()
+    {
+        return view('admin.feesRegistred.index');
+
+    }
+
+    public function subscribedFees()
+    {
+        return view('admin.feesSubscribed.index');
 
     }
 

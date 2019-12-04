@@ -15,6 +15,7 @@ class CreateSubscribeFeesTable extends Migration
     {
         Schema::create('subscribe_fees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('price');
             $table->timestamps();
         });
     }

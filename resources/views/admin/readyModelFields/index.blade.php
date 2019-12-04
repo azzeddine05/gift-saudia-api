@@ -57,9 +57,9 @@
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>القطاع الرئيسي</th>
+                                <th>المعيار  الرئيسي</th>
                                 <th>وزنه</th>
-                                <th>القطاعات الفرعية التابعة له</th>
+                                <th>المعايير الفرعية التابعة له</th>
                                 <th>العملية </th>
                             </tr>
                             </thead>

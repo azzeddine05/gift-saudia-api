@@ -15,6 +15,7 @@ class CreateRegistredFeesTable extends Migration
     {
         Schema::create('registred_fees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('price');
             $table->timestamps();
         });
     }

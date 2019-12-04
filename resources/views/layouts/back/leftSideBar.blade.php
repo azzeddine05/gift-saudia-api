@@ -28,10 +28,10 @@
                     <a href="{{ url('admin/gift-steps') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_steps')</span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="" class="waves-effect"><i class="ti-paint-bucket"></i> <span> تكاليف التسجيل</span> <span class="menu-arrow"></span> </a>
+                    <a href="{{route('fees.registred')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> تكاليف التسجيل</span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="" class="waves-effect"><i class="ti-paint-bucket"></i> <span>تكاليف الإشتراك </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{route('fees.subscribed')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>تكاليف الإشتراك </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
                     <a href="{{ url('admin/main-sectors') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.type_sectors')</span> <span class="menu-arrow"></span> </a>

@@ -32,6 +32,9 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('employe/{id}/permission/{permissionId}/destroy', 'EmployeController@removePermissionOfEmploye');
     //Route::post('employe/permissions/add', 'EmployeController@employePermissions')->name('admin.employe.permissions');
 
+    Route::get('fees/registred', 'DashboardController@registredFees')->name('fees.registred');
+    Route::get('fees/subscribed', 'DashboardController@subscribedFees')->name('fees.subscribed');
+
 });
 
 Route::get('user/profile', 'ProfileController@index')->name('user.profile');
