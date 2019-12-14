@@ -45,7 +45,7 @@
 <script src="{{asset('back')}}/plugins/datatables/vfs_fonts.js"></script>
 <script src="{{asset('back')}}/plugins/datatables/buttons.html5.min.js"></script>
 <script src="{{asset('back')}}/plugins/datatables/buttons.print.min.js"></script>
-
+ 
 <!-- Key Tables -->
 <script src="{{asset('back')}}/plugins/datatables/dataTables.keyTable.min.js"></script>
 

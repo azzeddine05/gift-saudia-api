@@ -215,8 +215,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="position">توقيت بداية المرحلة </label>
+                                <div class="form-group"> 
+                                    <label for="position">توقيت بداية المرحلة </label> 
                                     <input name="start_time" id="start_time_update" class="form-control" width="276" required/>
                                 </div>
                             </div>
@@ -231,11 +231,11 @@
                                     <input name="end_date" id="end_date_update" class="form-control" width="276" required/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="position"> توقيت نهاية المرحلة </label>
-                                    <input name="end_time" id="end_time_update" class="form-control" width="276" required/>
-                                </div>
+                             <div class="col-md-4"> 
+                                <div class="form-group"> 
+                                    <label for="position"> توقيت نهاية المرحلة </label> 
+                                    <input name="end_time" id="end_time_update" class="form-control" width="276" required/> 
+                                 </div>
                             </div>
                         </div>
                     </form>
@@ -314,10 +314,23 @@
 
 <!-- jQuery  -->
 @include('layouts/back/script');
-{{--<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>--}}
+
 
 <script type="text/javascript">
     $(document).ready(function() {
+
+        $('#start_time, #end_time').timepicker({
+            template: 'dropdown',
+            snapToStep: true,
+            minuteStep: 5,
+            showMeridian: true,
+            modalBackdrop: true,
+            icons:
+                {
+                    up: 'dripicons-chevron-up',
+                    down: 'dripicons-chevron-down'
+                }
+        });
 
         $( "#start_date" ).datepicker();
         $( "#end_date" ).datepicker();
