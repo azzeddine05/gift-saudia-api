@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="{{asset('back')}}/assets/images/favicon.ico">
 
-    <title>UBold | Bootstrap Landing Template</title>
+    <title>Jaeza</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
@@ -188,13 +188,13 @@
                     <a class="nav-link" href="#clients">مساعدة</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">@lang('home.login')</a>
+                    <a class="nav-link" href="{{ url('login') }}">@lang('home.login')</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#home">@lang('home.home')</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="btn btn-custom navbar-btn">@lang('home.register_eveluator')</a>
+                    <a href="#" class="btn btn-custom navbar-btn">@lang('home.register_eveluator')</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('constructor/register') }}" class="btn btn-custom navbar-btn">@lang('home.register_constructor')</a>
@@ -231,7 +231,7 @@
 
                     </div>
                 </div>
-                <a href="http://themeforest.net/item/ubold-responsive-web-app-kit/13489470?ref=coderthemes" target="_blank" class="btn btn-white-bordered">التسجيل </a>
+                <a href="{{ url('constructor/register') }}" target="_blank" class="btn btn-white-bordered">التسجيل </a>
 
             </div>
         </div>
@@ -239,142 +239,142 @@
 </section>
 <!-- END HOME -->
 <!-- PRICING -->
-<section class="section" id="pricing">
-    <div class="container">
+{{--<section class="section" id="pricing">--}}
+{{--    <div class="container">--}}
 
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h3 class="title">Pricing</h3>
-                <p class="text-muted sub-title">The clean and well commented code allows easy customization of the theme.It's <br> designed for describing your app, agency or business.</p>
-            </div>
-        </div> <!-- end row -->
-
-
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="row">
-
-                    <!--Pricing Column-->
-                    <article class="pricing-column col-lg-4 col-md-4">
-                        <div class="inner-box">
-                            <div class="plan-header text-center">
-                                <h3 class="plan-title">Ragular</h3>
-                                <h2 class="plan-price">$24</h2>
-                                <div class="plan-duration">Per License</div>
-                            </div>
-                            <ul class="plan-stats list-unstyled">
-                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>
-                                <li> <i class="pe-7s-graph"></i>Customer support</li>
-                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>
-                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                            </ul>
-
-                            <div class="text-center">
-                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>
-                            </div>
-                        </div>
-                    </article>
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-12 text-center">--}}
+{{--                <h3 class="title">Pricing</h3>--}}
+{{--                <p class="text-muted sub-title">The clean and well commented code allows easy customization of the theme.It's <br> designed for describing your app, agency or business.</p>--}}
+{{--            </div>--}}
+{{--        </div> <!-- end row -->--}}
 
 
-                    <!--Pricing Column-->
-                    <article class="pricing-column col-lg-4 col-md-4">
-                        <div class="inner-box active">
-                            <div class="plan-header text-center">
-                                <h3 class="plan-title">Multiple</h3>
-                                <h2 class="plan-price">$120</h2>
-                                <div class="plan-duration">Per License</div>
-                            </div>
-                            <ul class="plan-stats list-unstyled">
-                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>
-                                <li> <i class="pe-7s-graph"></i>Customer support</li>
-                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>
-                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                            </ul>
+{{--        <div class="row justify-content-center">--}}
+{{--            <div class="col-lg-10">--}}
+{{--                <div class="row">--}}
 
-                            <div class="text-center">
-                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>
-                            </div>
-                        </div>
-                    </article>
+{{--                    <!--Pricing Column-->--}}
+{{--                    <article class="pricing-column col-lg-4 col-md-4">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="plan-header text-center">--}}
+{{--                                <h3 class="plan-title">Ragular</h3>--}}
+{{--                                <h2 class="plan-price">$24</h2>--}}
+{{--                                <div class="plan-duration">Per License</div>--}}
+{{--                            </div>--}}
+{{--                            <ul class="plan-stats list-unstyled">--}}
+{{--                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>--}}
+{{--                                <li> <i class="pe-7s-graph"></i>Customer support</li>--}}
+{{--                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>--}}
+{{--                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>--}}
+{{--                            </ul>--}}
 
-
-                    <!--Pricing Column-->
-                    <article class="pricing-column col-lg-4 col-md-4">
-                        <div class="inner-box">
-                            <div class="plan-header text-center">
-                                <h3 class="plan-title">Extended</h3>
-                                <h2 class="plan-price">$999</h2>
-                                <div class="plan-duration">Per License</div>
-                            </div>
-                            <ul class="plan-stats list-unstyled">
-                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>
-                                <li> <i class="pe-7s-graph"></i>Customer support</li>
-                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>
-                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>
-                            </ul>
-
-                            <div class="text-center">
-                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div><!-- end col -->
-        </div>
-        <!-- end row -->
-
-    </div> <!-- end container -->
-</section>
-<!-- End Pricing -->
+{{--                            <div class="text-center">--}}
+{{--                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </article>--}}
 
 
-<!-- Clients -->
-<section class="section p-t-0" id="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h3 class="title">Trusted by Thousands</h3>
-                <p class="text-muted sub-title">The clean and well commented code allows easy customization of the theme.It's <br/> designed for describing your app, agency or business.</p>
-            </div>
-        </div>
-        <!-- end row -->
+{{--                    <!--Pricing Column-->--}}
+{{--                    <article class="pricing-column col-lg-4 col-md-4">--}}
+{{--                        <div class="inner-box active">--}}
+{{--                            <div class="plan-header text-center">--}}
+{{--                                <h3 class="plan-title">Multiple</h3>--}}
+{{--                                <h2 class="plan-price">$120</h2>--}}
+{{--                                <div class="plan-duration">Per License</div>--}}
+{{--                            </div>--}}
+{{--                            <ul class="plan-stats list-unstyled">--}}
+{{--                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>--}}
+{{--                                <li> <i class="pe-7s-graph"></i>Customer support</li>--}}
+{{--                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>--}}
+{{--                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>--}}
+{{--                            </ul>--}}
 
-        <div class="row text-center">
-            <div class="col-sm-12">
-                <ul class="list-inline client-list">
-                    <li class="list-inline-item"><a href="" title="Microsoft"><img src="images/clients/microsoft.png" alt="clients"></a></li>
-                    <li class="list-inline-item"><a href="" title="Google"><img src="images/clients/google.png" alt="clients"></a></li>
-                    <li class="list-inline-item"><a href="" title="Instagram"><img src="images/clients/instagram.png" alt="clients"></a></li>
-                    <li class="list-inline-item"><a href="" title="Converse"><img src="images/clients/converse.png" alt="clients"></a></li>
-                </ul>
-            </div> <!-- end Col -->
-
-        </div><!-- end row -->
-
-    </div>
-</section>
-<!--End  Clients -->
+{{--                            <div class="text-center">--}}
+{{--                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </article>--}}
 
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="text-muted copyright">© 2016 - 2018. All rights reserved.</p>
-            </div>
-            <div class="col-md-3 ml-auto">
-                <ul class="social-icons text-md-right">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-            </div>
-        </div> <!-- end row -->
-    </div> <!-- end container -->
-</footer>
-<!-- End Footer -->
+{{--                    <!--Pricing Column-->--}}
+{{--                    <article class="pricing-column col-lg-4 col-md-4">--}}
+{{--                        <div class="inner-box">--}}
+{{--                            <div class="plan-header text-center">--}}
+{{--                                <h3 class="plan-title">Extended</h3>--}}
+{{--                                <h2 class="plan-price">$999</h2>--}}
+{{--                                <div class="plan-duration">Per License</div>--}}
+{{--                            </div>--}}
+{{--                            <ul class="plan-stats list-unstyled">--}}
+{{--                                <li> <i class="pe-7s-server"></i>Number of end products <b>1</b></li>--}}
+{{--                                <li> <i class="pe-7s-graph"></i>Customer support</li>--}}
+{{--                                <li> <i class="pe-7s-mail-open"></i>Free Updates</li>--}}
+{{--                                <li> <i class="pe-7s-tools"></i>24x7 Support</li>--}}
+{{--                            </ul>--}}
+
+{{--                            <div class="text-center">--}}
+{{--                                <a href="#" class="btn btn-sm btn-custom">Purchase Now</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </article>--}}
+
+{{--                </div>--}}
+{{--            </div><!-- end col -->--}}
+{{--        </div>--}}
+{{--        <!-- end row -->--}}
+
+{{--    </div> <!-- end container -->--}}
+{{--</section>--}}
+{{--<!-- End Pricing -->--}}
+
+
+{{--<!-- Clients -->--}}
+{{--<section class="section p-t-0" id="clients">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-12 text-center">--}}
+{{--                <h3 class="title">Trusted by Thousands</h3>--}}
+{{--                <p class="text-muted sub-title">The clean and well commented code allows easy customization of the theme.It's <br/> designed for describing your app, agency or business.</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- end row -->--}}
+
+{{--        <div class="row text-center">--}}
+{{--            <div class="col-sm-12">--}}
+{{--                <ul class="list-inline client-list">--}}
+{{--                    <li class="list-inline-item"><a href="" title="Microsoft"><img src="images/clients/microsoft.png" alt="clients"></a></li>--}}
+{{--                    <li class="list-inline-item"><a href="" title="Google"><img src="images/clients/google.png" alt="clients"></a></li>--}}
+{{--                    <li class="list-inline-item"><a href="" title="Instagram"><img src="images/clients/instagram.png" alt="clients"></a></li>--}}
+{{--                    <li class="list-inline-item"><a href="" title="Converse"><img src="images/clients/converse.png" alt="clients"></a></li>--}}
+{{--                </ul>--}}
+{{--            </div> <!-- end Col -->--}}
+
+{{--        </div><!-- end row -->--}}
+
+{{--    </div>--}}
+{{--</section>--}}
+{{--<!--End  Clients -->--}}
+
+
+{{--<!-- FOOTER -->--}}
+{{--<footer class="footer">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-md-6">--}}
+{{--                <p class="text-muted copyright">© 2016 - 2018. All rights reserved.</p>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-3 ml-auto">--}}
+{{--                <ul class="social-icons text-md-right">--}}
+{{--                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>--}}
+{{--                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>--}}
+{{--                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div> <!-- end row -->--}}
+{{--    </div> <!-- end container -->--}}
+{{--</footer>--}}
+{{--<!-- End Footer -->--}}
 
 
 <!-- Back to top -->

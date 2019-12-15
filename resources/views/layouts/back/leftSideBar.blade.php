@@ -10,11 +10,15 @@
             <ul>
 
 {{--                <li class="text-muted menu-title">Navigation</li>--}}
-
+                @role('company')
+                <li class="has_sub">
+                    <a href="#" class="waves-effect"><i class="ti-home"></i> <span> @lang('dashboard.dashboard') </span> <span class="menu-arrow"></span></a>
+                </li>
+                @endrole
+                @role('admin')
                 <li class="has_sub">
                     <a href="{{ url('/dashboard') }}" class="waves-effect"><i class="ti-home"></i> <span> @lang('dashboard.dashboard') </span> <span class="menu-arrow"></span></a>
                 </li>
-                @role('admin')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> @lang('company.title_sidebar') </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">

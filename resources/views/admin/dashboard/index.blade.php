@@ -8,7 +8,7 @@
     <meta name="author" content="Coderthemes">
     <link rel="shortcut icon" href="{{asset('back')}}/assets/images/favicon.ico">
 
-    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <title>Jaiiza</title>
 
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="../plugins/morris/morris.css">
@@ -83,7 +83,7 @@
                                 <i class="md md-add-shopping-cart text-pink"></i>
                             </div>
                             <div class="text-right">
-                                <h3 class="text-dark"><b class="counter">280</b></h3>
+                                <h3 class="text-dark"><b class="counter">9</b></h3>
                                 <p class="text-muted mb-0">منشآت سجلت</p>
                             </div>
                             <div class="clearfix"></div>

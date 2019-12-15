@@ -1,13 +1,14 @@
 @component('mail::message')
-# Introduction
-Bienvenu {{ $user->name }}
+# دورة الجائزة
+ {{ $user->name }}
 
-Merci de votre confirmation lien here :
+مرحا بكم في دورة الجائزة
+يمكنك تفعيل حسابك عبر الرابط التالي
 
 @component('mail::button', ['url' => 'http://localhost:8000/company/'. $user->company->id .'/confirmed-registre'])
-Button Text
+    فعل الآن
 @endcomponent
 
-Thanks,<br>
+شكرا لكم ,<br>
 {{ config('app.name') }}
 @endcomponent

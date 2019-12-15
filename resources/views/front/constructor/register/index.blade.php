@@ -30,8 +30,8 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="col-12">
-                    <select class="form-control" id="type" name="type">
-                        <option value="0">@lang('constructorRegister.main_sector')</option>
+                    <select class="form-control" id="type" name="type" required>
+                        <option value="0" >@lang('constructorRegister.main_sector')</option>
                         @foreach ($mainSectors as $mainSector)
                             <option value="{{$mainSector->id}}" >{{$mainSector->arabic_name}}</option>
                         @endforeach
@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-12">
-                        <input class="form-control" name="password" type="text" placeholder="@lang('constructorRegister.password')" required>
+                        <input class="form-control" name="password" type="password" placeholder="@lang('constructorRegister.password')" required>
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
         $("#type").change(function() {
             if(parseInt($(this).val())!== 0) {
                 var mainSector = $(this).val();
-                alert(mainSector);
+                //alert(mainSector);
 
                 $.ajax({
                     type:"GET",

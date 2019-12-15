@@ -13,6 +13,7 @@
 
 // Backend
 Route::prefix('admin')->namespace('admin')->group(function () {
+    Route::get('company/confirm', 'DashboardController@confirmRegistred')->name('company.confirm.registred');
     Route::get('gift-steps', 'DashboardController@giftSteps')->name('gift.steps');
     Route::get('main-sectors', 'DashboardController@mainSectors')->name('gift.mainSectors');
     Route::get('sub-sectors/main-sector/{id}', 'DashboardController@subSectors')->name('gift.subSectors');

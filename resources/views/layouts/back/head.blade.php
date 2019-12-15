@@ -6,7 +6,7 @@
 
     <link rel="shortcut icon" href="{{asset('back')}}/assets/images/favicon.ico">
 
-    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <title>Jaeza</title>
 
     <link href="{{asset('back')}}/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="{{asset('back')}}/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">

@@ -51,6 +51,7 @@ class HomeController extends Controller
     {
         $user = User::createUser($request);
         Company::createCompany($request, $user);
+        $user->assignRole('company');
         //Send notification to admin
         $user_admin = User::find(1);
         $user_admin->notify(new NewCompanyRegistred($user));
@@ -63,7 +64,7 @@ class HomeController extends Controller
     public function CompanyConfirmedRegistre($company)
     {
         Company::where('id', $company)
-            ->update(['confirmed_registre' => true]);
-        return redirect('/login')->with('message_confirmed_register', 'message confirmation here');
+            ->update(['is_confirmed' => true]);
+        return redirect('/login')->with('message_confirmed_register', 'تم تفعيل حسابك بنجاح ');
     }
 }
