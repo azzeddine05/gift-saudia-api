@@ -344,8 +344,6 @@
             var subStandardArabicName3 = $("#subStandardArabicName3").val();
 
             var totalAllWeight = weightOne + weightTwo + weightTree;
-            alert(totalAllWeight);
-            alert(weightMainStandard);
 
             if($("#weightSubStandard1").val().length == 0 || weightOne == 0) {
                 //$('#err-name').fadeIn('slow'); // show the error message
