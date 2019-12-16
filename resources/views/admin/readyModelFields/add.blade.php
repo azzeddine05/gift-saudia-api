@@ -244,9 +244,24 @@
 
         // check value Now for MainStandard
 
+        let checkWeghitWithTotal = false;
+
         $(document).on("change","#weightMainStandard", function(e) {
             checkTotalMark();
         });
+
+        function checkTotalMark() {
+            let weight = $("#weightMainStandard").val();
+            let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
+            let totalMark = $("#totalMark").val();
+            if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
+                alert("لا يمكن لمجموع  أوزان المعايير الرئسية أن تكون أكبر من الدرجة الكلية ")
+                $("#saveMainSubStandard").hide();
+            }else {
+                checkWeghitWithTotal = true;
+                //$("#saveMainSubStandard").fadeIn();
+            }
+        }
         // Check Values Now
         $(document).on("keyup","#weightSubStandard1", function(e) {
             var allWeightSubStandard;
@@ -264,7 +279,7 @@
                 $("#saveMainSubStandard").hide();
             }else {
                 check1 = true;
-                if(check1) {
+                if(check1 && checkWeghitWithTotal) {
                     $("#saveMainSubStandard").fadeIn();
                 }
             }
@@ -286,7 +301,7 @@
                 $("#saveMainSubStandard").hide();
             }else {
                 check2 = true;
-                if(check2) {
+                if(check2 && checkWeghitWithTotal) {
                     $("#saveMainSubStandard").fadeIn();
                 }
             }
@@ -309,7 +324,7 @@
                 $("#saveMainSubStandard").hide();
             } else {
                 check3 = true;
-                if(check3 &&  $(this).val() != 0) {
+                if(check3 &&  $(this).val() != 0 && checkWeghitWithTotal) {
                     $("#saveMainSubStandard").fadeIn();
                 }
             }
@@ -328,6 +343,10 @@
             var subStandardArabicName2 = $("#subStandardArabicName2").val();
             var subStandardArabicName3 = $("#subStandardArabicName3").val();
 
+            var totalAllWeight = weightOne + weightTwo + weightTree;
+            alert(totalAllWeight);
+            alert(weightMainStandard);
+
             if($("#weightSubStandard1").val().length == 0 || weightOne == 0) {
                 //$('#err-name').fadeIn('slow'); // show the error message
                 alert("أدخل وزن صحيح أكبر من الصفر ");
@@ -335,7 +354,9 @@
                 alert("أدخل وزن صحيح أكبر من الصفر ");
             }else if($("#weightSubStandard3").val().length == 0 || weightTree == 0) {
                 alert("أدخل وزن صحيح أكبر من الصفر ");
-            }else {
+            }else if(totalAllWeight != weightMainStandard) {
+                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
+            }else{
                 $.ajax({
                     type:"POST",
                     url:"/api/fields-ready-model",
@@ -357,17 +378,7 @@
 
         });
 
-        function checkTotalMark() {
-            let weight = $("#weightMainStandard").val();
-            let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
-            let totalMark = $("#totalMark").val();
-            if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
-                alert("لا يمكن لمجموع  أوزان المعايير الرئسية أن تكون أكبر من الدرجة الكلية ")
-                $("#saveMainSubStandard").hide();
-            }else {
-                $("#saveMainSubStandard").fadeIn();
-            }
-        }
+
 
             $("#type").change(function() {
             if(parseInt($(this).val())!== 0) {

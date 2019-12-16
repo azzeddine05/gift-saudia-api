@@ -160,11 +160,15 @@
                     <option value="number">@lang('fields.number')</option>
                     <option value="email">@lang('fields.email')</option>
                     <option value="text_area">نص كبير </option>
+                    <option value="date">تاريخ </option>
+                    <option value="text">الموقع الإلكتروني</option>
+                    <option value="text">رقم الجوال</option>
+                    <option value="file">مرفقات </option>
 
                 </select>
             </div>
-            <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">Save</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+            <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
         </form>
     </div>
 </div>
