@@ -46,14 +46,16 @@
                                 <div class="col-md-6">
                                     <form id="mainStandard" class="form-inline">
                                         <div class="form-group mx-sm-3">
-                                            @if(empty($totalMarks))
+
+                                        @if(empty($totalMarks))
                                             <label style="margin-left: 10px" for="inputPassword2" class="">حدد الدرجة الكلية لجميع المعايير </label>
                                                 <input id="newTotalMark" value="" type="text" class="form-control">
                                                 <button id="addTotalMarks" type="" class="btn btn-success">تأكيد الدرجة الكلية  </button>
                                             @else
                                             <label style="margin-left: 10px" for="inputPassword2" class=""> الدرجة الكلية لجميع المعايير </label>
                                             <input id="totalMark" value="{{$totalMarks->total}}" type="text" class="form-control" readonly>
-                                            @endif
+                                        @endif
+                                            <h6><span style="margin-right: 33px" class="label label-danger"> المتبقي للإستعمال من الدرجة الكلية   <b> {{ $restOftotal }} </b> </span></h6>
                                         </div>
                                     </form>
                                 </div>
@@ -172,6 +174,8 @@
         });
         $(document).on("click",".addMainStandard", function(e) {
             e.preventDefault();
+            $(this).attr("disabled", true);
+
             var newdivMainStandard = '<form id="mainStandard" class="form-inline">'+
                 '<div style="" class="form-group mx-sm-3 mainStandard">'+
                 '<label for="inputPassword2" class="sr-only">إسم المعيار الرئيسي </label>'+
@@ -254,8 +258,9 @@
             let weight = $("#weightMainStandard").val();
             let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
             let totalMark = $("#totalMark").val();
-            if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
-                alert("لا يمكن لمجموع  أوزان المعايير الرئسية أن تكون أكبر من الدرجة الكلية ")
+            let restOftotal = "{{ $restOftotal }}";
+          if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
+              alert(`لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`)
                 $("#saveMainSubStandard").hide();
             }else {
                 checkWeghitWithTotal = true;
