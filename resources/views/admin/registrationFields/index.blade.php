@@ -283,6 +283,8 @@
             var path = $(this).attr("href");
             var id = $(this).attr("data-id");
             $("#idField").val(id);
+
+
             axios.get(path)
                 .then(response => {
                     console.log(response.data);
@@ -305,14 +307,20 @@
             //var data = getDatafromFormUpdate();
             var id = $("#idField").val();
             var path = '/api/admin/registration-fields/'+id;
-            axios.put(path,
-                arabic_name => $("#arabic_name_update" ).val(),
-                english_name => $("#arabic_name_update" ).val(),
-                type => $("#type_update" ).val(),
-            )
+
+            const data = {
+                arabic_name : $("#arabic_name_update" ).val(),
+                english_name : $("#arabic_name_update" ).val(),
+                type : $("#type_update" ).val(),
+                id: id
+            };
+
+            axios.put(path, data)
                 .then(response => {
 
-                    if($.isEmptyObject(response.error)){
+                    setTimeout(function(){ location.reload(); }, 2200);
+
+                    /*if($.isEmptyObject(response.data.error)){
                         Custombox.close();
                         $(".success-update").fadeIn();
                         $("html, body").animate({
@@ -321,7 +329,7 @@
                         setTimeout(function(){ location.reload(); }, 2200);
                     }else{
                         printErrorMsg(response);
-                    }
+                    }*/
                 })
 
         });

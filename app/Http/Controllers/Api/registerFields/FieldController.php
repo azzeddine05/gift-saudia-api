@@ -56,22 +56,26 @@ class FieldController extends Controller
 
     public function update(Request $request, RegistrationField $registrationField)
     {
-        dump($request->get('arabic_name'));die;
+        $id = $request->get('id');
 
         $validator = Validator::make($request->all(), [
-            'arabic_name' => 'required',
-            'english_name' => 'required',
-        ],
-        [
-            'arabic_name.required' => 'مطلوب إسم الحقل  بالعربية !',
-            'english_name.required' => ' مطلوب إسم الحقل  بالإنجليزية !',
-            //'type.required' => ' مطلوب إسم القطاع بالإنجليزية !',
-        ]
-
+                'arabic_name' => 'required',
+                'english_name' => 'required',
+            ],
+            [
+                'arabic_name.required' => 'مطلوب إسم الحقل  بالعربية !',
+                'english_name.required' => ' مطلوب إسم الحقل  بالإنجليزية !',
+                //'type.required' => ' مطلوب إسم القطاع بالإنجليزية !',
+            ]
         );
 
-            $registrationField->update($request->all());
-            return response()->json($registrationField, 200);
+        $registrationField = RegistrationField::find($id);
+        $registrationField->arabic_name = $request->get('arabic_name');
+        $registrationField->english_name = $request->get('english_name');
+        $registrationField->type = $request->get('type');
+        $registrationField->save();
+        
+        return response()->json($registrationField, 200);
 
     }
 
