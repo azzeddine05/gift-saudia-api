@@ -41,49 +41,107 @@
                 <div class="row">
                     <div id="akbarDiv" class="col-md-12">
                         <div class="card-box">
-                            <h4 class="m-t-0 header-title">حقول نموذج الجاهزية</h4><br>
-                            <div style="margin-right: 30%" class="row">
-                                <div class="col-md-6">
-                                    <form id="mainStandard" class="form-inline">
-                                        <div class="form-group mx-sm-3">
+                            <h4 class="m-t-0 m-b-30 header-title">حقول نموذج الجاهزية</h4>
+                            <div class="m-b-15">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form id="mainStandard" class="form-inline">
+                                            <div class="form-group mx-sm-3">
 
-                                        @if(empty($totalMarks))
-                                            <label style="margin-left: 10px" for="inputPassword2" class="">حدد الدرجة الكلية لجميع المعايير </label>
-                                                <input id="newTotalMark" value="" type="text" class="form-control">
-                                                <button id="addTotalMarks" type="" class="btn btn-success">تأكيد الدرجة الكلية  </button>
-                                            @else
-                                            <label style="margin-left: 10px" for="inputPassword2" class=""> الدرجة الكلية لجميع المعايير </label>
-                                            <input id="totalMark" value="{{$totalMarks->total}}" type="text" class="form-control" readonly>
-                                        @endif
-                                            <h6><span style="margin-right: 33px" class="label label-danger"> المتبقي للإستعمال من الدرجة الكلية   <b> {{ $restOftotal }} </b> </span></h6>
+                                                @if(empty($totalMarks))
+                                                    <label style="margin-left: 10px" for="inputPassword2" class="">حدد الدرجة الكلية لجميع المعايير </label>
+                                                    <input id="newTotalMark" value="" type="text" class="form-control">
+                                                    <button id="addTotalMarks" type="" class="btn btn-success">تأكيد الدرجة الكلية  </button>
+                                                @else
+                                                    <label style="margin-left: 10px" for="inputPassword2" class=""> الدرجة الكلية لجميع المعايير </label>
+                                                    <input id="totalMark" value="{{$totalMarks->total}}" type="text" class="form-control" readonly>
+                                                @endif
+                                                <h6><span style="margin-right: 33px" class="label label-danger"> المتبقي للإستعمال من الدرجة الكلية   <b> {{ $restOftotal }} </b> </span></h6>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-b-15">
+                                @if(empty($totalMarks))
+                                    <button id="show-standar-container" type="" title="يرجى إضافة الدرجة الكلية أولا " class="btn btn-primary disabled">أضف معيار رئيسي </button>
+                                @else
+                                    <button id="show-standar-container" type="" class="btn btn-primary addMainStandard ">أضف معيار رئيسي </button>
+                                @endif
+                            </div>
+
+                            <div id="standar-container" style="display : none;">
+                                <form id="standars-form" method="POST" action="/api/fields-ready-model">
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div style="" class="form-group">
+                                                    <label class="sr-only">إسم المعيار الرئيسي </label>
+                                                    <input type="text" name="mainstandard[arabic_name]" class="form-control" placeholder="إسم المعيار الرئيسي">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="" class="form-group">
+                                                    <label class="sr-only">إسم المعيار الرئيسي </label>
+                                                    <input type="text" name="mainstandard[english_name]" class="form-control" placeholder="إسم المعيار الرئيسي بالانجليزية">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="" class="form-group">
+                                                    <label class="sr-only"> حدد وزنه</label>
+                                                    <input type="text" name="mainstandard[weight]" id="weightMainStandard" class="form-control" placeholder="حدد وزنه">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            @if(empty($totalMarks))
-                                <button id="1" type="" title="يرجى إضافة الدرجة الكلية أولا " class="btn btn-primary disabled">أضف معيار رئيسي </button>
-                            @else
-                                <button id="1" type="" class="btn btn-primary addMainStandard ">أضف معيار رئيسي </button>
-                            @endif
-                            <div class="row m-b-30">
-                                <div class="col-sm-12">
+                                    </div>
+                                    <div class="sub-standars-list">
+                                        <div class="">
+                                            <label class="control-label m-b-15">أضف المعايير الفرعية </label>
+                                            <div id="sub-standar-items">
+                                                <div class="sub-standar-item" id="clonable-item">
 
-                                    <form id="formMainStandard" class="form-inline">
+                                                    <div class="row">
+                                                        <div class="col-md-11">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="sr-only">إسم المعيار الفرعي  </label>
+                                                                        <input type="text" name="substandards[1][arabic_name]" class="form-control input_arabic_name" placeholder="إسم المعيار الفرعي ">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="sr-only">إسم المعيار الفرعي بالانجليزية  </label>
+                                                                        <input type="text" name="substandards[1][english_name]" class="form-control input_english_name" placeholder="إسم المعيار الفرعي بالانجليزية ">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="sr-only"> حدد وزنه</label>
+                                                                        <input type="number" name="substandards[1][weight]" class="form-control input_weight" value="0" placeholder="حدد وزنه">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="item-action"></div>
+                                                        </div>
+                                                    </div>
 
-                                    </form>
-                                </div>
-
-                            </div>
-
-                            <div id="DivSubStandard-1" class="row">
-
-                                <div class="col-sm-12">
-                                    <span style="display: none" id="labelSubStandard" class="">أضف المعايير الفرعية </span><br><br>
-                                    <form id="formSubStandard" class="form-inline">
-
-                                    </form>
-                                </div>
-
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn btn-primary" id="add-sub-standar" title="أضف معيار فرعي جديد">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-action text-center">
+                                        <button type="submit" class="btn btn-primary">أضف الآن </button>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>
@@ -134,16 +192,13 @@
 <script src="{{asset('back')}}/assets/js/jquery.app.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+
+    $(document).ready(function () {
+
         $("#addTotalMarks").click(function(e) {
             e.preventDefault();
             var total = "";
             total = $("#newTotalMark").val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
             $.ajax({
                 type:"POST",
                 url:"/admin/total-marks/add",
@@ -161,215 +216,45 @@
                     }
                 }
             });
+        });
 
-        });
-        var count = 1
-        var check1 = false;
-        var check2 = false;
-        var check3 = false;
-        var mainStandardclickedId = '#addMainStandard-'+count+'';
-        $(document).on("click", ".button-delete", function() {
-//   console.log("inside";   <-- here it is
-            console.log("inside");
-        });
-        $(document).on("click",".addMainStandard", function(e) {
+        $("#show-standar-container").on("click",function (e) {
             e.preventDefault();
-            $(this).attr("disabled", true);
-
-            var newdivMainStandard = '<form id="mainStandard" class="form-inline">'+
-                '<div style="" class="form-group mx-sm-3 mainStandard">'+
-                '<label for="inputPassword2" class="sr-only">إسم المعيار الرئيسي </label>'+
-                '<input type="text" class="form-control" id="mainStandardArabicName" placeholder="إسم المعيار الرئيسي">'+
-                '</div>'+
-                '<div style="" class="form-group mx-sm-3 mainStandard">'+
-                '<label for="inputPassword2" class="sr-only"> حدد وزنه</label>'+
-                '<input type="text" class="form-control" id="weightMainStandard" placeholder="حدد وزنه">'+
-                '</div>'+
-                '</form>';
-
-            var newdivSubStandard = '<div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only">إسم المعيار الفرعي  </label>\n' +
-                '                                            <input type="text" class="form-control" id="subStandardArabicName1" placeholder="إسم المعيار الفرعي ">\n' +
-                '                                        </div>\n' +
-                '                                        <div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only"> حدد وزنه</label>\n' +
-                '                                            <input type="text" class="form-control" value="0" id="weightSubStandard1" placeholder="حدد وزنه">\n' +
-                '                                        </div><br><br><br>\n' +
-                '<div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only">إسم المعيار الفرعي  </label>\n' +
-                '                                            <input type="text" class="form-control" id="subStandardArabicName2" placeholder="إسم المعيار الفرعي ">\n' +
-                '                                        </div>\n' +
-                '                                        <div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only"> حدد وزنه</label>\n' +
-                '                                            <input type="text" class="form-control" value="0" id="weightSubStandard2" placeholder="حدد وزنه">\n' +
-                '                                        </div>\n' +
-                '                                        <div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only">إسم المعيار الفرعي  </label>\n' +
-                '                                            <input type="text" class="form-control" id="subStandardArabicName3" placeholder="إسم المعيار الفرعي ">\n' +
-                '                                        </div>\n' +
-                '                                        <div style="" class="form-group mx-sm-3 sub-standard">\n' +
-                '                                            <label for="inputPassword2" class="sr-only"> حدد وزنه</label>\n' +
-                '                                            <input type="text" class="form-control" value="0" id="weightSubStandard3" placeholder="حدد وزنه">\n' +
-                '                                        </div><br><br><br>';
-
-            var newNew = '<div class="card-box"><div class="row m-b-30">\n' +
-                '                                <div class="col-sm-12">\n' +
-                '                                    <button id="1" type="" class="btn btn-primary addMainStandard">أضف معيار رئيسي </button>\n' +
-                '                                    <form id="formMainStandard-'+count+'" class="form-inline">\n' +
-                '\n' +
-                '                                    </form>\n' +
-                '                                </div>\n' +
-                '\n' +
-                '                            </div>\n' +
-                '\n' +
-                '                            <div id="DivSubStandard-'+count+'" class="row">\n' +
-
-                '\n' +
-                '                                <div class="col-sm-12">\n' +
-                '                                    <span style="display: none" id="labelSubStandard" class="">أضف المعايير الفرعية </span><br><br>\n' +
-                '                                    <form id="formSubStandard-'+count+'" class="form-inline">\n' +
-                '\n' +
-                '                                    </form>\n' +
-                '                                </div>\n' +
-                '\n' +
-                '                            </div></div>';
-
-                var testId= $(this).attr('id');
-
-                // $(".mainStandard").fadeIn();
-                $("#labelSubStandard").fadeIn();
-                // $(".sub-standard").fadeIn();
-                //$("#akbarDiv").append(newNew);
-                $('#formMainStandard').append(newdivMainStandard);
-                $('#formSubStandard').append(newdivSubStandard);
-                $('#DivSubStandard-'+count+'').append('<buttons style="display: none" id="saveMainSubStandard" type="\" class="btn btn-primary">أضف الآن </buttons></div>');
-
+            $("#standar-container").slideDown();
         });
 
-        // check value Now for MainStandard
-
-        let checkWeghitWithTotal = false;
-
-        $(document).on("change","#weightMainStandard", function(e) {
-            checkTotalMark();
-        });
-
-        function checkTotalMark() {
-            let weight = $("#weightMainStandard").val();
-            let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
-            let totalMark = $("#totalMark").val();
-            let restOftotal = "{{ $restOftotal }}";
-          if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
-              alert(`لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`)
-                $("#saveMainSubStandard").hide();
-            }else {
-                checkWeghitWithTotal = true;
-                //$("#saveMainSubStandard").fadeIn();
-            }
-        }
-        // Check Values Now
-        $(document).on("keyup","#weightSubStandard1", function(e) {
-            var allWeightSubStandard;
-            var weightMainStandard = parseInt($("#weightMainStandard").val());
-            var weightOne = parseInt($("#weightSubStandard1").val());
-            var weightTwo = parseInt($("#weightSubStandard2").val());
-            var weightTree = parseInt($("#weightSubStandard3").val());
-            allWeightSubStandard = weightOne + weightTwo + weightTree;
-
-            //alert(allWeightSubStandard);
-
-            if (allWeightSubStandard > weightMainStandard) {
-                alert("لا يمكن لمجموع المعايير الفرعية أن تكون أكبر من المعيار الرئيسي ");
-                check1 = false;
-                $("#saveMainSubStandard").hide();
-            }else {
-                check1 = true;
-                if(check1 && checkWeghitWithTotal) {
-                    $("#saveMainSubStandard").fadeIn();
-                }
-            }
-
-        });
-        $(document).on("keyup","#weightSubStandard2", function(e) {
-            var allWeightSubStandard;
-            var weightMainStandard = parseInt($("#weightMainStandard").val());
-            var weightOne = parseInt($("#weightSubStandard1").val());
-            var weightTwo = parseInt($("#weightSubStandard2").val());
-            var weightTree = parseInt($("#weightSubStandard3").val());
-            allWeightSubStandard = weightOne + weightTwo + weightTree;
-
-            //alert(allWeightSubStandard);
-
-            if (allWeightSubStandard > weightMainStandard) {
-                alert("لا يمكن لمجموع المعايير الفرعية أن تكون أكبر من المعيار الرئيسي ");
-                check2 = false;
-                $("#saveMainSubStandard").hide();
-            }else {
-                check2 = true;
-                if(check2 && checkWeghitWithTotal) {
-                    $("#saveMainSubStandard").fadeIn();
-                }
-            }
-
-
-        });
-        $(document).on("keyup","#weightSubStandard3", function(e) {
-            var allWeightSubStandard;
-            var weightMainStandard = parseInt($("#weightMainStandard").val());
-            var weightOne = parseInt($("#weightSubStandard1").val());
-            var weightTwo = parseInt($("#weightSubStandard2").val());
-            var weightTree = parseInt($("#weightSubStandard3").val());
-            allWeightSubStandard = weightOne + weightTwo + weightTree;
-
-            //alert(allWeightSubStandard);
-
-            if (allWeightSubStandard > weightMainStandard) {
-                alert("لا يمكن لمجموع المعايير الفرعية أن تكون أكبر من المعيار الرئيسي ");
-                check3 = false;
-                $("#saveMainSubStandard").hide();
-            } else {
-                check3 = true;
-                if(check3 &&  $(this).val() != 0 && checkWeghitWithTotal) {
-                    $("#saveMainSubStandard").fadeIn();
-                }
-            }
-
-        });
-
-        $(document).on("click","#saveMainSubStandard", function(e) {
+        $("#add-sub-standar").on("click",function (e) {
             e.preventDefault();
-            var weightMainStandard = parseInt($("#weightMainStandard").val());
-            var weightOne = parseInt($("#weightSubStandard1").val());
-            var weightTwo = parseInt($("#weightSubStandard2").val());
-            var weightTree = parseInt($("#weightSubStandard3").val());
+            var item = $("#clonable-item").clone();
 
-            var mainStandardArabicName = $("#mainStandardArabicName").val();
-            var subStandardArabicName1 = $("#subStandardArabicName1").val();
-            var subStandardArabicName2 = $("#subStandardArabicName2").val();
-            var subStandardArabicName3 = $("#subStandardArabicName3").val();
+            var deleteBtn = '<button type="button" class="btn btn-danger btn-block delete-sub-standar" title="حدف المعيار الفرعي">\n' +
+                '<i class="fa fa-trash"></i>\n'+
+                '</button>';
 
-            var totalAllWeight = weightOne + weightTwo + weightTree;
+            var index = $("#sub-standar-items .sub-standar-item").length + 1;
 
-            if($("#weightSubStandard1").val().length == 0 || weightOne == 0) {
-                //$('#err-name').fadeIn('slow'); // show the error message
-                alert("أدخل وزن صحيح أكبر من الصفر ");
-            }else if($("#weightSubStandard2").val().length == 0 || weightTwo == 0) {
-                alert("أدخل وزن صحيح أكبر من الصفر ");
-            }else if($("#weightSubStandard3").val().length == 0 || weightTree == 0) {
-                alert("أدخل وزن صحيح أكبر من الصفر ");
-            }else if(totalAllWeight != weightMainStandard) {
-                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
-            }else{
+            item.find(".item-action").html(deleteBtn);
+            item.find(".input_arabic_name").attr("name","substandars["+ index +"][arabic_name]").val("");
+            item.find(".input_english_name").attr("name","substandars["+ index +"][english_name]").val("");
+            item.find(".input_weight").attr("name","substandars["+ index +"][weight]").val(0);
+
+            $("#sub-standar-items").append(item);
+        });
+
+        $("#sub-standar-items").on("click",".delete-sub-standar",function (e) {
+            e.preventDefault();
+            $(this).parents(".sub-standar-item").remove();
+        });
+
+        $("#standars-form").on("submit",function (e) {
+            e.preventDefault();
+
+            if(validateForm())
+            {
                 $.ajax({
                     type:"POST",
                     url:"/api/fields-ready-model",
-                    data :  {
-                        "weightMainStandard": weightMainStandard, "weightOne": weightOne, "weightTwo": weightTwo,
-                        "weightTree": weightTree, "mainStandardArabicName": mainStandardArabicName,
-                        "subStandardArabicName1": subStandardArabicName1,
-                        "subStandardArabicName2": subStandardArabicName2, "subStandardArabicName3": subStandardArabicName3
-                    },
-                    datatype:"html",
+                    data :  $("#standars-form").serialize(),
                     success:function(data) {
                         window.location.replace('/admin/ready-model-fields');
                         //$("#subSectorList").html(data);
@@ -377,34 +262,72 @@
                     }
                 });
             }
-
-
         });
 
 
 
-            $("#type").change(function() {
-            if(parseInt($(this).val())!== 0) {
-                var mainSector = $(this).val();
-                alert(mainSector);
+    });
 
-                $.ajax({
-                    type:"GET",
-                    url:"/main-sector/sub-sector",
-                    data :  {
-                        "mainSector": mainSector,
-                    },
-                    datatype:"html",
-                    success:function(data) {
-                        console.log(data);
-                        $("#subSectorList").html(data);
+    function validateForm() {
+        let weight                  = $("#weightMainStandard").val();
+        let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
+        let totalMark               = $("#totalMark").val();
+        let restOftotal             = "{{ $restOftotal }}";
 
-                    }
-                });
+        let validInputs = true;
+        $(".input_arabic_name, .input_english_name").each(function () {
+            if($(this).val() == "")
+                validInputs = false;
+
+        });
+
+        if(!validInputs)
+        {
+            alert("المرجو ملئ كل الخانات ");
+            return false;
+        }
+
+        if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
+            alert(`لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`)
+            return false;
+        }
+
+        let sum = 0;
+        let validWeight = true;
+        $(".input_weight").each(function () {
+            if($(this).val() == 0 || $(this).val() == ""){
+                validWeight = false;
+            }
+            else
+            {
+                sum += parseInt($(this).val());
+            }
+        });
+
+        if(!validWeight)
+        {
+            alert("أدخل وزن صحيح أكبر من الصفر ");
+            return false;
+        }
+
+        if(sum > 0)
+        {
+            if(sum > weight)
+            {
+                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
+                return false;
             }
 
-        });
-    });
+            if(sum < weight)
+            {
+                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 
 </script>
 </body>

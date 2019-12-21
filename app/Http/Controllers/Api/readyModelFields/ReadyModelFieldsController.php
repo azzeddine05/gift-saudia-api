@@ -33,7 +33,38 @@ class ReadyModelFieldsController extends Controller
 
     public function store(Request $request)
     {
-        $mainStandard = new MainStandard();
+        $mainStandard = (object)$request->mainstandard;
+        $substandards = $request->substandards;
+
+        if($mainStandard)
+        {
+            $newMainStandard = new MainStandard();
+            $newMainStandard->arabic_name   = isset($mainStandard->arabic_name) ? $mainStandard->arabic_name : "";
+            $newMainStandard->english_name  = isset($mainStandard->english_name) ? $mainStandard->english_name : "";
+            $newMainStandard->weight        = isset($mainStandard->weight) ? $mainStandard->weight : 0;
+            $newMainStandard->save();
+
+            if($newMainStandard->id)
+            {
+                foreach ($substandards as $key => $value)
+                {
+                    $item = (object)$value;
+
+                    $subStandard = new SubStandard();
+                    $subStandard->arabic_name       = isset($item->arabic_name) ? $item->arabic_name : "";
+                    $subStandard->english_name      = isset($item->english_name) ? $item->english_name : "";
+                    $subStandard->weight            = isset($item->weight) ? $item->weight : 0;
+                    $subStandard->main_standard_id  = $newMainStandard->id;
+                    $subStandard->save();
+                }
+
+                return response()->json(["status" => "good"]);
+            }
+        }
+
+
+
+        /*$mainStandard = new MainStandard();
         $mainStandard->arabic_name = $request->mainStandardArabicName;
         $mainStandard->english_name = $request->mainStandardArabicName;
         $mainStandard->weight = $request->weightMainStandard;
@@ -58,7 +89,7 @@ class ReadyModelFieldsController extends Controller
         $subStandard2->english_name = $request->subStandardArabicName3;
         $subStandard2->weight = $request->weightTree;
         $subStandard2->main_standard_id = $mainStandard->id;
-        $subStandard2->save();
+        $subStandard2->save();*/
 
 //        return response()->json($mainSectors, 201);
     }
