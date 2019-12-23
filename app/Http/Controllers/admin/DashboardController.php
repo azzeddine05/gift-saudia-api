@@ -84,6 +84,12 @@ class DashboardController extends Controller
             ]);
     }
 
+    public function getReadyModelFieldsSubStandard($mainId)
+    {
+        $subStandards =  SubStandard::where('main_standard_id', $mainId)->get();
+        return view('admin.readyModelFields.subStandard', ['subStandards' => $subStandards]);
+    }
+
     public function addTotalMarks(Request $request)
     {
         $totalMark = TotalMark::create($request->all());

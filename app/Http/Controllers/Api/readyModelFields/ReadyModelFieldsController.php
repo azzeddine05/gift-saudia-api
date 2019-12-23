@@ -58,11 +58,11 @@ class ReadyModelFieldsController extends Controller
                     $subStandard->save();
                 }
 
-                return response()->json(["status" => "good"]);
+                return response()->json(["done" => true]);
             }
         }
 
-
+        return response()->json(["done" => false]);
 
         /*$mainStandard = new MainStandard();
         $mainStandard->arabic_name = $request->mainStandardArabicName;

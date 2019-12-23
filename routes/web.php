@@ -22,6 +22,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
 
     Route::get('registration-fields', 'DashboardController@registrationFields')->name('registration.fields');
     Route::get('ready-model-fields', 'DashboardController@ReadyModelFields')->name('ready.model.fields');
+    Route::get('get-ready-model-fields-sub-standard/{id}', 'DashboardController@getReadyModelFieldsSubStandard')->name('get.ready.model.fields.sub.standard');
     Route::get('ready-model-fields/add', 'DashboardController@addReadyModelFields')->name('ready.model.fields.add');
     Route::get('execute-payment', 'PaymentContrller@execute')->name('paypal.payment.execute');
     Route::post('create-payment', 'PaymentController@createPayment')->name('paypal.payment.create');
@@ -35,6 +36,9 @@ Route::prefix('admin')->namespace('admin')->group(function () {
 
     Route::get('fees/registred', 'DashboardController@registredFees')->name('fees.registred');
     Route::get('fees/subscribed', 'DashboardController@subscribedFees')->name('fees.subscribed');
+
+    Route::get('reviews-fields', 'ReviewsController@index')->name('reviews.fields');
+    Route::post('reviews-fields/add', 'ReviewsController@store')->name('reviews.fields.add');
 
 });
 
@@ -80,3 +84,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+//Route::get('stripe', 'StripePaymentController@stripe');
+//Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+Route::post('/make-payment', 'StripePaymentController@pay');

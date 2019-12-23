@@ -31,23 +31,26 @@
                 <li class="has_sub">
                     <a href="{{ url('admin/gift-steps') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_steps')</span> <span class="menu-arrow"></span> </a>
                 </li>
-                <li class="has_sub">
-                    <a href="{{route('fees.registred')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> تكاليف التسجيل</span> <span class="menu-arrow"></span> </a>
-                </li>
-                <li class="has_sub">
-                    <a href="{{route('fees.subscribed')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>تكاليف الإشتراك </span> <span class="menu-arrow"></span> </a>
-                </li>
+{{--                <li class="has_sub">--}}
+{{--                    <a href="{{route('fees.registred')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> تكاليف التسجيل</span> <span class="menu-arrow"></span> </a>--}}
+{{--                </li>--}}
+{{--                <li class="has_sub">--}}
+{{--                    <a href="{{route('fees.subscribed')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>تكاليف الإشتراك </span> <span class="menu-arrow"></span> </a>--}}
+{{--                </li>--}}
                 <li class="has_sub">
                     <a href="{{ url('admin/main-sectors') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.type_sectors')</span> <span class="menu-arrow"></span> </a>
-                </li>
-                <li class="has_sub">
-                    <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
                     <a href="{{url('admin/employes')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_teams')   </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
+                    <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
+                </li>
+                <li class="has_sub">
                     <a href="{{url('admin/ready-model-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول نموذج الجاهزية</span> <span class="menu-arrow"></span> </a>
+                </li>
+                <li class="has_sub">
+                    <a href="{{route('reviews.fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>  حقول التقييم </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span>المراجعة والاعتماد </span> <span class="menu-arrow"></span></a>

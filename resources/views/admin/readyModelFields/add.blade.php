@@ -77,20 +77,20 @@
                                             <div class="col-md-4">
                                                 <div style="" class="form-group">
                                                     <label class="sr-only">إسم المعيار الرئيسي </label>
-                                                    <input type="text" name="mainstandard[arabic_name]" class="form-control" placeholder="إسم المعيار الرئيسي">
+                                                    <input type="text" name="mainstandard[arabic_name]" class="form-control input_main_arabic_name" placeholder="إسم المعيار الرئيسي">
                                                 </div>
 
                                             </div>
                                             <div class="col-md-4">
                                                 <div style="" class="form-group">
                                                     <label class="sr-only">إسم المعيار الرئيسي </label>
-                                                    <input type="text" name="mainstandard[english_name]" class="form-control" placeholder="إسم المعيار الرئيسي بالانجليزية">
+                                                    <input type="text" name="mainstandard[english_name]" class="form-control input_main_english_name" placeholder="إسم المعيار الرئيسي بالانجليزية">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div style="" class="form-group">
                                                     <label class="sr-only"> حدد وزنه</label>
-                                                    <input type="text" name="mainstandard[weight]" id="weightMainStandard" class="form-control" placeholder="حدد وزنه">
+                                                    <input type="number" name="mainstandard[weight]" id="weightMainStandard" class="form-control input_main_weight" placeholder="حدد وزنه">
                                                 </div>
                                             </div>
                                         </div>
@@ -187,6 +187,7 @@
 <script src="{{asset('back')}}/assets/js/wow.min.js"></script>
 <script src="{{asset('back')}}/assets/js/jquery.nicescroll.js"></script>
 <script src="{{asset('back')}}/assets/js/jquery.scrollTo.min.js"></script>
+<script src="{{asset('back')}}/plugins/sweet-alert2/sweetalert2.min.js"></script>
 
 <script src="{{asset('back')}}/assets/js/jquery.core.js"></script>
 <script src="{{asset('back')}}/assets/js/jquery.app.js"></script>
@@ -234,9 +235,9 @@
             var index = $("#sub-standar-items .sub-standar-item").length + 1;
 
             item.find(".item-action").html(deleteBtn);
-            item.find(".input_arabic_name").attr("name","substandars["+ index +"][arabic_name]").val("");
-            item.find(".input_english_name").attr("name","substandars["+ index +"][english_name]").val("");
-            item.find(".input_weight").attr("name","substandars["+ index +"][weight]").val(0);
+            item.find(".input_arabic_name").attr("name","substandards["+ index +"][arabic_name]").val("");
+            item.find(".input_english_name").attr("name","substandards["+ index +"][english_name]").val("");
+            item.find(".input_weight").attr("name","substandards["+ index +"][weight]").val(0);
 
             $("#sub-standar-items").append(item);
         });
@@ -256,9 +257,20 @@
                     url:"/api/fields-ready-model",
                     data :  $("#standars-form").serialize(),
                     success:function(data) {
-                        window.location.replace('/admin/ready-model-fields');
-                        //$("#subSectorList").html(data);
 
+                        if(data.done)
+                        {
+                            swal(
+                                {
+                                    type: 'success',
+                                    text: 'تم الاضافة بنجاح',
+                                    allowOutsideClick: false
+                                }
+                            ).then(function(result){
+                                window.location.replace('/admin/ready-model-fields');
+
+                            });
+                        }
                     }
                 });
             }
@@ -269,13 +281,13 @@
     });
 
     function validateForm() {
-        let weight                  = $("#weightMainStandard").val();
-        let totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
-        let totalMark               = $("#totalMark").val();
-        let restOftotal             = "{{ $restOftotal }}";
+        var weight                  = $("#weightMainStandard").val();
+        var totalWeightMainStandard = "{{ $totalWeightMainStandard }}"
+        var totalMark               = $("#totalMark").val();
+        var restOftotal             = "{{ $restOftotal }}";
 
-        let validInputs = true;
-        $(".input_arabic_name, .input_english_name").each(function () {
+        var validInputs = true;
+        $(".input_arabic_name, .input_english_name, .input_main_arabic_name, .input_main_english_name").each(function () {
             if($(this).val() == "")
                 validInputs = false;
 
@@ -283,47 +295,77 @@
 
         if(!validInputs)
         {
-            alert("المرجو ملئ كل الخانات ");
+            //alert("المرجو ملئ كل الخانات ");
+            swal(
+                {
+                    type: 'warning',
+                    text: 'المرجو ملئ كل الخانات'
+                }
+            );
             return false;
         }
-
-        if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
-            alert(`لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`)
-            return false;
-        }
-
-        let sum = 0;
-        let validWeight = true;
-        $(".input_weight").each(function () {
-            if($(this).val() == 0 || $(this).val() == ""){
-                validWeight = false;
+        else
+        {
+            if (parseInt(totalWeightMainStandard) + parseInt(weight) > parseInt(totalMark) ) {
+                //alert(`لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`)
+                swal(
+                    {
+                        type: 'warning',
+                        text: `لا يمكن لمجموع  أوزان المعايير الرئيسية أن تكون أكبر من الدرجة الكلية  الحد المسموح به لوزن المعيار الرئيسي هو ${restOftotal}!`
+                    }
+                );
+                return false;
             }
             else
             {
-                sum += parseInt($(this).val());
-            }
-        });
+                var sum = 0;
+                let validWeight = true;
+                $(".input_weight").each(function () {
+                    if($(this).val() == 0 || $(this).val() == ""){
+                        validWeight = false;
+                    }
+                    else
+                    {
+                        sum += parseInt($(this).val());
+                    }
+                });
 
-        if(!validWeight)
-        {
-            alert("أدخل وزن صحيح أكبر من الصفر ");
-            return false;
+                if(!validWeight)
+                {
+                    //alert("أدخل وزن صحيح أكبر من الصفر ");
+                    swal(
+                        {
+                            type: 'warning',
+                            text: 'أدخل وزن صحيح أكبر من الصفر'
+                        }
+                    );
+                    return false;
+                }
+                else
+                {
+                    if(sum > 0)
+                    {
+                        if(sum != parseInt(weight))
+                        {
+                            //alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
+                            swal(
+                                {
+                                    type: 'warning',
+                                    text: 'مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي'
+                                }
+                            );
+                            return false;
+                        }
+                    }
+                }
+
+
+            }
+
+
         }
 
-        if(sum > 0)
-        {
-            if(sum > weight)
-            {
-                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
-                return false;
-            }
 
-            if(sum < weight)
-            {
-                alert("مجموع المعايير الفرعية  يجب أن تساوي وزن المعيار الرئيسي  ");
-                return false;
-            }
-        }
 
         return true;
 

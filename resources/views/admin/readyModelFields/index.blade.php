@@ -68,7 +68,7 @@
                                 <tr>
                                     <td>{{ $mainModelField->arabic_name }}</td>
                                     <td>{{ $mainModelField->weight }}</td>
-                                    <td><a href="{{ url('admin/sub-sectors') }}">المعايير الفرعية التابعة له </a></td>
+                                    <td><a href="{{ url('admin/get-ready-model-fields-sub-standard/'.$mainModelField->id) }}">المعايير الفرعية التابعة له </a></td>
                                     <td>
                                         <button data-id="{{ $mainModelField->id }}" href="{{ url('/api/admin/registration-fields/'.$mainModelField->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
                                         <a href="{{ url('/api/admin/main-sector/'.$mainModelField->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
