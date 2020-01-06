@@ -308,9 +308,9 @@
             var id = $("#idField").val();
             var path = '/api/admin/registration-fields/'+id;
 
-            const data = {
+            var data = {
                 arabic_name : $("#arabic_name_update" ).val(),
-                english_name : $("#arabic_name_update" ).val(),
+                english_name : $("#english_name_update" ).val(),
                 type : $("#type_update" ).val(),
                 id: id
             };

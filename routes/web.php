@@ -37,9 +37,22 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('fees/registred', 'DashboardController@registredFees')->name('fees.registred');
     Route::get('fees/subscribed', 'DashboardController@subscribedFees')->name('fees.subscribed');
 
-    Route::get('reviews-fields', 'ReviewsController@index')->name('reviews.fields');
-    Route::post('reviews-fields/add', 'ReviewsController@store')->name('reviews.fields.add');
+   // Route::get('reviews-fields', 'ReviewsController@index')->name('reviews.fields');
+   // Route::post('reviews-fields/add', 'ReviewsController@store')->name('reviews.fields.add');
 
+    //Reviews Fields
+    Route::get('reviews-fields', 'ReviewsController@index')->name('reviews.fields');;
+    Route::post('reviews-fields/add', 'ReviewsController@store')->name('reviews.fields.add');
+    Route::get('reviews-fields/{id}', 'ReviewsController@show');
+    Route::delete('reviews-fields/{id}', 'ReviewsController@delete');
+    Route::put('reviews-fields/{id}', 'ReviewsController@update');
+
+    //Reviews Items
+    Route::get('review-items', 'ReviewItemController@index');
+    Route::post('review-items/add', 'ReviewItemController@store');
+    Route::get('review-items/{id}', 'ReviewItemController@show');
+    Route::delete('review-items/{id}', 'ReviewItemController@delete');
+    Route::put('review-items/{id}', 'ReviewItemController@update');
 });
 
 Route::get('user/profile', 'ProfileController@index')->name('user.profile');

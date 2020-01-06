@@ -53,6 +53,9 @@
                     <a href="{{route('reviews.fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>  حقول التقييم </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
+                    <a href="{{url('admin/review-items')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> عناصر التقييم </span> <span class="menu-arrow"></span> </a>
+                </li>
+                <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span>المراجعة والاعتماد </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
                         <li><a href="">منشآت لم تسلم بعد</a></li>
