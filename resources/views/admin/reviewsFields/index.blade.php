@@ -95,7 +95,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button id="" type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
-                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">حدف</button>
+                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow" >حدف</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                 </select>
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">@lang('dashboard.cancel')</button>
         </form>
     </div>
 </div>
@@ -210,8 +210,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="updateFieldRegistred" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save') </button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+                <button id="updateFieldRegistred" type="submit" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
             </div>
         </div>
     </div>
@@ -240,19 +240,6 @@
             bodyFormData.set('type', type);
             return bodyFormData;
         };
-        const getDatafromFormUpdate = () => {
-            var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name_update").val();
-            var english_name = $("#english_name_update").val();
-            var type = $("#type_update").val();
-
-
-            bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
-            bodyFormData.set('type', type);
-            return bodyFormData;
-        };
-
         $("#addField").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
@@ -313,11 +300,7 @@
 
             axios.put(path, data)
                 .then(response => {
-
-                    setTimeout(function(){ location.reload(); }, 2200);
-
-                    /*if($.isEmptyObject(response.data.error)){
-                        Custombox.close();
+                    if($.isEmptyObject(response.data.error)){
                         $(".success-update").fadeIn();
                         $("html, body").animate({
                             scrollTop: 0
@@ -325,7 +308,7 @@
                         setTimeout(function(){ location.reload(); }, 2200);
                     }else{
                         printErrorMsg(response);
-                    }*/
+                    }
                 })
 
         });

@@ -111,10 +111,6 @@
                     </div>
                 </div>
             </div> <!-- end row -->
-
-
-
-
         </div> <!-- container -->
 
     </div> <!-- content -->
@@ -168,7 +164,7 @@
                 </select>
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">@lang('dashboard.cancel')</button>
         </form>
     </div>
 </div>
@@ -206,15 +202,14 @@
                                 <option value="text" >@lang('fields.text')</option>
                                 <option value="number">@lang('fields.number')</option>
                                 <option value="email">@lang('fields.email')</option>
-
                             </select>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light">@lang('dashboard.save') </button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
             </div>
         </div>
     </div>
@@ -225,6 +220,7 @@
 
 <script>
     var resizefunc = [];
+    //close modal manuellement i {0,1,2}
 </script>
 @include('layouts/back/script');
 
@@ -256,6 +252,8 @@
             return bodyFormData;
         };
 
+
+
         $("#addField").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
@@ -284,7 +282,6 @@
             var id = $(this).attr("data-id");
             $("#idField").val(id);
 
-
             axios.get(path)
                 .then(response => {
                     console.log(response.data);
@@ -292,7 +289,6 @@
                     $( "#english_name_update" ).val(response.data.english_name);
                     $( "#type_update" ).val(response.data.type);
                     $( "#modalEdit" ).modal('show');
-
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -303,11 +299,10 @@
             e.preventDefault();
             var arabic_name = "";
             var english_name = "";
-            var tye = "";
+            var type = "";
             //var data = getDatafromFormUpdate();
             var id = $("#idField").val();
             var path = '/api/admin/registration-fields/'+id;
-
             var data = {
                 arabic_name : $("#arabic_name_update" ).val(),
                 english_name : $("#english_name_update" ).val(),
@@ -318,18 +313,15 @@
             axios.put(path, data)
                 .then(response => {
 
-                    setTimeout(function(){ location.reload(); }, 2200);
-
-                    /*if($.isEmptyObject(response.data.error)){
-                        Custombox.close();
-                        $(".success-update").fadeIn();
+                    if($.isEmptyObject(response.data.error)){
+                        $(".success-add").fadeIn();
                         $("html, body").animate({
                             scrollTop: 0
                         }, "slow");
                         setTimeout(function(){ location.reload(); }, 2200);
                     }else{
-                        printErrorMsg(response);
-                    }*/
+                        printErrorMsg(response.data.error);
+                    }
                 })
 
         });

@@ -149,7 +149,7 @@
                 <input type="text" class="form-control" name="english_name" id="english_name">
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">@lang('dashboard.cancel')</button>
         </form>
     </div>
 </div>
@@ -185,8 +185,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light">@lang('dashboard.save') </button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
             </div>
         </div>
     </div>
@@ -257,7 +257,6 @@
                     $( "#arabic_name_update" ).val(response.data.arabic_name);
                     $( "#english_name_update" ).val(response.data.english_name);
                     $( "#modalEdit" ).modal('show');
-
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -281,11 +280,7 @@
             console.log(data.arabic_name);
             axios.put(path, data)
                 .then(response => {
-
-                    setTimeout(function(){ location.reload(); }, 2200);
-
-                    /*if($.isEmptyObject(response.data.error)){
-                        Custombox.close();
+                    if($.isEmptyObject(response.data.error)){
                         $(".success-update").fadeIn();
                         $("html, body").animate({
                             scrollTop: 0
@@ -293,7 +288,7 @@
                         setTimeout(function(){ location.reload(); }, 2200);
                     }else{
                         printErrorMsg(response);
-                    }*/
+                    }
                 })
 
         });

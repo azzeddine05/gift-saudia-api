@@ -57,11 +57,15 @@ class ReviewItemController extends Controller
                 'english_name.required' => ' مطلوب إسم الحقل  بالإنجليزية !',
             ]
         );
-        $reviewitem = ReviewItem::find($id);
-        $reviewitem->arabic_name = $request->get('arabic_name');
-        $reviewitem->english_name = $request->get('english_name');
-        $reviewitem->save();
-        return response()->json($reviewitem, 200);
+        if($validator->passes()) {
+            $reviewitem = ReviewItem::find($id);
+            $reviewitem->arabic_name = $request->get('arabic_name');
+            $reviewitem->english_name = $request->get('english_name');
+            $reviewitem->save();
+            return response()->json($reviewitem, 200);
+        }else {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
     }
 
     public function delete($id)

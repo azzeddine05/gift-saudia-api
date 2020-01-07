@@ -68,14 +68,19 @@ class FieldController extends Controller
                 //'type.required' => ' مطلوب إسم القطاع بالإنجليزية !',
             ]
         );
+        if($validator->passes()){
+            $registrationField = RegistrationField::find($id);
+            $registrationField->arabic_name = $request->get('arabic_name');
+            $registrationField->english_name = $request->get('english_name');
+            $registrationField->type = $request->get('type');
+            $registrationField->save();
+            return response()->json($registrationField, 200);
+        }else{
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
 
-        $registrationField = RegistrationField::find($id);
-        $registrationField->arabic_name = $request->get('arabic_name');
-        $registrationField->english_name = $request->get('english_name');
-        $registrationField->type = $request->get('type');
-        $registrationField->save();
-        
-        return response()->json($registrationField, 200);
+
+
 
     }
 

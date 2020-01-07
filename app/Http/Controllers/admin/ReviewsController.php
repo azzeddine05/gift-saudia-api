@@ -62,13 +62,16 @@ class ReviewsController extends Controller
                 //'type.required' => ' مطلوب إسم القطاع بالإنجليزية !',
             ]
         );
-
-        $reviewsFields = ReviewField::find($id);
-        $reviewsFields->arabic_name = $request->get('arabic_name');
-        $reviewsFields->english_name = $request->get('english_name');
-        $reviewsFields->type = $request->get('type');
-        $reviewsFields->save();
-        return response()->json($reviewsFields, 200);
+        if($validator->passes()) {
+            $reviewsFields = ReviewField::find($id);
+            $reviewsFields->arabic_name = $request->get('arabic_name');
+            $reviewsFields->english_name = $request->get('english_name');
+            $reviewsFields->type = $request->get('type');
+            $reviewsFields->save();
+            return response()->json($reviewsFields, 200);
+        }else {
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
     }
 
     public function delete($id)
