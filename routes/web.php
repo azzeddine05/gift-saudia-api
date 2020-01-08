@@ -58,8 +58,11 @@ Route::prefix('admin')->namespace('admin')->group(function () {
 Route::get('user/profile', 'ProfileController@index')->name('user.profile');
 
 // Company Routes
+//add protection on company dashboard
+Route::middleware(['web','auth:web'])->group(function(){
+    Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
+});
 Route::get('/admin/all-companies', 'CompanyController@getAllCompanies')->name('companies.all');
-Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
 Route::post('/company/company-registre','CompanyController@storeRegistredFields');
 Route::get('/company/ready-model-registred','ReadyModelControlller@index');
 Route::post('/company/ready-model-reply','ReadyModelReplyController@store');

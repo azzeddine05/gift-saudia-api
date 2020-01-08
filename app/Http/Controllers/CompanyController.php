@@ -19,12 +19,17 @@ class CompanyController extends Controller
 
     public function index()
     {
+        //
         $readOnly = "";
         $registred = false;
         $payed = false;
         $delivred = false;
         $RegistrationFields =  RegistrationField::all();
         $user = Auth::User();
+        // dd(Auth::guard('web'));
+        // dd(Auth::check());
+        // dd(Auth::User());
+        // dd($user);
         if($user->hasRole('admin')) {
             $readOnly = "readOnly";
             $company = Company::where('user_id', 4)->firstOrFail();
@@ -33,6 +38,17 @@ class CompanyController extends Controller
                 ]
             );die;
         }
+
+        $company = Company::where('user_id', $user->id)->firstOrFail();
+        // dd($user->hasRole('company'));
+
+        // dd($company);
+        dd($company->isAllStepsCompleted());
+        
+        if($company->isAllStepsCompleted()) {
+            return view('admin.company.fill_ready_form_fiealds', ['company' => $company]);
+        }
+        
         $userId = Auth::id();
         $registred = false;
         $payed = false;
@@ -96,6 +112,10 @@ class CompanyController extends Controller
     {
         $companies =  Company::all();
         return view('admin.company.index', ['companies' => $companies]);
+
+    }
+
+    public function displayReadyModelRepliesForm(Request $request) {
 
     }
 

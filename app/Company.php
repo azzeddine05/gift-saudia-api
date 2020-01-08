@@ -35,4 +35,9 @@ class Company extends Model
             'user_id' => $user->id,
         ]);
     }
+
+    public function isAllStepsCompleted() {
+
+        return ($this->confirmed_registre && $this->payment && $this->order_delivery);
+    }
 }
