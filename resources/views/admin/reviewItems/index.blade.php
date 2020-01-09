@@ -204,7 +204,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        const getDatafromForm = () => {
+        var getDatafromForm = () => {
             var bodyFormData = new FormData();
             var arabic_name = $("#arabic_name").val();
             var english_name = $("#english_name").val();
@@ -246,7 +246,7 @@
 
         $(".editField").click(function(e) {
             e.preventDefault();
-            const data = getDatafromForm();
+            var data = getDatafromForm();
             var path = $(this).attr("href");
             var id = $(this).attr("data-id");
             $("#idField").val(id);
