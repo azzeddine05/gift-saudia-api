@@ -7,5 +7,6 @@ return[
     'top_bar'=>'topbar-right',
     'navbar_right'=>'navBar-right',
     'float_profile'=>'float-left',
-    'float_togglr_btn'=>'float-right'
+    'float_togglr_btn'=>'float-right',
+    'direction_navbar'=>'navBar-left'
 ];
