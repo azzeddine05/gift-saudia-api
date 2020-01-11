@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التسجيل</li>
+                        <li class="breadcrumb-item active">@lang('fields.managing_registry_fields')</li>
                     </ol>
 
                 </div>
@@ -63,7 +63,7 @@
                                 <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('fields.add_new_field') </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ url('/company/dashboard') }}" target="_blank" class="btn btn-info btn-md waves-effect waves-light m-b-30" data-overlayspeed="200" data-overlaycolor="#36404a">رؤية نمودج التسجيل</a>
+                                <a href="{{ url('/company/dashboard') }}" target="_blank" class="btn btn-info btn-md waves-effect waves-light m-b-30" data-overlayspeed="200" data-overlaycolor="#36404a">@lang('fields.registration_form')</a>
                             </div>
                         </div>
                         <table id="datatable" class="table table-bordered">
@@ -72,7 +72,7 @@
                                 <th>@lang('fields.arabic_name')</th>
                                 <th>@lang('fields.english_name')</th>
                                 <th>@lang('fields.type')</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 

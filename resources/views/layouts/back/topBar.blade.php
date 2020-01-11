@@ -6,7 +6,7 @@
 <div class="topbar">
 
     <!-- LOGO -->
-    <div class="topbar-left">
+    <div class="topbar-left @lang('sidebar.top_bar')">
         <div class="text-center">
             <a href="{{ url('/dashboard') }}" class="logo"><i class="icon-magnet icon-c-logo"></i><span>ال<i class="md md-album"></i>جائزة</span></a>
             <!-- Image Logo here -->
@@ -18,9 +18,9 @@
     </div>
 
     <!-- Button mobile view to collapse sidebar menu -->
-    <nav class="navbar-custom">
+    <nav class="navbar-custom @lang('sidebar.navbar_right')">
 
-        <ul class="list-inline float-right mb-0">
+        <ul class="list-inline @lang('sidebar.float_profile') mb-0">
             <li class="list-inline-item dropdown notification-list">
                 <a href="{{url('locale/ar')}}">العربية </a>
                 <a href="{{url('locale/en')}}">English</a>
@@ -100,7 +100,7 @@
 
         </ul>
         <ul class="list-inline menu-left mb-0">
-            <li class="float-left">
+            <li class="@lang('sidebar.float_togglr_btn')">
                 <button class="button-menu-mobile open-left waves-light waves-effect">
                     <i class="dripicons-menu"></i>
                 </button>

@@ -29,7 +29,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة الموظفين</li>
+                        <li class="breadcrumb-item active">@lang('giftTeams.staff_management')</li>
                     </ol>
                 </div>
             </div>
@@ -59,17 +59,17 @@
                         </div>
                         <div class="row">
                         <div class="col-sm-4">
-                            <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>إضافة موظف جديد</a>
+                            <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('giftTeams.add_new_employee')</a>
                         </div>
                         </div>
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>الإسم</th>
-                                <th>البريد الإلكتروني</th>
-                                <th> العنوان</th>
-                                <th> كلمة السر </th>
-                                <th>صلاحيات الموظف </th>
+                                <th>@lang('giftTeams.name')</th>
+                                <th>@lang('giftTeams.email')</th>
+                                <th> @lang('giftTeams.adress')</th>
+                                <th>@lang('giftTeams.password')</th>
+                                <th>@lang('giftTeams.employee_powers') </th>
 
                             </tr>
                             </thead>
@@ -139,19 +139,19 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title text-center">  إضافة موظف جديد  </h4>
+    <h4 class="custom-modal-title text-center"> @lang('giftTeams.add_new_employee') </h4>
     <div class="custom-modal-text text-left">
         <form id="myForm" role="form">
             <div class="form-group">
-                <label for="english_name">الإسم </label>
+                <label for="english_name">@lang('giftTeams.name') </label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="">
             </div>
             <div class="form-group">
-                <label for="arabic_name"> البريد الإلكتروني</label>
+                <label for="arabic_name">@lang('giftTeams.email')</label>
                 <input type="text" class="form-control" name="email" id="email" placeholder="">
             </div>
             <div class="form-group">
-                <label for="arabic_name"> العنوان</label>
+                <label for="arabic_name"> @lang('giftTeams.adress')</label>
                 <input type="text" class="form-control" name="adresse" id="adresse" placeholder="">
             </div>
             <button id="addEmploye" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>

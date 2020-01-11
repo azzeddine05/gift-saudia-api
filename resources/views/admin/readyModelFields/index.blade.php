@@ -35,7 +35,7 @@
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
-                            حقول نمودج الجاهزية (معايير رئيسية و فرعية )
+                            @lang('fields.readiness_forms_fields')
                         </li>
                     </ol>
 
@@ -51,16 +51,16 @@
                         </div>
                         <div class="col-sm-4">
                             <a href="{{ url('/admin/ready-model-fields/add') }}" class="btn btn-default btn-md waves-effect waves-light m-b-30"><i class="md md-add"></i>
-                                إضافة معيار رئيسي ومعايره الفرعية
+                                @lang('fields.add_main_criterion_and_sub_calibration')
                             </a>
                         </div>
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>المعيار  الرئيسي</th>
-                                <th>وزنه</th>
-                                <th>المعايير الفرعية التابعة له</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.main_criterion')</th>
+                                <th>@lang('fields.weighed')</th>
+                                <th>@lang('fields.sub_criteria') </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
                             <tbody>

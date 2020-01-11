@@ -29,7 +29,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">القطاعات الفرعية والرئيسية </li>
+                        <li class="breadcrumb-item active">@lang('dashboard.main_secondary_sector')</li>
                     </ol>
 
                 </div>
@@ -60,7 +60,7 @@
                             <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_main_sector') </a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="#sub-sectors-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>إضافة قطاع فرعي </a>
+                            <a href="#sub-sectors-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_sub_sector')  </a>
                         </div>
                         </div>
                         <table id="datatable" class="table table-bordered">

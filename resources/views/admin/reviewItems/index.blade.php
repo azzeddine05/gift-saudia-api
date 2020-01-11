@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التقييم</li>
+                        <li class="breadcrumb-item active">@lang('fields.managing_evaluation_fields')</li>
                     </ol>
 
                 </div>
@@ -68,7 +68,7 @@
                             <tr>
                                 <th>@lang('fields.arabic_name')</th>
                                 <th>@lang('fields.english_name')</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 
