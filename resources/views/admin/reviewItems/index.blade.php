@@ -193,7 +193,8 @@
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
                         <div class="form-group">
-                            <select id="sub_standards_id" name="sub_standards_id">
+                            <label for="type">@lang('fields.type')</label>
+                            <select class="form-control" id="sub_standards_id" name="sub_standards_id">
                                <!-- <option value="0">@lang('constructorRegister.sub_sector')</option>-->
 
                                 @foreach ($subStandards as $subStandard)
