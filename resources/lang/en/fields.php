@@ -28,5 +28,6 @@ return [
     'gras_txt'=>'Great text',
     'date'=>'Date',
     'phone_number'=>'Phone number',
-    'modify_registration_field'=>'Modify the registration field'
+    'modify_registration_field'=>'Modify the registration field',
+    'sub_standar'=>'Sub standard'
 ];

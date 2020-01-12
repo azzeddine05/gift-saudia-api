@@ -17,6 +17,8 @@ class CreateReviewItemsTable extends Migration
             $table->bigIncrements('id');
             $table->string('arabic_name');
             $table->string('english_name');
+            $table->unsignedBigInteger('sub_standards_id');
+            $table->foreign('sub_standards_id')->references('id')->on('sub_standards');
             $table->timestamps();
         });
     }

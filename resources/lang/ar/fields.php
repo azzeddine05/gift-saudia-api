@@ -28,5 +28,6 @@ return [
     'gras_txt'=>'نص كبير',
     'date'=>'تاريخ',
     'phone_number'=>'رقم الهاتف',
-    'modify_registration_field'=>'تعديل حقل التسجيل'
+    'modify_registration_field'=>'تعديل حقل التسجيل',
+    'sub_standar'=>'معيار الفرعي'
 ];
