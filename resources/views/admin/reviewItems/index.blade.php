@@ -195,8 +195,7 @@
                         <div class="form-group">
                             <label for="type">@lang('fields.type')</label>
                             <select class="form-control" id="sub_standards_id" name="sub_standards_id">
-                               <!-- <option value="0">@lang('constructorRegister.sub_sector')</option>-->
-
+                                <option value="0">@lang('constructorRegister.sub_sector')</option>
                                 @foreach ($subStandards as $subStandard)
                                     <option value="{{ $subStandard->id }}" >{{ $subStandard->arabic_name}}</option>
                                 @endforeach
