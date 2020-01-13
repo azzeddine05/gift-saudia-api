@@ -1,7 +1,7 @@
 <?php
 return[
     'staff_management'=>'Staff management',
-    'add_new_employee'=>'إAdd a new employee',
+    'add_new_employee'=>'Add a new employee ',
     'name'=>'Name',
     'email'=>'Email',
     'adress'=>'Address',

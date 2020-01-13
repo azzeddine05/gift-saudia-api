@@ -85,7 +85,7 @@
                                             الصلاحيات
                                         </a>
                                         <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
-                                        <a href="{{ url('api/admin/main-sector/'.$employe->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <a href="{{ url('api/admin/main-sector/'.$employe->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -140,7 +140,7 @@
         <ul></ul>
     </div>
     <h4 class="custom-modal-title text-center"> @lang('giftTeams.add_new_employee') </h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="english_name">@lang('giftTeams.name') </label>

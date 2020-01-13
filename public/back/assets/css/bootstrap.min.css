@@ -11,8 +11,8 @@
 @media (max-width: 767px) {
     .right-sidebar{
         margin-right: 0px !important;
-        width:0px;
-        margin-left: 0px;
+        width:70px;
+        margin-left: -70px !important;
     }
     .content-right {margin-left: 0px !important;}
     .topbar-right{ float: right !important;}

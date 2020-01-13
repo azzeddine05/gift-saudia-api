@@ -65,7 +65,7 @@
                             <strong>نجاح العملية !</strong> تمت إضافة مرحلة جديدة بنجاح
                         </div>
                         <div class="card-box table-responsive">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 @lang('sidebar.text_align')">
                                 <a href="#custom-modal" data-toggle="modal" data-target="#exampleModal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein"><i class="md md-add"></i>@lang('dashboard.add_step') </a>
                             </div>
 
@@ -137,36 +137,36 @@
 <!-- Modal Add-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="@lang('sidebar.direction')">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">إضافة مرحلة  جديدة </h5>
+                <h5 class="modal-title" id="exampleModalLabel" for="position"> @lang('dashboard.add_new_phase') </h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         <div class="form-group">
-                            <label for="sel1">إسم المرحلة </label>
+                            <label for="sel1">@lang('fields.name_step') </label>
                             <select class="form-control" name="arabic_name" id="arabic_name" required>
-                                <option value="0" disabled selected>إختر المرحلة </option>
-                                <option value="registredPeriod">مرحلة التسجيل</option>
-                                <option value="reviewsPeriod">مرحلة التقييم</option>
-                                <option value="resultPeriod">مرحلة إعلان النتائج</option>
+                                <option value="0" disabled selected>@lang('fields.chose_stage')</option>
+                                <option value="registredPeriod">@lang('fields.register_step') </option>
+                                <option value="reviewsPeriod">@lang('fields.review_step') </option>
+                                <option value="resultPeriod">@lang('fields.step_result')  </option>
                             </select>
                         </div><br>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="position">تاريخ بداية المرحلة </label>
+                                    <label for="position">@lang('fields.brgin_stage_step') </label>
                                     <input value="" name="start_date" id="start_date" class="form-control" width="276" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="position">توقيت بداية المرحلة </label>
+                                    <label for="position">@lang('fields.phase_start')    </label>
                                     <input name="start_time" id="start_time" class="form-control" width="276" required/>
                                 </div>
                             </div>
@@ -174,13 +174,13 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="position"> تاريخ نهاية المرحلة </label>
+                                    <label for="position"> @lang('fields.end_stage_step')   </label>
                                     <input name="end_date" id="end_date" class="form-control" width="276" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="position"> توقيت نهاية المرحلة </label>
+                                    <label for="position">  @lang('fields.phase_end')   </label>
                                     <input name="end_time" id="end_time" class="form-control" width="276" required/>
                                 </div>
                             </div>
@@ -188,9 +188,9 @@
                     </form>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">حفض</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
+            <div class="modal-footer" style="@lang('sidebar.flex_edit_modal_btn')">
+                <button id="addStep" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
             </div>
         </div>
     </div>
@@ -200,9 +200,9 @@
 <!-- Modal eddit-->
 <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content @lang('sidebar.right_class')">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">إضافة مرحلة  جديدة </h5>
+                <h5 class="modal-title" id="exampleModalLabel" for="position">@lang('dashboard.add_new_phase')</h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -212,24 +212,24 @@
                 <div class="custom-modal-text text-left">
                     <form id="myForm" role="form">
                         <div class="form-group">
-                            <label for="sel1">إسم المرحلة </label>
+                            <label for="sel1"> @lang('fields.name_step') </label>
                             <select class="form-control" name="arabic_name" id="stepType" required>
-                                <option value="0" disabled selected>إختر المرحلة </option>
-                                <option value="registredPeriod">مرحلة التسجيل</option>
-                                <option value="reviewsPeriod">مرحلة التقييم</option>
-                                <option value="resultPeriod">مرحلة إعلان النتائج</option>
+                                <option value="0" disabled selected>@lang('fields.chose_stage')  </option>
+                                <option value="registredPeriod"> @lang('fields.register_step')</option>
+                                <option value="reviewsPeriod">@lang('fields.review_step') </option>
+                                <option value="resultPeriod">  @lang('fields.step_result')</option>
                             </select>
                         </div><br>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="position">تاريخ بداية المرحلة </label>
+                                    <label for="position">@lang('fields.brgin_stage_step')</label>
                                     <input value="" name="start_date" id="start_date_update" class="form-control" width="276" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="position">توقيت بداية المرحلة </label>
+                                    <label for="position">@lang('fields.phase_start')  </label>
                                     <input name="start_time" id="start_time_update" class="form-control" width="276" required/>
                                 </div>
                             </div>
@@ -237,13 +237,13 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="position"> تاريخ نهاية المرحلة </label>
+                                    <label for="position">  @lang('fields.end_stage_step')   </label>
                                     <input name="end_date" id="end_date_update" class="form-control" width="276" required/>
                                 </div>
                             </div>
                              <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="position"> توقيت نهاية المرحلة </label>
+                                    <label for="position">   @lang('fields.phase_end') </label>
                                     <input name="end_time" id="end_time_update" class="form-control" width="276" required/>
                                  </div>
                             </div>
@@ -252,8 +252,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">تعديل </button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">إلغاء</button>
+                <button id="editStepAction" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.edit') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
             </div>
         </div>
     </div>

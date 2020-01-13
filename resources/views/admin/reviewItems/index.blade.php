@@ -66,9 +66,9 @@
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>@lang('fields.arabic_name')</th>
-                                <th>@lang('fields.english_name')</th>
-                                <th>@lang('fields.sub_standar')</th>
+                                <th>@lang('review.arabic_name')</th>
+                                <th>@lang('review.english_name')</th>
+                                <th>@lang('review.sub_standar')</th>
                                 <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
@@ -81,8 +81,8 @@
                                     <td>{{ $reviewItem->english_name }}</td>
                                     <td>{{ $reviewItem->standar_name }}</td>
                                     <td>
-                                        <button data-id="{{ $reviewItem->id }}" href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
-                                        <a href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <button data-id="{{ $reviewItem->id }}" href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
+                                        <a href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -137,21 +137,21 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title">إضافة حقل تقييم </h4>
-    <div class="custom-modal-text text-left">
+    <h4 class="custom-modal-title">@lang('review.add_new_field') </h4>
+    <div class="custom-modal-text @lang('sidebar.text_align')" style="@lang('sidebar.direction')">
         <form id="myForm" role="form">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="arabic_name">@lang('fields.arabic_name')</label>
+                <label for="arabic_name">@lang('review.arabic_name')</label>
                 <input type="text" class="form-control" name="arabic_name" id="arabic_name">
             </div>
 
             <div class="form-group">
-                <label for="english_name">@lang('fields.english_name')</label>
+                <label for="english_name">@lang('review.english_name')</label>
                 <input type="text" class="form-control" name="english_name" id="english_name">
             </div>
             <div class="form-group">
-                <label for="type">@lang('fields.type')</label>
+                <label for="type">@lang('review.type')</label>
                 <select class="form-control" id="sub_standards" name="sub_standards_id">
                  <option value="0" selected>@lang('constructorRegister.sub_sector')</option>
                     @foreach ($subStandards as $subStandard)
@@ -168,9 +168,9 @@
 <!-- Modal edit-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="@lang('sidebar.direction')">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">   تعديل حقل التسجيل  </h5>
+                <h5 class="modal-title" id="exampleModalLabel" for="position">@lang('review.edit_field') </h5>
                 <div class="alert alert-danger print-error-msg" style="display:none">
                     <ul></ul>
                 </div>
@@ -179,21 +179,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         {{method_field('PUT')}}
                         <div class="form-group">
-                            <label for="arabic_name">@lang('fields.arabic_name')</label>
+                            <label for="arabic_name">@lang('review.arabic_name')</label>
                             <input type="text" class="form-control" name="arabic_name_update" id="arabic_name_update">
                             <input type="hidden" value="" id="idField">
                         </div>
 
                         <div class="form-group">
-                            <label for="english_name">@lang('fields.english_name')</label>
+                            <label for="english_name">@lang('review.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
                         <div class="form-group">
-                            <label for="type">@lang('fields.type')</label>
+                            <label for="type">@lang('review.type')</label>
                             <select class="form-control" id="sub_standards_id" name="sub_standards_id">
                                 <option value="0">@lang('constructorRegister.sub_sector')</option>
                                 @foreach ($subStandards as $subStandard)
@@ -204,7 +204,7 @@
                     </form>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="@lang('sidebar.flex_edit_modal_btn')">
                 <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
             </div>

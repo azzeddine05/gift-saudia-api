@@ -12,6 +12,7 @@ return [
     'action' => ' العملية',
     'type_sectors' => 'قطاعات رئيسية وفرعية ',
     'gift_teams' => 'فريق عمل الجائزة',
+    'add_new_phase'=>'إضافة مرحلة جديدة',
     'main_sector_arabic' => 'إسم القطاع بالعربية ',
     'main_sector_english' => 'إسم القطاع بالإنجليزية ',
     'secnodary_sectors_associate' => ' القطاعات الفرعية ',
@@ -47,5 +48,7 @@ return [
     'auditing_and_accreditation'=>'المراجعة والاعتماد',
     'facilities_not_yet_delivered'=>'منشآت لم تسلم بعد',
     'facilities_delivered_form'=>'منشآت سلمت النموذج',
-    'lists_approved_establishments'=>'قوائم المنشآت المعتمدة'
+    'lists_approved_establishments'=>'قوائم المنشآت المعتمدة',
+    'sub_sector'=>' قطاعاته الفرعية',
+    'choose'=>' إختر',
 ];

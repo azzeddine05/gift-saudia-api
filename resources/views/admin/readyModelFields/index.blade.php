@@ -124,7 +124,7 @@
         <span>&times;</span><span class="sr-only">Close</span>
     </button>
     <h4 class="custom-modal-title">Add Contact</h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('dashboard.main_sector_arabic')</label>

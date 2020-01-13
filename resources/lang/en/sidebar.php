@@ -8,5 +8,8 @@ return[
     'navbar_right'=>'navBar-right',
     'float_profile'=>'float-left',
     'float_togglr_btn'=>'float-right',
-    'direction_navbar'=>'navBar-left'
+    'direction_navbar'=>'navBar-left',
+    'direction'=>'direction:ltr;',
+    'text_align'=>'text-right',
+    'flex_edit_modal_btn'=>'justify-content: flex-start;'
 ];

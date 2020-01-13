@@ -11,6 +11,7 @@ return [
     'step_name_english' => 'Step Name English',
     'step_start' => 'Start Date ',
     'step_end' => 'End Date',
+    'add_new_phase'=>'Add a new phase',
     'action' => 'Action',
     'type_sectors' => 'Main & secondary Sectors',
     'gift_teams' => 'Gift Teams',
@@ -49,5 +50,7 @@ return [
     'auditing_and_accreditation'=>'Auditing and accreditation',
     'facilities_not_yet_delivered'=>'Facilities not yet delivered',
     'facilities_delivered_form'=>'Facilities delivered form',
-    'lists_approved_establishments'=>'Lists of approved establishments'
+    'lists_approved_establishments'=>'Lists of approved establishments',
+    'sub_sector'=>'Sub sectors',
+    'choose'=>'choose',
 ];

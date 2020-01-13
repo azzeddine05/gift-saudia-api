@@ -137,7 +137,7 @@
         <ul></ul>
     </div>
     <h4 class="custom-modal-title">@lang('fields.add_new_field')</h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('fields.arabic_name')</label>
@@ -148,7 +148,7 @@
                 <label for="english_name">@lang('fields.english_name')</label>
                 <input type="text" class="form-control" name="english_name" id="english_name">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="@lang('sidebar.direction')">
                 <label for="type">@lang('fields.type')</label>
                 <select class="form-control" id="type" name="type">
                     <option>@lang('fields.type')</option>
@@ -183,7 +183,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         <div class="form-group">
                             <label for="arabic_name">@lang('fields.arabic_name')</label>
@@ -195,7 +195,7 @@
                             <label for="english_name">@lang('fields.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="@lang('sidebar.direction')">
                             <label for="type">@lang('fields.type')</label>
                             <select class="form-control" id="type_update" name="type_update">
                                 <option>@lang('fields.type')</option>

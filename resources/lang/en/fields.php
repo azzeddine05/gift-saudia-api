@@ -29,5 +29,14 @@ return [
     'date'=>'Date',
     'phone_number'=>'Phone number',
     'modify_registration_field'=>'Modify the registration field',
-    'sub_standar'=>'Sub standard'
+    'name_step'=>'Phase name',
+    'register_step'=>'registred Period',
+    'review_step'=>'reviews Period',
+    'step_result'=>'result Period',
+    'brgin_stage_step'=>'The start date of the stage',
+    'end_stage_step'=>'The end date of the stage',
+    'phase_start'=>'Phase start time',
+    'phase_end'=>'Phase end time',
+    'chose_stage'=>'Choose the stage',
+
 ];

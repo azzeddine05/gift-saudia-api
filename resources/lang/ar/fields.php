@@ -29,5 +29,14 @@ return [
     'date'=>'تاريخ',
     'phone_number'=>'رقم الهاتف',
     'modify_registration_field'=>'تعديل حقل التسجيل',
-    'sub_standar'=>'معيار الفرعي'
+    'name_step'=>'إسم المرحلة',
+    'register_step'=>'مرحلة التسجيل',
+    'review_step'=>'مرحلة التقييم',
+    'step_result'=>'مرحلة إعلان النتائج',
+    'brgin_stage_step'=>'تاريخ بداية المرحلة ',
+    'end_stage_step'=>' تاريخ نهاية المرحلة ',
+    'phase_end'=>'توقيت بداية المرحلة ',
+    'phase_start'=>' توقيت نهاية المرحلة ',
+    'chose_stage'=>'إختر المرحلة '
+
 ];
