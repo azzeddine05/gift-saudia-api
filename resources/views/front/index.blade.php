@@ -217,7 +217,7 @@
                 <div class="home-fullscreen">
                     <div class="full-screen">
                         <div class="home-wrapper home-wrapper-alt">
-                            <h2 class="text-white">التسجيل للمشاركة في دورة الجائزة</h2>
+                            <h2 class="text-white">التسجيل للمشاركة في دورة الجائزة </h2>
                             <div id="countdown">
                                 <div id='tiles'></div>
                                 <div class="labels">
@@ -397,7 +397,10 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var target_date = new Date().getTime() + (1000*3600*48); // set the countdown date
+        var myTime=<?php echo json_encode($date_diff->end_date); ?>;
+        var date = Date.now();
+        var milliseconds =new Date(myTime)-date;
+        var target_date = new Date().getTime()+ milliseconds; // set the countdown date
         var days, hours, minutes, seconds; // variables for time units
 
         var countdown = document.getElementById("tiles"); // get tag element

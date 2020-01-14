@@ -89,8 +89,8 @@
                                     <td>{{ $giftStep->start_date }}</td>
                                     <td>{{ $giftStep->end_date }}</td>
                                         <td>
-                                            <a  href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" data-id="{{ $giftStep->id }}" data-toggle="modal" data-target="#exampleModalEdit" data-animation="fadein" class="btn btn-primary btn-rounded waves-effect waves-light editStep">تعديل</a>
-                                            <a href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" data-id="{{ $giftStep->id }}" data-target="#custom-width-modal">حدف</a>
+                                            <a  href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" data-id="{{ $giftStep->id }}" data-toggle="modal" data-target="#exampleModalEdit" data-animation="fadein" class="btn btn-primary btn-rounded waves-effect waves-light editStep">@lang('dashboard.edit')</a>
+                                            <a href="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="{{ url('api/admin/gift-steps/'.$giftStep->id) }}" data-id="{{ $giftStep->id }}" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                             <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog" style="width:55%;">
                                                     <div class="modal-content">

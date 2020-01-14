@@ -53,4 +53,9 @@ return [
     'lists_approved_establishments'=>'Lists of approved establishments',
     'sub_sector'=>'Sub sectors',
     'choose'=>'choose',
+    'permissions'=>'Permissions',
+    'employee_name'=>'Employee name',
+    'employee_adress'=>'Employee address',
+    'add_new_employee'=>'Add a new employee',
+    'edit_employee'=>'Modified employee',
 ];

@@ -68,7 +68,6 @@
                                 <th>@lang('giftTeams.name')</th>
                                 <th>@lang('giftTeams.email')</th>
                                 <th> @lang('giftTeams.adress')</th>
-                                <th>@lang('giftTeams.password')</th>
                                 <th>@lang('giftTeams.employee_powers') </th>
 
                             </tr>
@@ -79,13 +78,10 @@
                                     <td>{{ $employe->name }}</td>
                                     <td>{{ $employe->email }}</td>
                                     <td>{{ $employe->adresse }}</td>
-                                    <td>{{ $employe->password }}</td>
                                     <td>
-                                        <a href="{{ url('admin/employe/permissions/'.$employe->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
-                                            الصلاحيات
-                                        </a>
-                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
-                                        <a href="{{ url('api/admin/main-sector/'.$employe->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
+                                        <a href="{{ url('admin/employe/permissions/'.$employe->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">@lang('dashboard.permissions')</a>
+                                        <a  href="{{ url('admin/employes/edit/'.$employe->id) }}" data-id="{{ $employe->id }}" data-toggle="modal" data-target="#exampleModalEdit" data-animation="fadein" class="btn btn-primary btn-rounded waves-effect waves-light editEmployee">@lang('dashboard.edit')</a>
+                                       <!-- <a href="{{ url('api/admin/main-sector/'.$employe->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -102,7 +98,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </td>
                                 </tr>
                             @endforeach
@@ -139,7 +135,7 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title text-center"> @lang('giftTeams.add_new_employee') </h4>
+    <h4 class="custom-modal-title text-center"> @lang('dashboard.add_new_employee') </h4>
     <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
@@ -159,7 +155,41 @@
         </form>
     </div>
 </div>
+<!-- Modal eddit-->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content @lang('sidebar.right_class')">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" for="position">@lang('dashboard.edit_employee')</h5>
 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
+                    <form id="myForm" role="form">
+                        <div class="form-group">
+                            <label for="arabic_name">@lang('dashboard.employee_name')</label>
+                            <input type="text" class="form-control" name="name1" id="name1" placeholder="">
+                            <input type="hidden" value="" id="idEmploye">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="english_name">@lang('dashboard.employee_adress')</label>
+                            <input type="text" class="form-control" name="adress" id="adress" placeholder="">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="editEmployeeAction" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.edit') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var resizefunc = [];
 </script>
@@ -170,7 +200,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        const getDatafromForm = () => {
+        var getDatafromForm = () => {
             var bodyFormData = new FormData();
             var name = $("#name").val();
             var email = $("#email").val();
@@ -180,10 +210,22 @@
             bodyFormData.set('adresse', adresse);
             return bodyFormData;
         };
+
+        var getDatafromFormEdit = () => {
+            var bodyFormData = new FormData();
+            var name = $("#name1").val();
+            var adresse = $("#adress").val();
+            var id = $("#idEmploye").val();
+            alert(name+' '+adresse+' '+id);
+            bodyFormData.set('name', name);
+            bodyFormData.set('adresse', adresse);
+            bodyFormData.set('id', id);
+            return bodyFormData;
+        };
         $("#addEmploye").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('/admin/employe/add', data)
+            axios.post('/admin/employes/add', data)
                 .then(response => {
                     console.log(response);
                     if($.isEmptyObject(response.data.error)){
@@ -202,7 +244,7 @@
         });
 
         // Delete MainSector
-        $('.deleteNow').click(function(e) {
+       /* $('.deleteNow').click(function(e) {
             e.preventDefault();
             var path = $('.btnDelete').attr("href");
             axios.delete(path)
@@ -224,11 +266,11 @@
                         setTimeout(function(){ location.reload(); }, 4000);
                     }
                 })
-        });
+        });*/
 
         $("#addSubSector").click(function(e) {
             e.preventDefault();
-            var data = getDatafromFormSubSector();
+            var data = getDatafromForm();
             axios.post('/api/admin/sub-sector', data)
                 .then(response => {
                     console.log(response);
@@ -246,6 +288,52 @@
                 })
         });
 
+        $(".editEmployee").click(function(e) {
+            e.preventDefault();
+            var path = $(this).attr("href");
+            var id = $(this).attr("data-id");
+            $("#idEmploye").val(id);
+            axios.get(path)
+                .then(response => {
+                    console.log(response.data);
+                    $( "#name1" ).val(response.data.name);
+                    $( "#adress" ).val(response.data.adresse);
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+        });
+
+
+        $("#editEmployeeAction").click(function(e) {
+            e.preventDefault();
+            var data = {
+                'name':document.getElementById('name1').value,
+                'adresse':document.getElementById('adress').value,
+                'id':document.getElementById('idEmploye').value
+            };
+            var path = $(".editEmployee").attr('href');
+
+            axios.put(path, data)
+                .then(response => {
+                    $("#exampleModalEdit").modal('hide');
+                    if($.isEmptyObject(response.data.error)) {
+                        $(".success-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 3500);
+                    }else{
+                        $(".error-update-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                    }
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+        });
 
         function printErrorMsg (msg) {
             $(".print-error-msg").find("ul").html('');

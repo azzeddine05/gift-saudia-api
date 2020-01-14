@@ -51,4 +51,9 @@ return [
     'lists_approved_establishments'=>'قوائم المنشآت المعتمدة',
     'sub_sector'=>' قطاعاته الفرعية',
     'choose'=>' إختر',
+    'permissions'=>'الصلاحيات',
+    'employee_name'=>'اسم الموظف',
+    'employee_adress'=>'عنوان الموظف',
+    'add_new_employee'=>'اضافة موظف جديد',
+    'edit_employee'=>'تعديل الموظف ',
 ];

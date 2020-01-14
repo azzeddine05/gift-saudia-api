@@ -24,8 +24,8 @@ class EmployeController extends Controller
 
     public function index()
     {
-        //$employes = User::all();
-        $employes = User::role('employe')->get();
+        $employes = User::all();
+        //$employes = User::role('employe')->get();
         return view('admin.employes.index', ['employes' => $employes]);
     }
 
@@ -78,5 +78,54 @@ class EmployeController extends Controller
         $mainSector = MainSector::find($id);
         $mainSector->delete();
         return response()->json(null, 204);
+    }
+
+    public function addEmpolyee(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'adresse' => 'required',
+           ]
+        );
+        if($validator->passes()) {
+            $password = '';
+            for($length = 0; $length < 10; $length++) {
+                $password .= chr(rand(65, 90));
+            }
+            $employe=new User();
+            $employe->name = $request->get('name');
+            $employe->email = $request->get('email');
+            $employe->adresse = $request->get('adresse');
+            $employe->password=$password;
+            $employe->save();
+            return response()->json($employe, 200);
+        }else {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+    }
+
+    public function updateEmployee(Request $request, User $employee){
+        $id = $request->get('id');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'adresse' => 'required',
+        ]
+        );
+        if($validator->passes()) {
+        User::where('id', $id)->update($request->all());
+          /*  $employee = User::find($id);
+            $employee->name = $request->get('name');
+            $employee->adresse = "500";//$request->get('adress');
+            $employee->save();*/
+            return response()->json($employee, 200);
+        }else {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+    }
+
+    public function showEmployee($id)
+    {
+        $employee = User::find($id);
+        return response()->json($employee, 200);
     }
 }
