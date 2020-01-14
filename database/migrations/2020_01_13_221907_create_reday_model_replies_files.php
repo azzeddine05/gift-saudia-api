@@ -15,11 +15,10 @@ class CreateRedayModelRepliesFiles extends Migration
     {
         Schema::create('reday_model_replies_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name');
-            $table->text('type');
-            $table->text('size');
-            $table->text('replay_id');///reday_model_replies table
-
+            $table->string('name');
+            $table->string('type');
+            $table->integer('size');
+            $table->bigInteger('replay_id');///reday_model_replies table
             $table->timestamps();
         });
     }
