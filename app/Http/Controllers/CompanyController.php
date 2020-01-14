@@ -26,10 +26,7 @@ class CompanyController extends Controller
         $delivred = false;
         $RegistrationFields =  RegistrationField::all();
         $user = Auth::User();
-        // dd(Auth::guard('web'));
-        // dd(Auth::check());
-        // dd(Auth::User());
-        // dd($user);
+        
         if($user->hasRole('admin')) {
             $readOnly = "readOnly";
             $company = Company::where('user_id', 4)->firstOrFail();
@@ -43,10 +40,11 @@ class CompanyController extends Controller
         // dd($user->hasRole('company'));
 
         // dd($company);
-        dd($company->isAllStepsCompleted());
+        // dd($company->isAllStepsCompleted());
         
         if($company->isAllStepsCompleted()) {
-            return view('admin.company.fill_ready_form_fiealds', ['company' => $company]);
+            //if all steps are completed redirect to fill the ready-model-form
+            redirect()->route('company.ready.model.reply');            
         }
         
         $userId = Auth::id();

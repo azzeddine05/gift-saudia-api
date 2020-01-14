@@ -6,6 +6,7 @@ use App\Company;
 use App\RegistrationField;
 use App\RegistredCompany;
 use App\SubStandard;
+use App\MainStandard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,17 @@ class ReadyModelControlller extends Controller
 
     public function index()
     {
-        $readyModels = SubStandard::all()->groupBy('main_standard_id');
-        return view('company.readyModelReponse.index', ['readyModels' => $readyModels]);
+        $user = Auth::user();
+
+        // $company = $user->company;
+        //if !$user->company; // throw error
+
+        $readyModelFields =  MainStandard::all()->load('subStandard');
+
+        // dd($readyModelFields);
+
+        // $readyModels = SubStandard::all()->groupBy('main_standard_id');
+        return view('company.readyModelReponse.index', ['readyModels' => $readyModelFields]);
 
     }
 

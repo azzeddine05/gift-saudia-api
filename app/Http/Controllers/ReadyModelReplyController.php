@@ -14,7 +14,16 @@ class ReadyModelReplyController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
 
+        // $company = $user->company;
+        //if !$user->company; // throw error
+
+        $readyModelFields =  MainStandard::all();
+
+        dd($readyModelFields);
+        
+        return view('client.readyModelReplyForm.index', ['readyModelFields' => $readyModelFields]);
     }
 
     public function getAllEmptyReadyModels()
@@ -31,13 +40,13 @@ class ReadyModelReplyController extends Controller
 //                                             ->where('refuse', false)
 //                                             ->groupBy('company_id')
 //                                             ->get();
-       $readyModelsReplys =  ReadyModelReply::all()->groupBy('company_id');
-       foreach ($readyModelsReplys as $readyModelsReply) {
-           foreach ($readyModelsReply as $readyModel) {
-               dump($readyModel->company->name);
+        $readyModelsReplys =  ReadyModelReply::all()->groupBy('company_id');
+        foreach ($readyModelsReplys as $readyModelsReply) {
+            foreach ($readyModelsReply as $readyModel) {
+                dump($readyModel->company->name);
 
-           }
-       }die;
+            }
+        }die;
         return view('admin.readyModelReplyNotConfirmed.index', ['readyModelsReplys' => $readyModelsReplys]);
     }
 

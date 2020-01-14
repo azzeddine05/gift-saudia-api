@@ -48,16 +48,20 @@
 
                                 </div>
                             </div>
-                            <span id="11" style="color: #0b97c4"> hhhhh</span>
+                            <span id="{{ $readyModel->id }}" style="color: #0b97c4">{{ $readyModel->arabic_name }}</span>
                             <div class="row m-b-30">
                                 <div class="col-sm-12">
-                                    @foreach($readyModel as $rModel)
+                                    @foreach($readyModel->subStandard as $rModel)
                                     <form id="formMainStandard" class="form-inline">
                                         <div style="" class="form-group mx-sm-3 mainStandard">
                                             <label for="" class="">{{ $rModel->arabic_name }}</label>
                                         </div>
-                                        <div style="" class="form-group mx-sm-3 mainStandard subStandard">
-                                            <textarea id="{{ $rModel->id }}" name="{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder=""></textarea>
+                                        <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
+                                            <textarea id="{{ $rModel->id }}" name="{{ $rModel->english_name }}" class="form-control " maxlength="225" rows="2" placeholder=""></textarea>
+                                            <div>
+                                                <label>مرفقات</label>
+                                                <input type="file" id="{{ $rModel->id }}" name="model_file_{{ $rModel->id }}" class="form-control " placeholder="Upload" />
+                                            </div>
                                         </div>
                                     </form><br>
                                     @endforeach

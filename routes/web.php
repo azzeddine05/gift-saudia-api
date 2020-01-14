@@ -61,13 +61,13 @@ Route::get('user/profile', 'ProfileController@index')->name('user.profile');
 //add protection on company dashboard
 Route::middleware(['web','auth:web'])->group(function(){
     Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
+    // Route::get('/company/ready-model-registred','ReadyModelReplyController@index')->name('company.ready.model.reply');
+    Route::get('/company/ready-model-registred','ReadyModelControlller@index')->name('company.ready.model.reply');
+    Route::post('/company/ready-model-reply','ReadyModelReplyController@store')->name('company.ready.model.reply.store');
 });
 Route::get('/admin/all-companies', 'CompanyController@getAllCompanies')->name('companies.all');
 Route::post('/company/company-registre','CompanyController@storeRegistredFields');
-Route::get('/company/ready-model-registred','ReadyModelControlller@index');
-Route::post('/company/ready-model-reply','ReadyModelReplyController@store');
 Route::get('/companies/ready-model-notcofirmed', 'ReadyModelReplyController@getAllReplyReadyModelsReplyNotDelivred')->name('raedy.model.reply.new');
-
 
 
 
