@@ -59,13 +59,13 @@
                     @endif
                             <div class="col-md-10">
                                 <div style="display: none" class="alert alert-success success-add-permissions">
-                                    <strong>  تم إضافة الصلاحيات بنجاح</strong> {{ Session::get('success-add-permissions') }}.
+                                    <strong>@lang('employee.Successfully_added_powers')</strong> {{ Session::get('success-add-permissions') }}.
                                 </div>
                             </div>
                     <div class="col-sm-12">
-                        <h4 class="page-title">إدارة الصلاحيات </h4>
+                        <h4 class="page-title">@lang('employee.Authority_management') </h4>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">   صلاحيات الموضف   {{ $employe->name }} </li>
+                            <li class="breadcrumb-item">  @lang('employee.Employee_powers')   {{ $employe->name }} </li>
 
                         </ol>
 
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="table-detail lable-detail">
 
-                                    <a href="{{ url('admin/employe/'.$employe->id.'/permission/' .$employePermission->id. '/destroy')}}" title="احدف له الصلاحية" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ url('admin/employe/'.$employe->id.'/permission/' .$employePermission->id. '/destroy')}}" title="@lang('employee.Delete_the_validity')" class="btn btn-danger waves-effect waves-light m-r-5"><i class="fa fa-trash-o"></i></a>
                                 </div>
 
                             </div>
@@ -112,7 +112,7 @@
 
                     <div class="col-lg-4">
                         <div class="card-box">
-                            <h4 class="m-t-0 m-b-20 text-dark header-title"> أضف له صلاحيات أخرى </h4>
+                            <h4 class="m-t-0 m-b-20 text-dark header-title">@lang('employee.Add_other_powers') </h4>
                             @foreach($permissions as $permission)
                                 <div class="form-check">
                                     <label class="form-check-label">

@@ -31,28 +31,28 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div style="display: none" class="alert alert-success error-deleted-message">
-                            <strong>خطأ في  العملية !</strong> خطأ أتناء عملية الحدف
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_eliminating_deletion')
                         </div>
                         <div style="display: none" class="alert alert-success error-update-message">
-                            <strong>خطأ في  العملية !</strong> خطأ أتناء عملية التعديل
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_while_editing')
                         </div>
                         <div style="display: none" class="alert alert-success error-add-message">
-                            <strong>خطأ في  العملية !</strong> خطأ أتناء عملية الإضافة
+                            <strong>@lang('giftSteps.Operation_error')</strong>@lang('giftSteps.Error_while_adding_operation')
                         </div>
                         <div style="display: none" class="alert alert-success success-deleted-message">
-                            <strong>نجاح العملية !</strong> تمت عملية الحدف بنجاح
+                            <strong>@lang('giftSteps.Operation_success')</strong>@lang('giftSteps.Deletion_successful')
                         </div>
                         <div style="display: none" class="alert alert-success success-add">
-                            <strong>  تم إضافة الحقل  بنجاح</strong>
+                            <strong>@lang('giftSteps.The_field_was_added_successfully')</strong>
                         </div>
                     </div>
                     <div class="col-md-10">
                         <div style="display: none" class="alert alert-success success-update">
-                            <strong>  تم  التعديل  بنجاح</strong>
+                            <strong>@lang('giftSteps.Edited_successfully')</strong>
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التقييم</li>
+                        <li class="breadcrumb-item active">@lang('giftSteps.Managing_evaluation_fields')</li>
                     </ol>
 
                 </div>
@@ -62,7 +62,7 @@
             <div class="row">
                     <div class="col-12">
                         <div style="display: none" class="alert alert-success success-message">
-                            <strong>نجاح العملية !</strong> تمت إضافة مرحلة جديدة بنجاح
+                            <strong>@lang('giftSteps.Operation_success')</strong>@lang('giftSteps.A_new_stage_has_been_added_successfully')
                         </div>
                         <div class="card-box table-responsive">
                             <div class="col-sm-4 @lang('sidebar.text_align')">
@@ -96,14 +96,14 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                            <h5 class="modal-title" id="custom-width-modalLabel">@lang('giftSteps.Delete_the_main_sector')</h5>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h6>هل أنت متأكد من عملية الحدف  ?</h6>
+                                                            <h6>@lang('giftSteps.Are_you_sure_you_want_to_delete')</h6>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
-                                                            <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">حدف</button>
+                                                            <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">@lang('dashboard.cancel') </button>
+                                                            <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow">@lang('dashboard.delete') </button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -58,4 +58,5 @@ return [
     'employee_adress'=>'Employee address',
     'add_new_employee'=>'Add a new employee',
     'edit_employee'=>'Modified employee',
+    'all_rights_are_save'=>'&copy;all rights are reserved. 2019 ',
 ];

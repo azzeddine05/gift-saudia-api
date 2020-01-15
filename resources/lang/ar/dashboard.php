@@ -56,4 +56,5 @@ return [
     'employee_adress'=>'عنوان الموظف',
     'add_new_employee'=>'اضافة موظف جديد',
     'edit_employee'=>'تعديل الموظف ',
+    'all_rights_are_save'=>'&copy; جميع الحقوق محفوظة. 2019',
 ];

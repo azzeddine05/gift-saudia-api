@@ -151,8 +151,8 @@
 
         </div> <!-- content -->
 
-        <footer class="footer text-right">
-            &copy; 2019. جميع الحقوق محفوضة.
+        <footer class="footer @lang('sidebar.text_align')">
+           @lang('dashboard.all_rights_are_save').
         </footer>
 
     </div>

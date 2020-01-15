@@ -38,24 +38,24 @@
             <div class="row">
                 <div class="col-12">
                     <div style="display: none" class="alert alert-danger success-add-permissions">
-                        <h5>تم إضافة الصلاحيات بنجاح</h5>
+                        <h5>@lang('employee.Successfully_added_powers')</h5>
                     </div>
                     @if(Session::has('msg'))
                         <div class="alert alert-danger">
-                            <strong>إنتباه  !</strong> {{ Session::get('msg') }}.
+                            <strong>@lang('employee.Attention')</strong> {{ Session::get('msg') }}.
                         </div>
                     @endif
                     <div class="card-box table-responsive">
                         <div class="col-md-10">
                             <div style="display: none" class="alert alert-success success-message">
-                                <strong>نجاح العملية !</strong> تم إضافة الموظف بنجاح
+                                <strong>@lang('employee.Operation_success')</strong>@lang('employee.The_employee_was_added_successfully')
                             </div>
                         </div>
                         <div style="display: none" class="alert alert-success success-deleted-message">
-                            <strong>نجاح العملية !</strong> تمت عملية الحدف بنجاح
+                            <strong>@lang('employee.Operation_success')</strong>@lang('employee.Deletion_successful')
                         </div>
                         <div style="display: none" class="alert alert-success error-deleted-message">
-                            <strong>خطأ في  العملية !</strong> خطأ أتناء عملية الحدف
+                            <strong>@lang('employee.Operation_error')</strong> @lang('employee.Error_eliminating_deletion')
                         </div>
                         <div class="row">
                         <div class="col-sm-4">
