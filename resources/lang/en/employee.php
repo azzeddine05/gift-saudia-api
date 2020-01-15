@@ -5,6 +5,7 @@ return[
     'Attention!'=>' Attention!',
     'Operation_success!'=>' Operation success!',
     'The_employee_was_added_successfully'=>' The employee was added successfully',
+    'The_employee_was_edit_successfully'=>'The employee has been modified successfully',
     'Deletion_successful'=>' Deletion successful!',
     'Operation_error!'=>' Operation error!!',
     'Error_eliminating_deletion'=>' Error eliminating deletion',

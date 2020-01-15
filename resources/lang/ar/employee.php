@@ -5,6 +5,7 @@ return[
     'Attention'=>' انتباه !',
     'Operation_success'=>' نجاح العملية !',
     'The_employee_was_added_successfully'=>' تم إضافة الموظف بنجاح',
+    'The_employee_was_edit_successfully'=>' تم تعديل الموظف بنجاح',
     'Deletion_successful'=>' تمت عملية الحدف بنجاح ',
     'Operation_error'=>' خطأ في  العملية  !',
     'Error_eliminating_deletion'=>' خطأ أتناء عملية الحدف',

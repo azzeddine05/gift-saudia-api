@@ -462,7 +462,7 @@
                 $('.home-wrapper h2').css('margin-top','30px');
             }
             switch (step) {
-                case 'registredPeriod':coundown_over('@lang('front.title_review_pause')');break;
+                case 'registredPeriod':coundown_over('@lang('front.title_register_pause')');break;
                 case 'reviewsPeriod':coundown_over('@lang('front.title_review_pause')');break;
                 case 'resultPeriod':coundown_over('@lang('front.title_result_pause')');break;
             }

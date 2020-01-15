@@ -51,6 +51,11 @@
                                 <strong>@lang('employee.Operation_success')</strong>@lang('employee.The_employee_was_added_successfully')
                             </div>
                         </div>
+                        <div class="col-md-10">
+                            <div style="display: none" class="alert alert-success success-message-edit">
+                                <strong>@lang('employee.Operation_success')</strong>@lang('employee.The_employee_was_edit_successfully')
+                            </div>
+                        </div>
                         <div style="display: none" class="alert alert-success success-deleted-message">
                             <strong>@lang('employee.Operation_success')</strong>@lang('employee.Deletion_successful')
                         </div>
@@ -318,7 +323,7 @@
                 .then(response => {
                     $("#exampleModalEdit").modal('hide');
                     if($.isEmptyObject(response.data.error)) {
-                        $(".success-message").fadeIn();
+                        $(".success-message-edit").fadeIn();
                         $("html, body").animate({
                             scrollTop: 0
                         }, "slow");
