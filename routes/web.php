@@ -24,7 +24,7 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('ready-model-fields', 'DashboardController@ReadyModelFields')->name('ready.model.fields');
     Route::get('get-ready-model-fields-sub-standard/{id}', 'DashboardController@getReadyModelFieldsSubStandard')->name('get.ready.model.fields.sub.standard');
     Route::get('ready-model-fields/add', 'DashboardController@addReadyModelFields')->name('ready.model.fields.add');
-    Route::get('execute-payment', 'PaymentContrller@execute')->name('paypal.payment.execute');
+    Route::get('execute-payment', 'PaymentController@execute')->name('paypal.payment.execute');
     Route::post('create-payment', 'PaymentController@createPayment')->name('paypal.payment.create');
 
     Route::get('employes', 'EmployeController@index')->name('admin.employes');
@@ -63,7 +63,7 @@ Route::middleware(['web','auth:web'])->group(function(){
     Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
     // Route::get('/company/ready-model-registred','ReadyModelReplyController@index')->name('company.ready.model.reply');
     Route::get('/company/ready-model-registred','ReadyModelControlller@index')->name('company.ready.model.reply');
-    Route::post('/company/ready-model-reply','ReadyModelReplyController@store')->name('company.ready.model.reply.store');
+    Route::post('/company/ready-model-reply','ReadyModelControlller@storeRegistredFields')->name('company.ready.model.reply.store');
 });
 Route::get('/admin/all-companies', 'CompanyController@getAllCompanies')->name('companies.all');
 Route::post('/company/company-registre','CompanyController@storeRegistredFields');
@@ -102,4 +102,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('stripe', 'StripePaymentController@stripe');
 //Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
-Route::post('/make-payment', 'StripePaymentController@pay');
+// Route::post('/make-payment', 'StripePaymentController@pay');

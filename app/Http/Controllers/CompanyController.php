@@ -44,7 +44,7 @@ class CompanyController extends Controller
         
         if($company->isAllStepsCompleted()) {
             //if all steps are completed redirect to fill the ready-model-form
-            redirect()->route('company.ready.model.reply');            
+            return redirect()->route('company.ready.model.reply');            
         }
         
         $userId = Auth::id();

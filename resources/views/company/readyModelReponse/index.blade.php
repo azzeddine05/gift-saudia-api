@@ -39,43 +39,47 @@
 
                 <!-- Inline Form -->
                 <div class="row">
-                    @foreach($readyModels as $readyModel)
-                    <div id="" class="col-md-12">
-                        <div class="card-box">
-                            <h4 class="m-t-0 header-title">حقول نموذج الجاهزية</h4><br>
-                            <div style="margin-right: 30%" class="row">
-                                <div class="col-md-6">
+                    <form action="{{ route('company.ready.model.reply.store') }}" method="POST" enctype="multipart/form-data"> 
+                    @csrf
+                        @foreach($readyModels as $readyModel)
+                        <div id="" class="col-md-12">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title">حقول نموذج الجاهزية</h4><br>
+                                <div style="margin-right: 30%" class="row">
+                                    <div class="col-md-6">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <span id="{{ $readyModel->id }}" style="color: #0b97c4">{{ $readyModel->arabic_name }}</span>
-                            <div class="row m-b-30">
-                                <div class="col-sm-12">
-                                    @foreach($readyModel->subStandard as $rModel)
-                                    <form id="formMainStandard" class="form-inline">
-                                        <div style="" class="form-group mx-sm-3 mainStandard">
-                                            <label for="" class="">{{ $rModel->arabic_name }}</label>
-                                        </div>
-                                        <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
-                                            <textarea id="{{ $rModel->id }}" name="{{ $rModel->english_name }}" class="form-control " maxlength="225" rows="2" placeholder=""></textarea>
-                                            <div>
-                                                <label>مرفقات</label>
-                                                <input type="file" id="{{ $rModel->id }}" name="model_file_{{ $rModel->id }}" class="form-control " placeholder="Upload" />
-                                            </div>
-                                        </div>
-                                    </form><br>
-                                    @endforeach
-
+                                <span id="{{ $readyModel->id }}" style="color: #0b97c4">{{ $readyModel->arabic_name }}</span>
+                                <div class="row m-b-30">
+                                    <div class="col-sm-12">
+                                        <!-- <form action="{{ route('company.ready.model.reply.store') }}" method="POST" enctype="multipart/form-data">  -->
+                                            <!-- @csrf -->
+                                            @foreach($readyModel->subStandard as $rModel)
+                                            <div id="" class="form-inline">
+                                                <div style="" class="form-group mx-sm-3 mainStandard">
+                                                    <label for="" class="">{{ $rModel->arabic_name }}</label>
+                                                </div>
+                                                <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
+                                                    <textarea id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder=""></textarea>
+                                                    <div>
+                                                        <label>مرفقات</label>
+                                                        <input type="file" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" class="form-control " placeholder="Upload" />
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            @endforeach
+                                        <!-- </form> -->
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
-                    @endforeach
-                    <div class="m-t-30 text-center">
-                        <button id="addReadyModel" class="btn btn-default waves-effect waves-light btn-sm">سلم الطلب</button>
-                    </div>
-
+                        @endforeach
+                        <div class="m-t-30 text-center">
+                            <button type="submit" id="addReadyModel" class="btn btn-default waves-effect waves-light btn-sm">سلم الطلب</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- end row -->
 
@@ -225,29 +229,29 @@
         $(document).on("click", ".button-delete", function() {
             console.log("inside");
         });
-        $(document).on("click","#addReadyModel", function(e) {
-            e.preventDefault();
-            var data = [];
-            $(".subStandard > textarea").each(function() {
-                console.log( $(this).attr("id") );
-                console.log( $(this).val());
-                var myObject = {
-                    sub_standard_id : $(this).attr("id"),
-                    value : $(this).val(),
-                }
-                data.push(myObject);
-            });
-            axios.post('/company/ready-model-reply', data)
-                .then(response => {
-                    console.log(response);
-                    window.location.replace('/home');
+        // $(document).on("click","#addReadyModel", function(e) {
+        //     e.preventDefault();
+        //     var data = [];
+        //     $(".subStandard > textarea").each(function() {
+        //         console.log( $(this).attr("id") );
+        //         console.log( $(this).val());
+        //         var myObject = {
+        //             sub_standard_id : $(this).attr("id"),
+        //             value : $(this).val(),
+        //         }
+        //         data.push(myObject);
+        //     });
+        //     axios.post('/company/ready-model-reply', data)
+        //         .then(response => {
+        //             console.log(response);
+        //             window.location.replace('/home');
 
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
+        //         })
+        //         .catch(error => {
+        //             console.log(error.response)
+        //         });
 
-        });
+        // });
 
     });
 

@@ -16,6 +16,11 @@ class ReadyModelReply extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function file()
+    {
+        return $this->hasOne(ReadyModelReplyFile::class);//File::class
+    }
+
 //    private function companyChangeStatusRegistred()
 //    {
 //        $userId = Auth::id();
