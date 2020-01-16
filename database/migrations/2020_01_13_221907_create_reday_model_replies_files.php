@@ -13,12 +13,12 @@ class CreateRedayModelRepliesFiles extends Migration
      */
     public function up()
     {
-        Schema::create('reday_model_replies_files', function (Blueprint $table) {
+        Schema::create('ready_model_replies_files', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type');
             $table->integer('size');
-            $table->bigInteger('replay_id');///reday_model_replies table
+            $table->bigInteger('ready_model_reply_id');///reday_model_replies table
             $table->timestamps();
         });
     }

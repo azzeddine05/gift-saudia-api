@@ -61,10 +61,20 @@
                                                     <label for="" class="">{{ $rModel->arabic_name }}</label>
                                                 </div>
                                                 <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
-                                                    <textarea id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder=""></textarea>
+                                                    <textarea id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder="">@foreach($readyModelReplies as $readyModelReply) @if($readyModelReply->sub_standard_id == $rModel->id) {{ $readyModelReply->value }} @endif @endforeach</textarea>
+                                                    @foreach($readyModelReplies as $readyModelReply)
+                                                        @if($readyModelReply->sub_standard_id == $rModel->id)
+                                                        <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" value="{{ $readyModelReply->id }}" />
+                                                        @endif
+                                                    @endforeach
                                                     <div>
                                                         <label>مرفقات</label>
                                                         <input type="file" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" class="form-control " placeholder="Upload" />
+                                                        @foreach($readyModelReplies as $readyModelReply)
+                                                            @if($readyModelReply->sub_standard_id == $rModel->id && $readyModelReply->file)
+                                                            <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" value="{{ $readyModelReply->file->id }}" />
+                                                            @endif
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div><br>

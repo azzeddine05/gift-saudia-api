@@ -42,13 +42,6 @@ class StoreRegistredFields extends FormRequest
         if(!$this->readyModelFields)
             $this->readyModelFields = MainStandard::all()->load('subStandard');
 
-        // $validators = [
-        //     'title' => 'required|unique:posts|max:255',
-        //     'body'  => 'required',
-
-        //     'nameStandard_subStandard_id'
-        // ];
-
         foreach ($this->readyModelFields as $key => $mainStandard) {
             
             foreach ($mainStandard->subStandard as $key => $subStandard) {
@@ -80,13 +73,7 @@ class StoreRegistredFields extends FormRequest
         
         if(!$this->readyModelFields)
             $this->readyModelFields = MainStandard::all()->load('subStandard');
-
-        $values = $this->all();
-
-        foreach ($values as $key => $value) {
-            
-        }
-
+        
         foreach ($this->readyModelFields as $key => $mainStandard) {
             $user = Auth::User();
             $company = Company::where('user_id', $user->id)->firstOrFail();
@@ -96,25 +83,58 @@ class StoreRegistredFields extends FormRequest
             foreach ($mainStandard->subStandard as $key => $subStandard) {
                 $field_name = $mainStandard->english_name."_".$subStandard->english_name."_".$subStandard->id;
                 $file_name = $mainStandard->english_name."_".$subStandard->english_name."_".$subStandard->id."_file";
+                $field_reply_name = $mainStandard->english_name."_".$subStandard->english_name."_".$subStandard->id."_reply_id";
+                $field_reply_file_name = $mainStandard->english_name."_".$subStandard->english_name."_".$subStandard->id."_reply_file";
                 
-                //create reply item 
-                $reply = ReadyModelReply::create([
-                    'company_id' => $company->id,
-                    'sub_standard_id' => $subStandard->id,
-                    'value' => $this->input($field_name)
-                ]);
-                //test if the reply file is set then create an item in db
-                if($this->hasFile($file_name) && $reply)
-                {
-                    $image_name = uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension();
-		            $image_path = $this->file($file_name)->storeAs('uploads', $image_name);
+                if(!$this->has($field_name) || empty($this->input($field_name))){
+                    continue;
+                }
 
-                    $file = ReadyModelReplyFile::create([
-                        'name' => uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension(),
-                        'type' => $this->file($file_name)->getClientOriginalExtension(), 
-                        'size' => $this->file($file_name)->getSize(), 
-                        'replay_id' => $reply->id,
+                //create reply item 
+
+                if($this->has($field_reply_name)) {
+                    $reply = ReadyModelReply::find($this->input($field_reply_name));
+                    
+                    // dd($this->input($field_name));
+                    $reply->update([
+                        'value' => $this->input($field_name)
                     ]);
+                }
+                else {
+                    $reply = ReadyModelReply::create([
+                        'company_id' => $company->id,
+                        'sub_standard_id' => $subStandard->id,
+                        'value' => $this->input($field_name)
+                    ]);
+                }
+                //test if the reply file is set then create an item in db
+                if($this->has($field_reply_file_name)) {
+                    if($this->hasFile($file_name) && $reply)
+                    {
+                        $image_name = uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension();
+                        $image_path = $this->file($file_name)->storeAs('uploads', $image_name);
+
+                        $file = ReadyModelReplyFile::find($this->input($field_reply_file_name));
+                        $file->update([
+                            'name' => uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension(),
+                            'type' => $this->file($file_name)->getClientOriginalExtension(), 
+                            'size' => $this->file($file_name)->getSize(), 
+                        ]);
+                    }
+                }
+                else {
+                    if($this->hasFile($file_name) && $reply)
+                    {
+                        $image_name = uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension();
+                        $image_path = $this->file($file_name)->storeAs('uploads', $image_name);
+
+                        $file = ReadyModelReplyFile::create([
+                            'name' => uniqid() . time() . '.' . $this->file($file_name)->getClientOriginalExtension(),
+                            'type' => $this->file($file_name)->getClientOriginalExtension(), 
+                            'size' => $this->file($file_name)->getSize(), 
+                            'ready_model_reply_id' => $reply->id,
+                        ]);
+                    }
                 }
 
                 $replies[] = array(
@@ -123,8 +143,9 @@ class StoreRegistredFields extends FormRequest
                 );
 
             }
-            return $replies;
         }
+
+        return $replies;
     }
 
 }

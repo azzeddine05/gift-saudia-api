@@ -18,7 +18,7 @@ class ReadyModelReply extends Model
 
     public function file()
     {
-        return $this->hasOne(ReadyModelReplyFile::class);//File::class
+        return $this->hasOne('App\ReadyModelReplyFile');//File::class
     }
 
 //    private function companyChangeStatusRegistred()

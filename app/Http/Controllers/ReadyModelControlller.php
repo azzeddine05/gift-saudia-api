@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRegistredFields;
 use Illuminate\Support\Facades\Auth;
+use App\ReadyModelReply;
+use App\ReadyModelReplyFile;
 
 class ReadyModelControlller extends Controller
 {
@@ -25,32 +27,26 @@ class ReadyModelControlller extends Controller
         //if !$user->company; // throw error
 
         $readyModelFields =  MainStandard::all()->load('subStandard');
-
         //get replies fields
+        $replies_company = ReadyModelReply::where('company_id',$user->company->id)->get();
+        if($replies_company)
+            $replies_company->load('file');
         ///
 
         // dd($readyModelFields);
 
         // $readyModels = SubStandard::all()->groupBy('main_standard_id');
-        return view('company.readyModelReponse.index', ['readyModels' => $readyModelFields]);
+        return view('company.readyModelReponse.index', ['readyModels' => $readyModelFields, 'readyModelReplies'=>$replies_company]);
 
     }
 
     public function storeRegistredFields(StoreRegistredFields  $request)
     {
-        //git all fields and all files
-        // dd($request->rules(), $request->all());
-        // dd($request->all(),$request->allFiles());
-        // $rules = [
-        //     'questions' => 'array',
-        //     'questions.*.text' => 'required_with:questions|string',
-        //     'questions.*.score' => 'required_with:questions|integer|min:1|max:10'
-        // ];
-
         // if the request is valide
         if($request->validated())
         {
-            dd($request->storeRepliesWithFields());
+            $request->storeRepliesWithFields();
+            return redirect()->route('company.ready.model.reply');
         }
         else {
             redirect()->withErrors($request->getValidatorInstance(), 'company.ready.model.reply');
