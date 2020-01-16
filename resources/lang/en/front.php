@@ -2,7 +2,7 @@
 
 return[
 
-    'hello'=>'Welcome to Award',
+    'hello'=>'Welcome to the award cycle',
     'title_register_play'=>'Registration to participate in the award cycle ',
     'title_review_play'=>'Assessment to participate in the award cycle',
     'title_result_play'=>'Results for participation in the award cycle',

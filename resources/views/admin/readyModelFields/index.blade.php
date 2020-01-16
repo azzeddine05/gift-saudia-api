@@ -32,6 +32,16 @@
                         <div style="display: none" class="alert alert-success success-add">
                             <strong>  تم إضافة الصلاحيات بنجاح</strong> {{ Session::get('success-add-permissions') }}.
                         </div>
+
+                        <div style="display: none" class="alert alert-success error-deleted-message">
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_eliminating_deletion')
+                        </div>
+                        <div style="display: none" class="alert alert-success error-update-message">
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_while_editing')
+                        </div>
+                        <div style="display: none" class="alert alert-success success-deleted-message">
+                            <strong>@lang('giftSteps.Operation_success')</strong>@lang('giftSteps.Deletion_successful')
+                        </div>
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
@@ -211,6 +221,29 @@
 
         });
 
+        $('.deleteNow').click(function(e) {
+            e.preventDefault();
+            var path = $('.btnDelete').attr("href");
+            axios.delete(path)
+                .then(response => {
+                    console.log(response);
+                    if($.isEmptyObject(response.data.error)){
+                        //Custombox.close();
+                        $("#custom-width-modal").modal('hide');
+                        $(".success-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2500);
+                    }else{
+                        $(".error-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 3000);
+                    }
+                })
+        });
 
         // Default Datatable
         $('#datatable').DataTable();

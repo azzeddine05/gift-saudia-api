@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\mainSectors;
 
 use App\MainSector;
+use App\MainStandard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,7 @@ class MainSectorController extends Controller
 
     public function delete($id)
     {
-        $mainSector = MainSector::find($id);
+        $mainSector = MainStandard::find($id);
         $mainSector->delete();
         return response()->json(null, 204);
     }
