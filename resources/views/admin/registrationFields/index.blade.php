@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التسجيل</li>
+                        <li class="breadcrumb-item active">@lang('fields.managing_registry_fields')</li>
                     </ol>
 
                 </div>
@@ -63,7 +63,7 @@
                                 <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('fields.add_new_field') </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ url('/company/dashboard') }}" target="_blank" class="btn btn-info btn-md waves-effect waves-light m-b-30" data-overlayspeed="200" data-overlaycolor="#36404a">رؤية نمودج التسجيل</a>
+                                <a href="{{ url('/company/dashboard') }}" target="_blank" class="btn btn-info btn-md waves-effect waves-light m-b-30" data-overlayspeed="200" data-overlaycolor="#36404a">@lang('fields.registration_form')</a>
                             </div>
                         </div>
                         <table id="datatable" class="table table-bordered">
@@ -72,7 +72,7 @@
                                 <th>@lang('fields.arabic_name')</th>
                                 <th>@lang('fields.english_name')</th>
                                 <th>@lang('fields.type')</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 
@@ -137,7 +137,7 @@
         <ul></ul>
     </div>
     <h4 class="custom-modal-title">@lang('fields.add_new_field')</h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('fields.arabic_name')</label>
@@ -148,7 +148,7 @@
                 <label for="english_name">@lang('fields.english_name')</label>
                 <input type="text" class="form-control" name="english_name" id="english_name">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="@lang('sidebar.direction')">
                 <label for="type">@lang('fields.type')</label>
                 <select class="form-control" id="type" name="type">
                     <option>@lang('fields.type')</option>
@@ -183,7 +183,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         <div class="form-group">
                             <label for="arabic_name">@lang('fields.arabic_name')</label>
@@ -195,7 +195,7 @@
                             <label for="english_name">@lang('fields.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="@lang('sidebar.direction')">
                             <label for="type">@lang('fields.type')</label>
                             <select class="form-control" id="type_update" name="type_update">
                                 <option>@lang('fields.type')</option>

@@ -41,7 +41,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -50,16 +50,13 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light">الإعدادات
+                            <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light">@lang('dashboard.settigs_dashboard')
 
                             </button>
                         </div>
 
                         <h4 class="page-title"> @lang('dashboard.dashboard')</h4>
-                        <p class="text-muted page-title-alt">مرحبا بك في إدارة الجائزة !</p>
-{{--                        @role('USER_ADMIN')--}}
-{{--                            <h1>hii admin</h1>--}}
-{{--                        @endrole--}}
+                        <p class="text-muted page-title-alt">@lang('dashboard.welcom_dashboard')</p>
                     </div>
                 </div>
 
@@ -71,7 +68,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">31,570</b></h3>
-                                <p class="text-muted mb-0">عدد المداخيل</p>
+                                <p class="text-muted mb-0">@lang('dashboard.number_of_incomes')</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -84,7 +81,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">9</b></h3>
-                                <p class="text-muted mb-0">منشآت سجلت</p>
+                                <p class="text-muted mb-0">@lang('dashboard.registered_facilities')</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -97,7 +94,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">2</b></h3>
-                                <p class="text-muted mb-0">منشآت دفعت</p>
+                                <p class="text-muted mb-0">@lang('dashboard.paid_installations')</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -110,7 +107,7 @@
                             </div>
                             <div class="text-right">
                                 <h3 class="text-dark"><b class="counter">22</b></h3>
-                                <p class="text-muted mb-0">عدد زوار الموقع </p>
+                                <p class="text-muted mb-0">@lang('dashboard.the_number_of_visitors')</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -119,16 +116,16 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="card-box">
-                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light">الكل </a>
-                            <h4 class="text-dark header-title m-t-0">أخر المنشآت المسجلة</h4>
+                            <a href="#" class="pull-right btn btn-default btn-sm waves-effect waves-light">@lang('dashboard.All_dashboard') </a>
+                            <h4 class="text-dark header-title m-t-0">@lang('dashboard.last_registered_establishments')</h4>
                             <div class="table-responsive">
                                 <table class="table table-actions-bar">
                                     <thead>
                                     <tr>
-                                        <th> إسم المنشأة</th>
-                                        <th>المقر</th>
-                                        <th>القطاع الفرعي </th>
-                                        <th>تاريخ التسجيل </th>
+                                        <th>@lang('dashboard.company_names')</th>
+                                        <th>@lang('dashboard.head_quarters')</th>
+                                        <th> @lang('dashboard.subsector') </th>
+                                        <th> @lang('dashboard.date_of_registration')</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -137,10 +134,6 @@
                                         <td><a href="#"></a></td>
                                         <td></td>
                                         <td></td>
-{{--                                        <td>--}}
-{{--                                            <a href="#" class="table-action-btn"><i class="md md-edit"></i></a>--}}
-{{--                                            <a href="#" class="table-action-btn"><i class="md md-close"></i></a>--}}
-{{--                                        </td>--}}
                                     </tr>
 
                                     </tbody>
@@ -158,8 +151,8 @@
 
         </div> <!-- content -->
 
-        <footer class="footer text-right">
-            &copy; 2019. جميع الحقوق محفوضة.
+        <footer class="footer @lang('sidebar.text_align')">
+           @lang('dashboard.all_rights_are_save').
         </footer>
 
     </div>

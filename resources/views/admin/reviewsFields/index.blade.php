@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التقييم</li>
+                        <li class="breadcrumb-item active">@lang('fields.managing_evaluation_fields')</li>
                     </ol>
 
                 </div>
@@ -69,7 +69,7 @@
                                 <th>@lang('fields.arabic_name')</th>
                                 <th>@lang('fields.english_name')</th>
                                 <th>@lang('fields.type')</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 
@@ -81,21 +81,21 @@
                                     <td>{{ $reviewsField->english_name }}</td>
                                     <td>{{ $reviewsField->type }}</td>
                                     <td>
-                                        <button data-id="{{ $reviewsField->id }}" href="{{ url('/admin/reviews-fields/'.$reviewsField->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
-                                        <a href="{{ url('/admin/reviews-fields/'.$reviewsField->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <button data-id="{{ $reviewsField->id }}" href="{{ url('/admin/reviews-fields/'.$reviewsField->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
+                                        <a href="{{ url('/admin/reviews-fields/'.$reviewsField->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                        <h5 class="modal-title" id="custom-width-modalLabel"> @lang('fields.delete_main_sector')  </h5>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h6>هل أنت متأكد من عملية الحدف  ?</h6>
+                                                        <h6>@lang('fields.question_to delete')</h6>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button id="" type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">رجوع </button>
-                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow" >حدف</button>
+                                                        <button id="" type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">@lang('dashboard.cancel') </button>
+                                                        <button type="submit" class="btn btn-danger waves-effect waves-light deleteNow" >@lang('dashboard.delete')</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,8 +137,8 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title">إضافة حقل تقييم </h4>
-    <div class="custom-modal-text text-left">
+    <h4 class="custom-modal-title">@lang('fields.add_new_rating') </h4>
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('fields.arabic_name')</label>
@@ -149,19 +149,18 @@
                 <label for="english_name">@lang('fields.english_name')</label>
                 <input type="text" class="form-control" name="english_name" id="english_name">
             </div>
-            <div class="form-group">
+            <div class="form-group" style=" @lang('sidebar.direction')">
                 <label for="type">@lang('fields.type')</label>
                 <select class="form-control" id="type" name="type">
                     <option>@lang('fields.type')</option>
                     <option value="text" >@lang('fields.text')</option>
                     <option value="number">@lang('fields.number')</option>
                     <option value="email">@lang('fields.email')</option>
-                    <option value="text_area">نص كبير </option>
-                    <option value="date">تاريخ </option>
-                    <option value="text">الموقع الإلكتروني</option>
-                    <option value="text">رقم الجوال</option>
-                    <option value="file">مرفقات </option>
-
+                    <option value="text_area"> @lang('fields.gras_txt') </option>
+                    <option value="date">@lang('fields.date') </option>
+                    <option value="text">@lang('fields.email')</option>
+                    <option value="text">@lang('fields.tel')</option>
+                    <option value="file">@lang('fields.file') </option>
                 </select>
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
@@ -175,7 +174,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">   تعديل حقل التسجيل  </h5>
+                <h5 class="modal-title" id="exampleModalLabel" for="position">  @lang('fields.modify_registration_field')  </h5>
                 <div class="alert alert-danger print-error-msg" style="display:none">
                     <ul></ul>
                 </div>
@@ -184,7 +183,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         {{csrf_field()}}
                         <div class="form-group">
@@ -197,13 +196,18 @@
                             <label for="english_name">@lang('fields.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="@lang('sidebar.direction')">
                             <label for="type">@lang('fields.type')</label>
                             <select class="form-control" id="type_update" name="type_update">
                                 <option>@lang('fields.type')</option>
                                 <option value="text" >@lang('fields.text')</option>
                                 <option value="number">@lang('fields.number')</option>
                                 <option value="email">@lang('fields.email')</option>
+                                <option value="text_area"> @lang('fields.gras_txt') </option>
+                                <option value="date">@lang('fields.date') </option>
+                                <option value="text">@lang('fields.email')</option>
+                                <option value="text">@lang('fields.phone_number')</option>
+                                <option value="file">@lang('fields.file') </option>
                             </select>
                         </div>
                     </form>
@@ -267,8 +271,6 @@
             var path = $(this).attr("href");
             var id = $(this).attr("data-id");
             $("#idField").val(id);
-
-
             axios.get(path)
                 .then(response => {
                     console.log(response.data);
@@ -375,7 +377,5 @@
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
     } );
 </script>
-
-
 </body>
 </html>

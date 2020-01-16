@@ -2,8 +2,9 @@
     span {
         font-family: 'Cairo', sans-serif;
     }
+    @lang('sidebar.sidebar_icon_right')
 </style>
-<div class="left side-menu">
+<div class="left side-menu @lang('sidebar.right_sidebar')">
     <div class="sidebar-inner slimscrollleft">
         <!--- Divider -->
         <div id="sidebar-menu">
@@ -44,23 +45,23 @@
                     <a href="{{url('admin/employes')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.gift_teams')   </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول التسجيل </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{url('admin/registration-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.registration_fields') </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{url('admin/ready-model-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> حقول نموذج الجاهزية</span> <span class="menu-arrow"></span> </a>
+                    <a href="{{url('admin/ready-model-fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.readiness_form_fields')</span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('reviews.fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>  حقول التقييم </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{route('reviews.fields')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> @lang('dashboard.evaluation_fields') </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{url('admin/review-items')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> عناصر التقييم </span> <span class="menu-arrow"></span> </a>
+                    <a href="{{url('admin/review-items')}}" class="waves-effect"><i class="ti-paint-bucket"></i> <span>@lang('dashboard.elements_of_evaluation') </span> <span class="menu-arrow"></span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span>المراجعة والاعتماد </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> @lang('dashboard.auditing_and_accreditation') </span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="">منشآت لم تسلم بعد</a></li>
-                        <li><a href="{{ url('/companies/ready-model-notcofirmed') }}">منشآت  سلمت النموذج</a></li>
-                        <li><a href="dashboard_4.html">قوائم المنشآت المعتمدة</a></li>
+                        <li><a href="">@lang('dashboard.facilities_not_yet_delivered')</a></li>
+                        <li><a href="{{ url('/companies/ready-model-notcofirmed') }}">@lang('dashboard.facilities_delivered_form')   </a></li>
+                        <li><a href="dashboard_4.html">@lang('dashboard.lists_approved_establishments')  </a></li>
                     </ul>
                 </li>
                 @endrole

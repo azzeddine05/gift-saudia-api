@@ -32,6 +32,9 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('employe/permissions/{id}', 'EmployeController@employePermissions')->name('admin.employe.permissions');
     Route::post('employe/permisssions/add', 'EmployeController@store')->name('admin.employe.permissions.add');
     Route::get('employe/{id}/permission/{permissionId}/destroy', 'EmployeController@removePermissionOfEmploye');
+    Route::post('employes/add','EmployeController@addEmpolyee');
+    Route::put('employes/edit/{id}','EmployeController@updateEmployee');
+    Route::get('employes/edit/{id}','EmployeController@showEmployee');
     //Route::post('employe/permissions/add', 'EmployeController@employePermissions')->name('admin.employe.permissions');
 
     Route::get('fees/registred', 'DashboardController@registredFees')->name('fees.registred');
@@ -83,9 +86,9 @@ Route::get('dashboard', 'admin\DashboardController@index');
 
 
 // FrontEnd
-Route::get('/', function () {
-    return view('front.index');
-});
+Route::get('/','CalcDateController@index');
+
+
 Route::get('home', 'front\HomeController@index');
 Route::get('constructor/register', 'front\HomeController@registerConstructor');
 Route::get('main-sector/sub-sector', 'front\HomeController@getSubSectorByMainSector');

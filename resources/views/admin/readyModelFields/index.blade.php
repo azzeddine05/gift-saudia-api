@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -32,10 +32,20 @@
                         <div style="display: none" class="alert alert-success success-add">
                             <strong>  تم إضافة الصلاحيات بنجاح</strong> {{ Session::get('success-add-permissions') }}.
                         </div>
+
+                        <div style="display: none" class="alert alert-success error-deleted-message">
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_eliminating_deletion')
+                        </div>
+                        <div style="display: none" class="alert alert-success error-update-message">
+                            <strong>@lang('giftSteps.Operation_error')</strong> @lang('giftSteps.Error_while_editing')
+                        </div>
+                        <div style="display: none" class="alert alert-success success-deleted-message">
+                            <strong>@lang('giftSteps.Operation_success')</strong>@lang('giftSteps.Deletion_successful')
+                        </div>
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
-                            حقول نمودج الجاهزية (معايير رئيسية و فرعية )
+                            @lang('fields.readiness_forms_fields')
                         </li>
                     </ol>
 
@@ -51,16 +61,16 @@
                         </div>
                         <div class="col-sm-4">
                             <a href="{{ url('/admin/ready-model-fields/add') }}" class="btn btn-default btn-md waves-effect waves-light m-b-30"><i class="md md-add"></i>
-                                إضافة معيار رئيسي ومعايره الفرعية
+                                @lang('fields.add_main_criterion_and_sub_calibration')
                             </a>
                         </div>
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>المعيار  الرئيسي</th>
-                                <th>وزنه</th>
-                                <th>المعايير الفرعية التابعة له</th>
-                                <th>العملية </th>
+                                <th>@lang('fields.main_criterion')</th>
+                                <th>@lang('fields.weighed')</th>
+                                <th>@lang('fields.sub_criteria') </th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -124,7 +134,7 @@
         <span>&times;</span><span class="sr-only">Close</span>
     </button>
     <h4 class="custom-modal-title">Add Contact</h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('dashboard.main_sector_arabic')</label>
@@ -211,6 +221,29 @@
 
         });
 
+        $('.deleteNow').click(function(e) {
+            e.preventDefault();
+            var path = $('.btnDelete').attr("href");
+            axios.delete(path)
+                .then(response => {
+                    console.log(response);
+                    if($.isEmptyObject(response.data.error)){
+                        //Custombox.close();
+                        $("#custom-width-modal").modal('hide');
+                        $(".success-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2500);
+                    }else{
+                        $(".error-deleted-message").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 3000);
+                    }
+                })
+        });
 
         // Default Datatable
         $('#datatable').DataTable();

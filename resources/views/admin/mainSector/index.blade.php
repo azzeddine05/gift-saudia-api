@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -29,7 +29,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">القطاعات الفرعية والرئيسية </li>
+                        <li class="breadcrumb-item active">@lang('dashboard.main_secondary_sector')</li>
                     </ol>
 
                 </div>
@@ -60,7 +60,7 @@
                             <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_main_sector') </a>
                         </div>
                         <div class="col-sm-4">
-                            <a href="#sub-sectors-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>إضافة قطاع فرعي </a>
+                            <a href="#sub-sectors-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('dashboard.add_sub_sector')  </a>
                         </div>
                         </div>
                         <table id="datatable" class="table table-bordered">
@@ -79,10 +79,10 @@
                                     <td>{{ $mainSector->english_name }}</td>
                                     <td>
                                         <a href="{{ url('admin/sub-sectors/main-sector/'.$mainSector->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
-                                            قطاعاته الفرعية
+                                         @lang('dashboard.sub_sector')
                                         </a>
-                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">تعديل</button>
-                                        <a href="{{ url('api/admin/main-sector/'.$mainSector->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">@lang('dashboard.edit')</button>
+                                        <a href="{{ url('api/admin/main-sector/'.$mainSector->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -137,7 +137,7 @@
         <ul></ul>
     </div>
     <h4 class="custom-modal-title text-center">إضافة قطاع رئيسي </h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text  @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="arabic_name">@lang('dashboard.main_sector_arabic')</label>
@@ -166,7 +166,7 @@
         <ul></ul>
     </div>
     <h4 class="custom-modal-title text-center">إضافة قطاع فرعي</h4>
-    <div class="custom-modal-text text-left">
+    <div class="custom-modal-text  @lang('sidebar.text_align')">
         <form id="myForm" role="form">
             <div class="form-group">
                 <label for="sub_sector_arabic_name">@lang('dashboard.sub_sector_arabic')</label>
@@ -177,10 +177,10 @@
                 <label for="sub_sector_english_name">@lang('dashboard.sub_sector_english')</label>
                 <input type="text" class="form-control" name="sub_sector_english_name" id="sub_sector_english_name" placeholder="">
             </div>
-            <div class="form-group">
+            <div class="form-group" style=" @lang('sidebar.direction')">
                 <label for="main_sector_id">@lang('dashboard.main_sector_for_sub_sector')</label>
                 <select class="form-control" id="main_sector_id" name="main_sector_id">
-                    <option value="0" disabled selected> -- إختر --</option>
+                    <option value="0" disabled selected> --@lang('dashboard.choose') --</option>
                     @foreach ($mainSectors as $mainSector)
                         <option value="{{ $mainSector->id }}">{{ $mainSector->arabic_name }}</option>
                     @endforeach

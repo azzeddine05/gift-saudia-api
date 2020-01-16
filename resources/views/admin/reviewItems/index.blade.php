@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">إدارة حقول التقييم</li>
+                        <li class="breadcrumb-item active">@lang('fields.managing_evaluation_fields')</li>
                     </ol>
 
                 </div>
@@ -66,9 +66,10 @@
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>@lang('fields.arabic_name')</th>
-                                <th>@lang('fields.english_name')</th>
-                                <th>العملية </th>
+                                <th>@lang('review.arabic_name')</th>
+                                <th>@lang('review.english_name')</th>
+                                <th>@lang('review.sub_standar')</th>
+                                <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 
@@ -78,9 +79,10 @@
                                 <tr>
                                     <td>{{ $reviewItem->arabic_name }}</td>
                                     <td>{{ $reviewItem->english_name }}</td>
+                                    <td>{{ $reviewItem->standar_name }}</td>
                                     <td>
-                                        <button data-id="{{ $reviewItem->id }}" href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">تعديل</button>
-                                        <a href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">حدف</a>
+                                        <button data-id="{{ $reviewItem->id }}" href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
+                                        <a href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -135,18 +137,27 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title">إضافة حقل تقييم </h4>
-    <div class="custom-modal-text text-left">
+    <h4 class="custom-modal-title">@lang('review.add_new_field') </h4>
+    <div class="custom-modal-text @lang('sidebar.text_align')" style="@lang('sidebar.direction')">
         <form id="myForm" role="form">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="arabic_name">@lang('fields.arabic_name')</label>
+                <label for="arabic_name">@lang('review.arabic_name')</label>
                 <input type="text" class="form-control" name="arabic_name" id="arabic_name">
             </div>
 
             <div class="form-group">
-                <label for="english_name">@lang('fields.english_name')</label>
+                <label for="english_name">@lang('review.english_name')</label>
                 <input type="text" class="form-control" name="english_name" id="english_name">
+            </div>
+            <div class="form-group">
+                <label for="type">@lang('review.type')</label>
+                <select class="form-control" id="sub_standards" name="sub_standards_id">
+                 <option value="0" selected>@lang('constructorRegister.sub_sector')</option>
+                    @foreach ($subStandards as $subStandard)
+                        <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
+                    @endforeach
+                </select>
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
             <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">@lang('dashboard.cancel')</button>
@@ -154,12 +165,12 @@
     </div>
 </div>
 
-<!-- Modal eddit-->
+<!-- Modal edit-->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="@lang('sidebar.direction')">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">   تعديل حقل التسجيل  </h5>
+                <h5 class="modal-title" id="exampleModalLabel" for="position">@lang('review.edit_field') </h5>
                 <div class="alert alert-danger print-error-msg" style="display:none">
                     <ul></ul>
                 </div>
@@ -168,23 +179,32 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="custom-modal-text text-left">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
                     <form id="myForm" role="form">
                         {{method_field('PUT')}}
                         <div class="form-group">
-                            <label for="arabic_name">@lang('fields.arabic_name')</label>
+                            <label for="arabic_name">@lang('review.arabic_name')</label>
                             <input type="text" class="form-control" name="arabic_name_update" id="arabic_name_update">
                             <input type="hidden" value="" id="idField">
                         </div>
 
                         <div class="form-group">
-                            <label for="english_name">@lang('fields.english_name')</label>
+                            <label for="english_name">@lang('review.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">@lang('review.type')</label>
+                            <select class="form-control" id="sub_standards_id" name="sub_standards_id">
+                                <option value="0">@lang('constructorRegister.sub_sector')</option>
+                                @foreach ($subStandards as $subStandard)
+                                    <option value="{{ $subStandard->id }}" >{{ $subStandard->arabic_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="@lang('sidebar.flex_edit_modal_btn')">
                 <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
             </div>
@@ -204,24 +224,27 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        const getDatafromForm = () => {
+        var getDatafromForm = () => {
             var bodyFormData = new FormData();
             var arabic_name = $("#arabic_name").val();
             var english_name = $("#english_name").val();
+            var sub_standards_id = $("#sub_standards").val();
 
             bodyFormData.set('arabic_name', arabic_name);
             bodyFormData.set('english_name', english_name);
+            bodyFormData.set('sub_standards_id', sub_standards_id);
             return bodyFormData;
         };
         const getDatafromFormUpdate = () => {
             var bodyFormData = new FormData();
             var arabic_name = $("#arabic_name_update").val();
             var english_name = $("#english_name_update").val();
-
+            var sub_standards_id = $("#sub_standards").val();
 
 
             bodyFormData.set('arabic_name', arabic_name);
             bodyFormData.set('english_name', english_name);
+            bodyFormData.set('sub_standards_id', sub_standards_id);
             return bodyFormData;
         };
 
@@ -246,7 +269,7 @@
 
         $(".editField").click(function(e) {
             e.preventDefault();
-            const data = getDatafromForm();
+            var data = getDatafromForm();
             var path = $(this).attr("href");
             var id = $(this).attr("data-id");
             $("#idField").val(id);
@@ -256,6 +279,7 @@
                     console.log(response.data);
                     $( "#arabic_name_update" ).val(response.data.arabic_name);
                     $( "#english_name_update" ).val(response.data.english_name);
+                    $( "#sub_standards_id" ).val(response.data.sub_standards_id);
                     $( "#modalEdit" ).modal('show');
                 })
                 .catch(error => {
@@ -274,10 +298,9 @@
             var data = {
                 arabic_name :document.getElementById('arabic_name_update').value, //$("#arabic_name_update" ).val(),
                 english_name : document.getElementById('english_name_update').value,//$("#arabic_name_update" ).val(),
+                sub_standards_id : document.getElementById('sub_standards_id').value,//$("#arabic_name_update" ).val(),
                 id: id
             };
-
-            console.log(data.arabic_name);
             axios.put(path, data)
                 .then(response => {
                     if($.isEmptyObject(response.data.error)){

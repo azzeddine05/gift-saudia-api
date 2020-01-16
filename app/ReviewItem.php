@@ -12,6 +12,6 @@ class ReviewItem extends Model
      * @var array
      */
     protected $fillable = [
-        'arabic_name', 'english_name',
+        'arabic_name', 'english_name', 'sub_standards_id'
     ];
 }

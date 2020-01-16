@@ -43,7 +43,7 @@
         font-family: 'Cairo', sans-serif;
     }
     .home-wrapper h2 {
-        margin-top: -88px !important;
+        margin-top: -88px;
     }
     .bg-img-1 {
 
@@ -217,7 +217,7 @@
                 <div class="home-fullscreen">
                     <div class="full-screen">
                         <div class="home-wrapper home-wrapper-alt">
-                            <h2 class="text-white">التسجيل للمشاركة في دورة الجائزة</h2>
+                            <h2 class="text-white">التسجيل للمشاركة في دورة الجائزة </h2>
                             <div id="countdown">
                                 <div id='tiles'></div>
                                 <div class="labels">
@@ -231,7 +231,7 @@
 
                     </div>
                 </div>
-                <a href="{{ url('constructor/register') }}" target="_blank" class="btn btn-white-bordered">التسجيل </a>
+                <a href="{{ url('constructor/register') }}" target="_blank" id="my_btn" class="btn btn-white-bordered">التسجيل </a>
 
             </div>
         </div>
@@ -397,37 +397,84 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var target_date = new Date().getTime() + (1000*3600*48); // set the countdown date
-        var days, hours, minutes, seconds; // variables for time units
+        @if(isset($date_diff))
+            var step=<?php echo  json_encode($step)?>;
+            var state=<?php echo  json_encode($state)?>;
 
-        var countdown = document.getElementById("tiles"); // get tag element
+        function change(msg,btn_txt,btn_url) {
+            $(".home-wrapper h2").text(msg);
+            $("#my_btn").text(btn_txt);
+            $("#my_btn").attr('href',btn_url);
+        }
+        if (state=='play'){
+            switch (step) {
+                case 'registredPeriod':change('@lang('front.title_register_play')','@lang('front.buttom_register')',"{{ url('constructor/register') }}");break;
+                case 'reviewsPeriod':change('@lang('front.title_review_play')','@lang('front.buttom_review')',"{{ url('constructor/register') }}");break;
+                case 'resultPeriod':change('@lang('front.title_result_play')','@lang('front.buttom_result')',"{{ url('constructor/register') }}");break;
+            }
+            var myTime=<?php echo json_encode($date_diff); ?>;
+            var date = Date.now();
+            var milliseconds =new Date(myTime)-date;
+            var target_date = new Date().getTime()+ milliseconds; // set the countdown date
+            var days, hours, minutes, seconds; // variables for time units
+            var countdown = document.getElementById("tiles"); // get tag element
 
-        getCountdown();
+            getCountdown();
 
-        setInterval(function () { getCountdown(); }, 1000);
+            setInterval(function () { getCountdown(); }, 1000);
 
-        function getCountdown(){
+            function getCountdown(){
 
-            // find the amount of "seconds" between now and target
-            var current_date = new Date().getTime();
-            var seconds_left = (target_date - current_date) / 1000;
+                // find the amount of "seconds" between now and target
+                var current_date = new Date().getTime();
+                var seconds_left = (target_date - current_date) / 1000;
 
-            days = pad( parseInt(seconds_left / 86400) );
-            seconds_left = seconds_left % 86400;
+                days = pad( parseInt(seconds_left / 86400) );
+                seconds_left = seconds_left % 86400;
 
-            hours = pad( parseInt(seconds_left / 3600) );
-            seconds_left = seconds_left % 3600;
+                hours = pad( parseInt(seconds_left / 3600) );
+                seconds_left = seconds_left % 3600;
 
-            minutes = pad( parseInt(seconds_left / 60) );
-            seconds = pad( parseInt( seconds_left % 60 ) );
+                minutes = pad( parseInt(seconds_left / 60) );
+                seconds = pad( parseInt( seconds_left % 60 ) );
 
-            // format countdown string + set tag value
-            countdown.innerHTML = "<span>" + seconds + "</span><span>" + minutes + "</span><span>" + hours + "</span><span>" + days + "</span>";
+                // format countdown string + set tag value
+                if((days+seconds+hours+minutes)>0){
+                    countdown.innerHTML = "<span>" + seconds + "</span><span>" + minutes + "</span><span>" + hours + "</span><span>" + days + "</span>";
+                }else{
+                    $('#countdown').css('position','initial');
+                    $('#countdown').css('display','none');
+                    $('a.btn.btn-white-bordered').css('display','none');
+                    $('.home-wrapper h2').css('margin-top','30px');
+                }
+
+            }
+
+            function pad(n) {
+                return (n < 10 ? '0' : '') + n;
+            }
+        }else{
+            function coundown_over(msg) {
+                $(".home-wrapper h2").text(msg);
+                $('#countdown').css('position','initial');
+                $('#countdown').css('display','none');
+                $('a.btn.btn-white-bordered').css('display','none');
+                $('.home-wrapper h2').css('margin-top','30px');
+            }
+            switch (step) {
+                case 'registredPeriod':coundown_over('@lang('front.title_register_pause')');break;
+                case 'reviewsPeriod':coundown_over('@lang('front.title_review_pause')');break;
+                case 'resultPeriod':coundown_over('@lang('front.title_result_pause')');break;
+            }
         }
 
-        function pad(n) {
-            return (n < 10 ? '0' : '') + n;
-        }
+        @else
+            $('#countdown').css('position','initial');
+            $('#countdown').css('display','none');
+            $('a.btn.btn-white-bordered').css('display','none');
+            $(".home-wrapper h2").text("@lang('front.hello')");
+            $('.home-wrapper h2').css('margin-top','30px');
+        @endif
     });
 
 
@@ -443,6 +490,7 @@
             }
         }
     })
+
 </script>
 
 </body>

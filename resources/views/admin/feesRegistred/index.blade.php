@@ -49,7 +49,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page  @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -59,7 +59,7 @@
                     <div class="col-sm-12">
 
 
-                        <h4 class="page-title">تكاليف التسجيل</h4>
+                        <h4 class="page-title">@lang('fees.Registration_costs')</h4>
                         <ol class="breadcrumb">
 
                         </ol>
@@ -82,7 +82,7 @@
                                     <div class="p-20">
                                         <form>
                                             <div class="form-group">
-                                                <label class="control-label">تكاليف التسجيل لكل المنشآت
+                                                <label class="control-label">@lang('fees.Operating_costs_for_all_facilities')
                                                 </label>
                                                 <input id="demo0" type="text" value="1800" name="" data-bts-min="100" data-bts-max="1000000" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default"/>
                                             </div>
@@ -99,8 +99,8 @@
 
         </div> <!-- content -->
 
-        <footer class="footer text-right">
-            &copy; 2016 - 2018. All rights reserved.
+        <footer class="footer @lang('sidebar.text_align')">
+            @lang('dashboard.all_rights_are_save')
         </footer>
 
     </div>

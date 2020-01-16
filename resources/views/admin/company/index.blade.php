@@ -21,7 +21,7 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="content-page">
+    <div class="content-page @lang('sidebar.right_class')">
         <!-- Start content -->
         <div class="content">
             <div class="container-fluid">
@@ -29,8 +29,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">كل المنشآت
-                        </li>
+                        <li class="breadcrumb-item active">@lang('company.all_companies')</li>
                     </ol>
 
                 </div>
@@ -41,15 +40,12 @@
                         <div style="display: none" class="alert alert-success success-message">
                             <strong>Success!</strong> add with success.
                         </div>
-{{--                        <div class="col-sm-4">--}}
-{{--                            <a href="" class="btn btn-default btn-md waves-effect waves-light m-b-30"><i class="md md-add"></i>كل المنشآت  </a>--}}
-{{--                        </div>--}}
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th> اسم المنشأة</th>
-                                <th>ومقرها</th>
-                                <th> رقم الهاتف</th>
+                                <th>@lang('company.company_names')</th>
+                                <th>@lang('company.head_quarters')</th>
+                                <th> @lang('company.tel')</th>
 
                             </tr>
                             </thead>
@@ -257,7 +253,7 @@
         $("#addMainSector").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('http://localhost:8000/api/admin/main-sector', data)
+            axios.post('/api/admin/main-sector', data)
                 .then(response => {
                     console.log(response);
                     Custombox.close();
@@ -273,7 +269,7 @@
         $("#addSubSector").click(function(e) {
             e.preventDefault();
             var data = getDatafromFormSubSector();
-            axios.post('http://localhost:8000/api/admin/sub-sector', data)
+            axios.post('/api/admin/sub-sector', data)
                 .then(response => {
                     console.log(response);
                     Custombox.close();

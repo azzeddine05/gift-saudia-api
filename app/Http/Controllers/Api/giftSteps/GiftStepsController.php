@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\giftSteps;
 
 use App\GiftStep;
 use App\Http\Controllers\Controller;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,29 +35,51 @@ class GiftStepsController extends Controller
     public function store(Request $request)
     {
 
-        //dd("welcome aissam", $request->all());
-//        $this->validate($request,[
-//            'title' => 'required',
-//            'details' => 'required'
-//        ]);
-        $giftStep = GiftStep::create($request->all());
-        return response()->json($giftStep, 201);
+        $validator = Validator::make($request->all(), [
+                'arabic_name' => 'required',
+                'english_name' => 'required',
+                'period_type' => 'required',
+                'start_date'=>'after_or_equal:today|required',
+                'end_date'=>"after:start_date|required",
+            ]
+        );
+        if($validator->passes()) {
+            $giftStep = GiftStep::create($request->all());
+            return response()->json($giftStep, 201);
+        }else {
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        dump('here now');
-        dd($request->all());
-        $step = GiftStep::find($id);
-        $step->update($request->all());
+        $validator = Validator::make($request->all(), [
+                'arabic_name' => 'required',
+                'english_name' => 'required',
+                'period_type' => 'required',
+                'start_date'=>'after_or_equal:today|required',
+                'end_date'=>"after:start_date|required",
+        ]
+        );
+        if($validator->passes()) {
+            $giftStep = GiftStep::find($id);
+            $giftStep->arabic_name = $request->get('arabic_name');
+            $giftStep->english_name = $request->get('arabic_name');
+            $giftStep->period_type= $request->get('arabic_name');
+            $giftStep->start_date= $request->get('start_date');
+            $giftStep->end_date= $request->get('end_date');
+            $giftStep->save();
+            return response()->json($giftStep, 200);
+        }else {
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
 
-        return response()->json($step, 200);
     }
 
-    public function delete(GiftStep $giftStep)
+    public function delete($id)
     {
+        $giftStep = GiftStep::find($id);
         $giftStep->delete();
-
         return response()->json(null, 204);
     }
 

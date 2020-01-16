@@ -1,8 +1,6 @@
 <?php
 
 return [
-
-
     'dashboard' => 'لوحة التحكم ',
     'home' => 'الرئسية ',
     'gift_steps' => 'مراحل الجائزة',
@@ -14,6 +12,7 @@ return [
     'action' => ' العملية',
     'type_sectors' => 'قطاعات رئيسية وفرعية ',
     'gift_teams' => 'فريق عمل الجائزة',
+    'add_new_phase'=>'إضافة مرحلة جديدة',
     'main_sector_arabic' => 'إسم القطاع بالعربية ',
     'main_sector_english' => 'إسم القطاع بالإنجليزية ',
     'secnodary_sectors_associate' => ' القطاعات الفرعية ',
@@ -25,6 +24,37 @@ return [
     'main_sector_for_sub_sector' => 'القطاع الرئيسي ',
     'registration_fees' => 'تكاليف التسجيل ',
     'subscription_fees' => ' تكاليف الاشتراك ',
-
-
+    'welcom_dashboard'=>'مرحبا بك في إدارة الجائزة!',
+    'settigs_dashboard'=>'الإعدادات',
+    'number_of_incomes'=>'عدد المداخيل',
+    'registered_facilities'=>'منشآت سجلت',
+    'paid_installations'=>'منشآت دفعت',
+    'the_number_of_visitors'=>'عدد زوار الموقع',
+    'last_registered_establishments'=>'أخر المنشآت المسجلة',
+    'All_dashboard'=>'الكل',
+    'company_names'=>'إسم المنشأة',
+    'head_quarters'=>'المقر',
+    'subsector'=>'القطاع الفرعي',
+    'date_of_registration'=>'تاريخ التسجيل',
+    'gestion_field'=>'إدارة حقول التقييم',
+    'main_secondary_sector'=>'القطاعات الفرعية والرئيسية',
+    'add_sub_sector'=>'إضافة قطاع فرعي ',
+    'edit'=>'تعديل',
+    'delete'=>'حدف',
+    'registration_fields'=>' حقول التسجيل ',
+    'readiness_form_fields'=>' حقول نموذج الجاهزية',
+    'evaluation_fields'=>'  حقول التقييم ',
+    'elements_of_evaluation'=>' عناصر التقييم',
+    'auditing_and_accreditation'=>'المراجعة والاعتماد',
+    'facilities_not_yet_delivered'=>'منشآت لم تسلم بعد',
+    'facilities_delivered_form'=>'منشآت سلمت النموذج',
+    'lists_approved_establishments'=>'قوائم المنشآت المعتمدة',
+    'sub_sector'=>' قطاعاته الفرعية',
+    'choose'=>' إختر',
+    'permissions'=>'الصلاحيات',
+    'employee_name'=>'اسم الموظف',
+    'employee_adress'=>'عنوان الموظف',
+    'add_new_employee'=>'اضافة موظف جديد',
+    'edit_employee'=>'تعديل الموظف ',
+    'all_rights_are_save'=>'&copy; جميع الحقوق محفوظة. 2019',
 ];
