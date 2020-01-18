@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\ReviewField;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class ReviewsController extends Controller
@@ -15,7 +16,7 @@ class ReviewsController extends Controller
 
     public function index()
     {
-        $reviewsFields =  ReviewField::all();
+        $reviewsFields =  DB::select("SELECT * FROM `review_fields` ORDER BY `review_fields`.`updated_at` DESC");
         return view('admin.reviewsFields.index', ['reviewsFields' => $reviewsFields]);
     }
 

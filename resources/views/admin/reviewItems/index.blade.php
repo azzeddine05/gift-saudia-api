@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 @include('layouts/back/head');
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 <body class="fixed-left">
 
 <!-- Begin page -->
@@ -152,8 +153,8 @@
             </div>
             <div class="form-group">
                 <label for="type">@lang('review.type')</label>
-                <select class="form-control" id="sub_standards" name="sub_standards_id">
-                 <option value="0" selected>@lang('constructorRegister.sub_sector')</option>
+                <select class="selectpicker" multiple id="sub_standards" name="sub_standards_id" data-live-search="true" >
+                    <option value="" disabled selected>@lang('constructorRegister.sub_sector')</option>
                     @foreach ($subStandards as $subStandard)
                         <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
                     @endforeach
@@ -194,10 +195,10 @@
                         </div>
                         <div class="form-group">
                             <label for="type">@lang('review.type')</label>
-                            <select class="form-control" id="sub_standards_id" name="sub_standards_id">
-                                <option value="0">@lang('constructorRegister.sub_sector')</option>
+                            <select class="form-control"  id="sub_standards_id" name="sub_standards_id">
+                                <option value="" disabled selected>@lang('constructorRegister.sub_sector')</option>
                                 @foreach ($subStandards as $subStandard)
-                                    <option value="{{ $subStandard->id }}" >{{ $subStandard->arabic_name}}</option>
+                                    <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -222,13 +223,19 @@
 
 
 <script type="text/javascript">
+    var selectedItem=[];
     $(document).ready(function() {
+        $('.selectpicker').change(function () {
+             selectedItem = $('.selectpicker').val();
+
+        });
+
 
         var getDatafromForm = () => {
             var bodyFormData = new FormData();
             var arabic_name = $("#arabic_name").val();
             var english_name = $("#english_name").val();
-            var sub_standards_id = $("#sub_standards").val();
+            var sub_standards_id =selectedItem;
 
             bodyFormData.set('arabic_name', arabic_name);
             bodyFormData.set('english_name', english_name);
@@ -377,8 +384,13 @@
         table.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
     } );
+
+
 </script>
 
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 </body>
 </html>

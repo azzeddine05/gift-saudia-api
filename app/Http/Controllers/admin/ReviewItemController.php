@@ -17,7 +17,7 @@ class ReviewItemController extends Controller
 
     public function index()
     {
-        $reviewitem =  DB::table('review_items')->select('review_items.*','sub_standards.arabic_name as standar_name')->Join('sub_standards','review_items.sub_standards_id','=','sub_standards.id')->get();
+        $reviewitem =  DB::table('review_items')->select('review_items.*','sub_standards.arabic_name as standar_name')->Join('sub_standards','review_items.sub_standards_id','=','sub_standards.id')->get()->sortByDesc('updated_at');
         $dropdownstandar= DB::table('sub_standards')->select('sub_standards.id','sub_standards.arabic_name')->get();
         return view('admin.reviewItems.index', ['reviewItems' => $reviewitem,'subStandards'=>$dropdownstandar]);
     }
@@ -39,9 +39,13 @@ class ReviewItemController extends Controller
                 'english_name.required' => ' مطلوب إسم الحقل  بالإنجليزية !',
             ]
         );
-        if ($validator->passes()) {
-            $reviewitem = ReviewItem::create($request->all());
 
+        if ($validator->passes()) {
+            $id_array=explode(',',$request->sub_standards_id);
+            for ($i=0;$i<count($id_array);$i++){
+                 DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`, `sub_standards_id`) VALUES ('$request->arabic_name','$request->arabic_name',$id_array[$i])");
+            }
+            $reviewitem=DB::select("SELECT * FROM `review_items` ORDER BY `updated_at` DESC");
             return response()->json($reviewitem, 201);
         } else{
             return response()->json(['error'=>$validator->errors()->all()]);
