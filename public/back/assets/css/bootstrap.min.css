@@ -21,4 +21,9 @@
 .topbar-right{float: left !important;}
 /*navbar right*/
 .navBar-right{margin-right: 0px !important;direction: ltr;}
+.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: #999;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
 /*# sourceMappingURL=bootstrap.min.css.map */
