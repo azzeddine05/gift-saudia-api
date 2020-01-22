@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active">@lang('fields.managing_evaluation_fields')</li>
+                        <li class="breadcrumb-item active">@lang('association.gestion_standar')</li>
                     </ol>
 
                 </div>
@@ -61,14 +61,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('fields.add_new_field2') </a>
+                                <a href="#custom-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="md md-add"></i>@lang('association.add_name') </a>
                             </div>
                         </div>
                         <table id="datatable" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>@lang('review.arabic_name')</th>
-                                <th>@lang('review.english_name')</th>
+                                <th>@lang('association.name_arabic')</th>
+                                <th>@lang('association.name_english')</th>
                                 <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
@@ -78,14 +78,14 @@
                                 <tr>
                                     <td>{{ $sub_standar->arabic_name }}</td>
                                     <td>{{ $sub_standar->english_name }}</td><td>
-                                        <button data-id="{{ $sub_standar->id }}" href="{{ url('/admin/review-items/'.$sub_standar->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
+                                    <!--    <button data-id="{{ $sub_standar->id }}" href="{{ url('/admin/review-items/'.$sub_standar->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>-->
                                         <a href="{{ url('admin/sub-standars/reviewItems/'.$sub_standar->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        <h5 class="modal-title" id="custom-width-modalLabel">حدف القطاع الرئيسي </h5>
+                                                        <h5 class="modal-title" id="custom-width-modalLabel">@lang('association.delete_title') </h5>
                                                     </div>
                                                     <div class="modal-body">
                                                         <h6>هل أنت متأكد من عملية الحدف  ?</h6>
@@ -134,7 +134,7 @@
     <div class="alert alert-danger print-error-msg" style="display:none">
         <ul></ul>
     </div>
-    <h4 class="custom-modal-title">@lang('review.add_new_field') </h4>
+    <h4 class="custom-modal-title">@lang('association.add_name') </h4>
     <div class="custom-modal-text @lang('sidebar.text_align')" style="@lang('sidebar.direction')">
         <form id="myForm" role="form">
             {{csrf_field()}}

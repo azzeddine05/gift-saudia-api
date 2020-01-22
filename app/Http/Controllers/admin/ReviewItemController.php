@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Association;
+
 use App\ReviewItem;
 use Illuminate\Support\Facades\DB;
 use Validator;
@@ -18,7 +18,7 @@ class ReviewItemController extends Controller
 
     public function index()
     {
-        $reviewitem =  ReviewItem::all();
+        $reviewitem =  ReviewItem::orderBy('updated_at', 'desc')->get();;
         $dropdownstandar= DB::table('sub_standards')->select('sub_standards.id','sub_standards.arabic_name')->get();
         return view('admin.reviewItems.index', ['reviewItems' => $reviewitem,'subStandards'=>$dropdownstandar]);
     }
@@ -72,6 +72,7 @@ class ReviewItemController extends Controller
             $reviewitem = ReviewItem::find($id);
             $reviewitem->arabic_name = $request->get('arabic_name');
             $reviewitem->english_name = $request->get('english_name');
+            $reviewitem->updated_at=date('Y-m-d H:i:s');
             $reviewitem->save();
             return response()->json($reviewitem, 200);
         }else {

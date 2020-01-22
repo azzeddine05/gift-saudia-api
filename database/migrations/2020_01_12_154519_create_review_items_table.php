@@ -17,7 +17,8 @@ class CreateReviewItemsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('arabic_name');
             $table->string('english_name');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

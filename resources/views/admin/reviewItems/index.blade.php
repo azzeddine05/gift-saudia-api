@@ -76,8 +76,10 @@
                             </thead>
 
                             <tbody>
+
                             @foreach ($reviewItems as $reviewItem)
                                 <tr>
+                                    <?php //echo "<p>$reviewItem->arabic_name</p>"; ?>
                                     <td>{{ $reviewItem->arabic_name }}</td>
                                     <td>{{ $reviewItem->english_name }}</td>
                                     <td> <a href="{{ url('admin/sub-standars/reviewItems/'.$reviewItem->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
@@ -157,7 +159,6 @@
                 <!-- Multiselect dropdown -->
                 <label for="type">@lang('review.type')</label>
                 <select multiple data-style="bg-white rounded-pill px-4 border" name="sub_standards_id" id="sub_standards_id"  class="selectpicker w-100">
-                    <option value="" disabled >@lang('constructorRegister.sub_sector')</option>
                     @foreach ($subStandards as $subStandard)
                         <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
                     @endforeach
@@ -219,6 +220,10 @@
 <script type="text/javascript">
     var selectedItem="";
     $(document).ready(function() {
+        $('#datatable').DataTable({
+            "order": []
+        });
+
         var $elem = $('#sub_standards_id');
         $elem.on('change', function(){
             selectedItem=$('#sub_standards_id').val()
@@ -304,7 +309,7 @@
                         $("html, body").animate({
                             scrollTop: 0
                         }, "slow");
-                        setTimeout(function(){ location.reload(); }, 2200);
+                     //   setTimeout(function(){ location.reload(); }, 2200);
                     }else{
                         printErrorMsg(response);
                     }
