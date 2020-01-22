@@ -73,6 +73,7 @@ Route::put('admin/registration-fields/{id}','Api\registerFields\FieldController@
 Route::delete('admin/registration-fields/{id}', 'Api\registerFields\FieldController@delete');
 
 
+
 // Regsitration Fields
 //Route::get('admin/registration-fields', 'Api\registerFields\FieldController@index');
 

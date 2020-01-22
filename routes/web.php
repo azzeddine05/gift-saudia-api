@@ -56,6 +56,11 @@ Route::prefix('admin')->namespace('admin')->group(function () {
     Route::get('review-items/{id}', 'ReviewItemController@show');
     Route::delete('review-items/{id}', 'ReviewItemController@delete');
     Route::put('review-items/{id}', 'ReviewItemController@update');
+
+    //Sub Standrs
+    Route::get('sub-standars/reviewItems/{id}', 'AssociationController@index');
+    Route::post('sub-standars/reviewItems/Add', 'AssociationController@store');
+    Route::delete('sub-standars/reviewItems/{id}/{id_review}', 'AssociationController@delete');
 });
 
 Route::get('user/profile', 'ProfileController@index')->name('user.profile');

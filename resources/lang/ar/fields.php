@@ -37,6 +37,7 @@ return [
     'end_stage_step'=>' تاريخ نهاية المرحلة ',
     'phase_end'=>'توقيت بداية المرحلة ',
     'phase_start'=>' توقيت نهاية المرحلة ',
-    'chose_stage'=>'إختر المرحلة '
+    'chose_stage'=>'إختر المرحلة ',
+    'sub-calibration'=>'معايره الفرعية'
 
 ];

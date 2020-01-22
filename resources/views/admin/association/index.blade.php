@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html>
 @include('layouts/back/head');
-
-
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 <body class="fixed-left">
 
 <!-- Begin page -->
@@ -70,22 +69,17 @@
                             <tr>
                                 <th>@lang('review.arabic_name')</th>
                                 <th>@lang('review.english_name')</th>
-                                <th>@lang('review.sub_standar')</th>
                                 <th>@lang('fields.operation') </th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($reviewItems as $reviewItem)
+                            @foreach ($sub_standars as $sub_standar)
                                 <tr>
-                                    <td>{{ $reviewItem->arabic_name }}</td>
-                                    <td>{{ $reviewItem->english_name }}</td>
-                                    <td> <a href="{{ url('admin/sub-standars/reviewItems/'.$reviewItem->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
-                                            @lang('fields.sub-calibration')
-                                        </a></td>
-                                    <td>
-                                        <button data-id="{{ $reviewItem->id }}" href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
-                                        <a href="{{ url('/admin/review-items/'.$reviewItem->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
+                                    <td>{{ $sub_standar->arabic_name }}</td>
+                                    <td>{{ $sub_standar->english_name }}</td><td>
+                                        <button data-id="{{ $sub_standar->id }}" href="{{ url('/admin/review-items/'.$sub_standar->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
+                                        <a href="{{ url('admin/sub-standars/reviewItems/'.$sub_standar->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -145,23 +139,13 @@
         <form id="myForm" role="form">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="arabic_name">@lang('review.arabic_name')</label>
-                <input type="text" class="form-control" name="arabic_name" id="arabic_name">
-            </div>
-
-            <div class="form-group">
-                <label for="english_name">@lang('review.english_name')</label>
-                <input type="text" class="form-control" name="english_name" id="english_name">
-            </div>
-            <div class="form-group">
-                <!-- Multiselect dropdown -->
                 <label for="type">@lang('review.type')</label>
                 <select multiple data-style="bg-white rounded-pill px-4 border" name="sub_standards_id" id="sub_standards_id"  class="selectpicker w-100">
                     <option value="" disabled >@lang('constructorRegister.sub_sector')</option>
-                    @foreach ($subStandards as $subStandard)
-                        <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
+                    @foreach ($dispo_sub_standars as $dispo_sub_standar)
+                        <option value="{{ $dispo_sub_standar->id }}">{{ $dispo_sub_standar->arabic_name}}</option>
                     @endforeach
-                </select><!-- End -->
+                </select>
             </div>
             <button id="addField" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
             <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">@lang('dashboard.cancel')</button>
@@ -196,6 +180,15 @@
                             <label for="english_name">@lang('review.english_name')</label>
                             <input type="text" class="form-control" name="english_name_update" id="english_name_update">
                         </div>
+                        <div class="form-group">
+                            <label for="type">@lang('review.type')</label>
+                            <select class="form-control "  id="sub_standards_id2" name="sub_standards_id">
+                                <option value="" disabled selected>@lang('constructorRegister.sub_sector')</option>
+                                @foreach ($sub_standars as $sub_standar)
+                                    <option value="{{ $sub_standar->id }}">{{ $sub_standar->arabic_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -223,11 +216,22 @@
         $elem.on('change', function(){
             selectedItem=$('#sub_standards_id').val()
         });
+
+        const id_review=<?php echo json_encode($id);?>;
         var getDatafromForm = () => {
             var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name").val();
-            var english_name = $("#english_name").val();
             var sub_standards_id =selectedItem;
+            const id_review=<?php echo json_encode($id);?>;
+
+            bodyFormData.set('sub_standards_id', sub_standards_id);
+            bodyFormData.set('id_review', id_review);
+            return bodyFormData;
+        };
+        const getDatafromFormUpdate = () => {
+            var bodyFormData = new FormData();
+            var arabic_name = $("#arabic_name_update").val();
+            var english_name = $("#english_name_update").val();
+            var sub_standards_id = $("#sub_standards").val();
 
 
             bodyFormData.set('arabic_name', arabic_name);
@@ -235,22 +239,11 @@
             bodyFormData.set('sub_standards_id', sub_standards_id);
             return bodyFormData;
         };
-        const getDatafromFormUpdate = () => {
-            var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name_update").val();
-            var english_name = $("#english_name_update").val();
-
-
-
-            bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
-            return bodyFormData;
-        };
 
         $("#addField").click(function(e) {
             e.preventDefault();
             var data = getDatafromForm();
-            axios.post('review-items/add', data)
+            axios.post('/admin/sub-standars/reviewItems/Add', data)
                 .then(response => {
                     if($.isEmptyObject(response.data.error)){
                         Custombox.close();
@@ -272,11 +265,13 @@
             var path = $(this).attr("href");
             var id = $(this).attr("data-id");
             $("#idField").val(id);
+
             axios.get(path,data)
                 .then(response => {
                     console.log(response.data);
                     $( "#arabic_name_update" ).val(response.data.arabic_name);
                     $( "#english_name_update" ).val(response.data.english_name);
+                    $( "#sub_standards_id" ).val(response.data.sub_standards_id);
                     $( "#modalEdit" ).modal('show');
                 })
                 .catch(error => {
@@ -295,6 +290,7 @@
             var data = {
                 arabic_name :document.getElementById('arabic_name_update').value, //$("#arabic_name_update" ).val(),
                 english_name : document.getElementById('english_name_update').value,//$("#arabic_name_update" ).val(),
+                sub_standards_id : document.getElementById('sub_standards_id').value,//$("#arabic_name_update" ).val(),
                 id: id
             };
             axios.put(path, data)
@@ -323,7 +319,7 @@
 
         $('.deleteNow').click(function(e) {
             e.preventDefault();
-            var path = $('.btnDelete').attr("href");
+            var path = $('.btnDelete').attr("href")+"/"+id_review;
             axios.delete(path)
                 .then(response => {
                     console.log(response);
@@ -378,7 +374,8 @@
 </script>
 
 
-
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ class CreateSubStandardsTable extends Migration
     public function up()
     {
         Schema::create('sub_standards', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('arabic_name');
             $table->string('english_name');
             $table->float('weight');

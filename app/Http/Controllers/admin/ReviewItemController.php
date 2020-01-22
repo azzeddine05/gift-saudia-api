@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Association;
 use App\ReviewItem;
 use Illuminate\Support\Facades\DB;
 use Validator;
@@ -17,14 +18,14 @@ class ReviewItemController extends Controller
 
     public function index()
     {
-        $reviewitem =  DB::table('review_items')->select('review_items.*','sub_standards.arabic_name as standar_name')->Join('sub_standards','review_items.sub_standards_id','=','sub_standards.id')->get()->sortByDesc('updated_at');
+        $reviewitem =  ReviewItem::all();
         $dropdownstandar= DB::table('sub_standards')->select('sub_standards.id','sub_standards.arabic_name')->get();
         return view('admin.reviewItems.index', ['reviewItems' => $reviewitem,'subStandards'=>$dropdownstandar]);
     }
 
     public function show($id)
     {
-        $step = ReviewItem::find($id);
+        $step=ReviewItem::find($id);
         return response()->json($step, 200);
     }
 
@@ -41,9 +42,12 @@ class ReviewItemController extends Controller
         );
 
         if ($validator->passes()) {
+            DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`) VALUES ('$request->arabic_name','$request->arabic_name')");
             $id_array=explode(',',$request->sub_standards_id);
+            $id_review=DB::selectOne('SELECT LAST_INSERT_ID() as "id";');
+            $id_review= (array)$id_review;
             for ($i=0;$i<count($id_array);$i++){
-                 DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`, `sub_standards_id`) VALUES ('$request->arabic_name','$request->arabic_name',$id_array[$i])");
+                 DB::insert("INSERT INTO `association`(`id_review`, `id_sub_standar`) VALUES ('".$id_review['id']."','$id_array[$i]')");
             }
             $reviewitem=DB::select("SELECT * FROM `review_items` ORDER BY `updated_at` DESC");
             return response()->json($reviewitem, 201);
@@ -52,7 +56,7 @@ class ReviewItemController extends Controller
         }
     }
 
-    public function update(Request $request, ReviewItem $reviewsFields)
+    public function update(Request $request)
     {
         $id = $request->get('id');
         $validator = Validator::make($request->all(), [
@@ -68,7 +72,6 @@ class ReviewItemController extends Controller
             $reviewitem = ReviewItem::find($id);
             $reviewitem->arabic_name = $request->get('arabic_name');
             $reviewitem->english_name = $request->get('english_name');
-            $reviewitem->sub_standards_id = $request->get('sub_standards_id');
             $reviewitem->save();
             return response()->json($reviewitem, 200);
         }else {
@@ -80,6 +83,7 @@ class ReviewItemController extends Controller
     {
         $reviewitem = ReviewItem::find($id);
         $reviewitem->delete();
+        DB::table('association')->where('id_review', $id)->delete();
         return response()->json(null, 204);
     }
 }

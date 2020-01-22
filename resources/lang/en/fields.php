@@ -38,5 +38,5 @@ return [
     'phase_start'=>'Phase start time',
     'phase_end'=>'Phase end time',
     'chose_stage'=>'Choose the stage',
-
+    'sub-calibration'=>'sub-calibration',
 ];
