@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewFieldsTable extends Migration
+class CreateReviewItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateReviewFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('review_fields', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('review_items', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
             $table->string('arabic_name');
             $table->string('english_name');
-            $table->string('type');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateReviewFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('review_fields');
+        Schema::dropIfExists('review_items');
     }
 }
