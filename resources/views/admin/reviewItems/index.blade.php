@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 @include('layouts/back/head');
@@ -220,9 +219,7 @@
 <script type="text/javascript">
     var selectedItem="";
     $(document).ready(function() {
-        $('#datatable').DataTable({
-            "order": []
-        });
+
 
         var $elem = $('#sub_standards_id');
         $elem.on('change', function(){
@@ -238,17 +235,6 @@
             bodyFormData.set('arabic_name', arabic_name);
             bodyFormData.set('english_name', english_name);
             bodyFormData.set('sub_standards_id', sub_standards_id);
-            return bodyFormData;
-        };
-        const getDatafromFormUpdate = () => {
-            var bodyFormData = new FormData();
-            var arabic_name = $("#arabic_name_update").val();
-            var english_name = $("#english_name_update").val();
-
-
-
-            bodyFormData.set('arabic_name', arabic_name);
-            bodyFormData.set('english_name', english_name);
             return bodyFormData;
         };
 
@@ -309,7 +295,7 @@
                         $("html, body").animate({
                             scrollTop: 0
                         }, "slow");
-                     //   setTimeout(function(){ location.reload(); }, 2200);
+                        setTimeout(function(){ location.reload(); }, 2200);
                     }else{
                         printErrorMsg(response);
                     }
@@ -350,8 +336,11 @@
                 })
         });
 
+
         // Default Datatable
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            "order": []
+        });
 
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Association;
+use App\ReviewItem;
+use App\SubStandard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +18,14 @@ class AssociationController extends Controller
      */
     public function index($id)
     {
-        $sub_standars= DB::select('SELECT sub_standards.id,sub_standards.arabic_name,sub_standards.english_name FROM `sub_standards` JOIN association on sub_standards.id=association.id_sub_standar JOIN review_items on review_items.id=association.id_review  WHERE review_items.id='.$id);
-        $sub_standars_disponible=DB::select('SELECT sub_standards.id,sub_standards.arabic_name,sub_standards.english_name FROM `sub_standards` LEFT JOIN `association` ON sub_standards.id=association.id_sub_standar JOIN review_items on review_items.id='.$id.' WHERE association.id_review IS NULL');
+        $sub_standars= DB::table('sub_standards')
+            ->select('sub_standards.id', 'sub_standards.arabic_name', 'sub_standards.english_name')
+            ->join('association', 'sub_standards.id', '=', 'association.id_sub_standar')
+            ->join('review_items', 'review_items.id', '=', 'association.id_review')
+            ->where('review_items.id','=',$id)
+            ->get();
+       // $sub_standars= DB::select('SELECT sub_standards.id,sub_standards.arabic_name,sub_standards.english_name FROM `sub_standards` JOIN association on sub_standards.id=association.id_sub_standar JOIN review_items on review_items.id=association.id_review  WHERE review_items.id='.$id);
+        $sub_standars_disponible=DB::select('SELECT * FROM `sub_standards` WHERE sub_standards.arabic_name NOT IN(SELECT sub_standards.arabic_name FROM `sub_standards` RIGHT JOIN association ON association.id_sub_standar=sub_standards.id WHERE association.id_review='.$id.')');
         return view('admin.association.index', ['sub_standars' => $sub_standars,'dispo_sub_standars'=>$sub_standars_disponible,'id'=>$id]);
     }
 
@@ -40,9 +49,15 @@ class AssociationController extends Controller
     {
             $id_array=explode(',',$request->sub_standards_id);
             for ($i=0;$i<count($id_array);$i++){
-                DB::insert("INSERT INTO `association`(`id_review`, `id_sub_standar`) VALUES ('".$request->id_review."','$id_array[$i]')");
+                $association=new Association();
+                $association->id_review=$request->id_review;
+                $association->id_sub_standar=$id_array[$i];
+                $association->updated_at=date('Y-m-d H:i:s');
+                $association->created_at=date('Y-m-d H:i:s');
+                $association->save();
+                $association=null;
             }
-            $reviewitem=DB::select("SELECT * FROM `review_items` ORDER BY `updated_at` DESC");
+            $reviewitem=ReviewItem::orderBy('updated_at','DESC');
             return response()->json($reviewitem, 201);
     }
 
@@ -89,7 +104,7 @@ class AssociationController extends Controller
      */
     public function delete($id,$id_review)
     {
-        DB::delete("DELETE FROM `association` WHERE `id_review`=$id_review AND `id_sub_standar`=$id");
+        Association::where('id_review','=',$id_review)->where('id_sub_standar','=',$id)->delete();
         return response()->json(null, 204);
     }
 }
