@@ -22,10 +22,15 @@ class AssociationController extends Controller
             ->select('sub_standards.id', 'sub_standards.arabic_name', 'sub_standards.english_name')
             ->join('association', 'sub_standards.id', '=', 'association.id_sub_standar')
             ->join('review_items', 'review_items.id', '=', 'association.id_review')
-            ->where('review_items.id','=',$id)
+            ->where('review_items.id','=',$id)->orderBy('association.updated_at','DESC')
             ->get();
        // $sub_standars= DB::select('SELECT sub_standards.id,sub_standards.arabic_name,sub_standards.english_name FROM `sub_standards` JOIN association on sub_standards.id=association.id_sub_standar JOIN review_items on review_items.id=association.id_review  WHERE review_items.id='.$id);
-        $sub_standars_disponible=DB::select('SELECT * FROM `sub_standards` WHERE sub_standards.arabic_name NOT IN(SELECT sub_standards.arabic_name FROM `sub_standards` RIGHT JOIN association ON association.id_sub_standar=sub_standards.id WHERE association.id_review='.$id.')');
+       // $sub_standars_disponible=DB::select('SELECT * FROM `sub_standards` WHERE sub_standards.arabic_name NOT IN(SELECT sub_standards.arabic_name FROM `sub_standards` RIGHT JOIN association ON association.id_sub_standar=sub_standards.id WHERE association.id_review='.$id.')');
+        $sub_standar=[];
+        foreach ($sub_standars as $sub){
+            array_push($sub_standar,$sub->arabic_name);
+        }
+        $sub_standars_disponible= SubStandard::all()->whereNotIn('arabic_name',$sub_standar);
         return view('admin.association.index', ['sub_standars' => $sub_standars,'dispo_sub_standars'=>$sub_standars_disponible,'id'=>$id]);
     }
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 
+use App\Association;
 use App\ReviewItem;
+use App\SubStandard;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Http\Request;
@@ -18,8 +20,8 @@ class ReviewItemController extends Controller
 
     public function index()
     {
-        $reviewitem =  ReviewItem::orderBy('updated_at', 'desc')->get();;
-        $dropdownstandar= DB::table('sub_standards')->select('sub_standards.id','sub_standards.arabic_name')->get();
+        $reviewitem =  ReviewItem::orderBy('updated_at', 'desc')->get();
+        $dropdownstandar=SubStandard::all(['sub_standards.id','sub_standards.arabic_name']);
         return view('admin.reviewItems.index', ['reviewItems' => $reviewitem,'subStandards'=>$dropdownstandar]);
     }
 
@@ -42,14 +44,22 @@ class ReviewItemController extends Controller
         );
 
         if ($validator->passes()) {
-            DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`) VALUES ('$request->arabic_name','$request->arabic_name')");
+            $review=new ReviewItem();
+            $review->arabic_name=$request->arabic_name;
+            $review->english_name=$request->arabic_name;
+            $review->save();
+           // DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`) VALUES ('$request->arabic_name','$request->arabic_name')");
             $id_array=explode(',',$request->sub_standards_id);
-            $id_review=DB::selectOne('SELECT LAST_INSERT_ID() as "id";');
-            $id_review= (array)$id_review;
+            $id_review=$review->id;
             for ($i=0;$i<count($id_array);$i++){
-                 DB::insert("INSERT INTO `association`(`id_review`, `id_sub_standar`) VALUES ('".$id_review['id']."','$id_array[$i]')");
+                // DB::insert("INSERT INTO `association`(`id_review`, `id_sub_standar`) VALUES ('".$id_review."','$id_array[$i]')");
+                $association=new Association();
+                $association->id_review=$id_review;
+                $association->id_sub_standar=$id_array[$i];
+                $association->save();
+                $association=null;
             }
-            $reviewitem=DB::select("SELECT * FROM `review_items` ORDER BY `updated_at` DESC");
+            $reviewitem=ReviewItem::orderBy('updated_at', 'desc')->get();//DB::select("SELECT * FROM `review_items` ORDER BY `updated_at` DESC");
             return response()->json($reviewitem, 201);
         } else{
             return response()->json(['error'=>$validator->errors()->all()]);
@@ -84,7 +94,8 @@ class ReviewItemController extends Controller
     {
         $reviewitem = ReviewItem::find($id);
         $reviewitem->delete();
-        DB::table('association')->where('id_review', $id)->delete();
+        Association::where('id_review',$id)->delete();
+       // DB::table('association')->where('id_review', $id)->delete();
         return response()->json(null, 204);
     }
 }

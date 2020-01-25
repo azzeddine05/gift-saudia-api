@@ -62,7 +62,7 @@ class DashboardController extends Controller
     }
     public function registrationFields()
     {
-        $registrationFields =  RegistrationField::all();
+        $registrationFields =  RegistrationField::orderBy('registration_fields.updated_at','DESC')->get();
         return view('admin.registrationFields.index', ['registrationFields' => $registrationFields]);
     }
 

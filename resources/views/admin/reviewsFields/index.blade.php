@@ -349,7 +349,9 @@
         });
 
         // Default Datatable
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            "order": []
+        });
 
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({
