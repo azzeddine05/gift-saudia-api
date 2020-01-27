@@ -28,6 +28,11 @@
 
                 <!-- Page-Title -->
                 <div class="row">
+                    <div class="col-md-10">
+                        <div style="display: none" class="alert alert-success success-update">
+                            <strong>  تم  التعديل  بنجاح</strong>
+                        </div>
+                    </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">@lang('dashboard.main_secondary_sector')</li>
                     </ol>
@@ -44,6 +49,7 @@
                         </div>
                     @endif
                     <div class="card-box table-responsive">
+
                         <div class="col-md-10">
                             <div style="display: none" class="alert alert-success success-message">
                                 <strong>نجاح العملية !</strong> تم إضافة القطاع بنجاح
@@ -81,7 +87,7 @@
                                         <a href="{{ url('admin/sub-sectors/main-sector/'.$mainSector->id) }}" class="btn btn-success btn-rounded waves-effect waves-light">
                                          @lang('dashboard.sub_sector')
                                         </a>
-                                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">@lang('dashboard.edit')</button>
+                                        <button data-id="{{ $mainSector->id }}" href="{{ url('api/admin/main-sector/'.$mainSector->id) }}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>
                                         <a href="{{ url('api/admin/main-sector/'.$mainSector->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
@@ -126,7 +132,7 @@
 <!-- End Right content here -->
 <!-- ============================================================== -->
 
-</div>
+
 <!-- END wrapper -->
 <!-- Modal -->
 <div id="custom-modal" class="modal-demo">
@@ -155,9 +161,48 @@
     </div>
 </div>
 
+
+
+<!-- Modal eddit-->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" for="position">   تعديل قطاع رئيسي  </h5>
+                <div class="alert alert-danger print-error-msg" style="display:none">
+                    <ul></ul>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="custom-modal-text @lang('sidebar.text_align')">
+                    <form id="myForm" role="form">
+                        <div class="form-group">
+                            <label for="arabic_name">@lang('dashboard.sub_sector_arabic')</label>
+                            <input type="text" class="form-control" name="arabic_name_update" id="arabic_name_update">
+                            <input type="hidden" value="" id="idField">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="english_name">@lang('dashboard.sub_sector_english')</label>
+                            <input type="text" class="form-control" name="english_name_update" id="english_name_update">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{--Modal For Sub Sectors--}}
 
-<!-- Modal -->
+
 <div id="sub-sectors-modal" class="modal-demo">
     <button type="button" class="close" onclick="Custombox.close();">
         <span>&times;</span><span class="sr-only">Close</span>
@@ -186,14 +231,6 @@
                     @endforeach
                 </select>
             </div>
-{{--            <div class="form-group">--}}
-{{--                <label for="registration_fees">@lang('dashboard.registration_fees')</label>--}}
-{{--                <input type="text" class="form-control" name="registration_fees" id="registration_fees" placeholder="">--}}
-{{--            </div>--}}
-{{--            <div class="form-group">--}}
-{{--                <label for="Subscription_fees">@lang('dashboard.subscription_fees')</label>--}}
-{{--                <input type="text" class="form-control" name="Subscription_fees" id="Subscription_fees" placeholder="">--}}
-{{--            </div>--}}
 
             <button id="addSubSector" type="submit" class="btn btn-default waves-effect waves-light">@lang('dashboard.save')</button>
             <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">@lang('dashboard.cancel')</button>
@@ -251,10 +288,58 @@
 
         });
 
+
+        $(".editField").click(function(e) {
+            e.preventDefault();
+            var path = $(this).attr("href");
+            var id = $(this).attr("data-id");
+            $("#idField").val(id);
+            axios.get(path)
+                .then(response => {
+                    console.log(response.data);
+                    $( "#arabic_name_update" ).val(response.data.arabic_name);
+                    $( "#english_name_update" ).val(response.data.english_name);
+                    $( "#modalEdit" ).modal('show');
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+        });
+
+        $("#updateFieldRegistred").click(function(e) {
+            e.preventDefault();
+            var id = $("#idField").val();
+            var path = "/api/admin/main-sector/"+id;
+            var data = {
+                arabic_name : $("#arabic_name_update" ).val(),
+                english_name : $("#english_name_update" ).val(),
+                id: id
+            };
+            console.log(data);
+            axios.put(path, data)
+                .then(response => {
+
+                    if($.isEmptyObject(response.data.error)){
+                        $(".success-update").fadeIn();
+                        $("html, body").animate({
+                            scrollTop: 0
+                        }, "slow");
+                        setTimeout(function(){ location.reload(); }, 2200);
+                    }else{
+                        printErrorMsg(response.data.error);
+                    }
+                })
+
+        });
+
+        var path="";
+        $('.btnDelete').click(function(e) {
+            e.preventDefault();
+            path=e.target.getAttribute('href');
+        });
         // Delete MainSector
         $('.deleteNow').click(function(e) {
             e.preventDefault();
-            var path = $('.btnDelete').attr("href");
             axios.delete(path)
                 .then(response => {
                     console.log(response);
@@ -305,7 +390,9 @@
             });
         }
         // Default Datatable
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            "order": []
+        });
 
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({

@@ -12,9 +12,9 @@ class MainSector extends Model
      * @var string
      */
     protected $table = 'main_sectors';
-
+    public $timestamps=true;
     protected $fillable = [
-        'arabic_name', 'english_name', 'created_at'
+        'arabic_name', 'english_name', 'created_at','updated_at'
     ];
 
 

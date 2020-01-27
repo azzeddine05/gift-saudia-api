@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
     public function mainSectors()
     {
-        $mainSectors =  MainSector::all();
+        $mainSectors =  MainSector::orderBy('updated_at','DESC')->get();
         return view('admin.mainSector.index', ['mainSectors' => $mainSectors]);
 
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\api\mainSectors;
 
 use App\MainSector;
-use App\MainStandard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +26,10 @@ class MainSectorController extends Controller
         return MainSector::all();
     }
 
-    public function show(MainSector $mainSector)
+    public function show($id)
     {
-        return $mainSector;
+        $mainSector=MainSector::find($id);
+        return response()->json($mainSector,200);
     }
 
     public function store(Request $request)
@@ -54,16 +54,16 @@ class MainSectorController extends Controller
         }
     }
 
-    public function update(Request $request, MainSector $mainSector)
+    public function update($id,Request $request)
     {
+        $mainSector= MainSector::find($id);
         $mainSector->update($request->all());
-
         return response()->json($mainSector, 200);
     }
 
     public function delete($id)
     {
-        $mainSector = MainStandard::find($id);
+        $mainSector = MainSector::find($id);
         $mainSector->delete();
         return response()->json(null, 204);
     }

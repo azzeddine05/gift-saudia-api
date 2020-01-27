@@ -33,6 +33,11 @@ class SubSectorController extends Controller
 
     public function store(Request $request)
     {
+        $mainSector_update=MainSector::find($request->main_sector_id);
+        $mainSector_update->updated_at=date('Y-m-d H:i:s');
+       // $mainSector_update->created_at=date('Y-m-d H:i:s');
+        $mainSector_update->save();
+
         $validator = Validator::make($request->all(), [
             'arabic_name' => 'required',
             'english_name' => 'required',

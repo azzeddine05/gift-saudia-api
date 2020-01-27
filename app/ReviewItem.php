@@ -11,7 +11,8 @@ class ReviewItem extends Model
      *
      * @var array
      */
+    public $timestamps=true;
     protected $fillable = [
-        'arabic_name', 'english_name', 'sub_standards_id'
+        'arabic_name', 'english_name', 'sub_standards_id','created_at','updated_at'
     ];
 }

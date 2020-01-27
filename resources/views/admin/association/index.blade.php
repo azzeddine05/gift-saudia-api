@@ -78,8 +78,8 @@
                                 <tr>
                                     <td>{{ $sub_standar->arabic_name }}</td>
                                     <td>{{ $sub_standar->english_name }}</td><td>
-                                    <!--    <button data-id="{{ $sub_standar->id }}" href="{{ url('/admin/review-items/'.$sub_standar->id) }}" class="btn btn-primary btn-rounded waves-effect waves-light editField">@lang('dashboard.edit')</button>-->
-                                        <a href="{{ url('admin/sub-standars/reviewItems/'.$sub_standar->id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
+
+                                        <a href="{{ url('admin/sub-standars/reviewItems/'.$sub_standar->id.'/'.$id) }}" class="btn btn-danger btn-rounded waves-effect waves-light btnDelete" data-toggle="modal" data-url="" data-id="" data-target="#custom-width-modal">@lang('dashboard.delete')</a>
                                         <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
                                             <div class="modal-dialog" style="width:55%;">
                                                 <div class="modal-content">
@@ -153,52 +153,6 @@
     </div>
 </div>
 
-<!-- Modal edit-->
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="@lang('sidebar.direction')">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" for="position">@lang('review.edit_field') </h5>
-                <div class="alert alert-danger print-error-msg" style="display:none">
-                    <ul></ul>
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="custom-modal-text @lang('sidebar.text_align')">
-                    <form id="myForm" role="form">
-                        {{method_field('PUT')}}
-                        <div class="form-group">
-                            <label for="arabic_name">@lang('review.arabic_name')</label>
-                            <input type="text" class="form-control" name="arabic_name_update" id="arabic_name_update">
-                            <input type="hidden" value="" id="idField">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="english_name">@lang('review.english_name')</label>
-                            <input type="text" class="form-control" name="english_name_update" id="english_name_update">
-                        </div>
-                        <div class="form-group">
-                            <label for="type">@lang('review.type')</label>
-                            <select class="form-control "  id="sub_standards_id2" name="sub_standards_id">
-                                <option value="" disabled selected>@lang('constructorRegister.sub_sector')</option>
-                                @foreach ($sub_standars as $sub_standar)
-                                    <option value="{{ $sub_standar->id }}">{{ $sub_standar->arabic_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer" style="@lang('sidebar.flex_edit_modal_btn')">
-                <button id="updateFieldRegistred" class="btn btn-default waves-effect waves-light" data-dismiss="modal" aria-label="Close">@lang('dashboard.save') </button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" data-dismiss="modal" aria-label="Close">@lang('dashboard.cancel')</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal -->
 
@@ -210,6 +164,7 @@
 
 
 <script type="text/javascript">
+
     var selectedItem="";
     $(document).ready(function() {
         var $elem = $('#sub_standards_id');
@@ -258,57 +213,6 @@
                 })
         });
 
-
-        $(".editField").click(function(e) {
-            e.preventDefault();
-            var data = getDatafromForm();
-            var path = $(this).attr("href");
-            var id = $(this).attr("data-id");
-            $("#idField").val(id);
-
-            axios.get(path,data)
-                .then(response => {
-                    console.log(response.data);
-                    $( "#arabic_name_update" ).val(response.data.arabic_name);
-                    $( "#english_name_update" ).val(response.data.english_name);
-                    $( "#sub_standards_id" ).val(response.data.sub_standards_id);
-                    $( "#modalEdit" ).modal('show');
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
-        });
-
-        $("#updateFieldRegistred").click(function(e) {
-            e.preventDefault();
-            var arabic_name = "";
-            var english_name = "";
-            //var data = getDatafromFormUpdate();
-            var id = $("#idField").val();
-            var path = '/admin/review-items/'+id;
-
-            var data = {
-                arabic_name :document.getElementById('arabic_name_update').value, //$("#arabic_name_update" ).val(),
-                english_name : document.getElementById('english_name_update').value,//$("#arabic_name_update" ).val(),
-                sub_standards_id : document.getElementById('sub_standards_id').value,//$("#arabic_name_update" ).val(),
-                id: id
-            };
-            axios.put(path, data)
-                .then(response => {
-                    if($.isEmptyObject(response.data.error)){
-                        $(".success-update").fadeIn();
-                        $("html, body").animate({
-                            scrollTop: 0
-                        }, "slow");
-                        setTimeout(function(){ location.reload(); }, 2200);
-                    }else{
-                        printErrorMsg(response);
-                    }
-                })
-
-        });
-
-
         function printErrorMsg (msg) {
             $(".print-error-msg").find("ul").html('');
             $(".print-error-msg").css('display','block');
@@ -316,10 +220,12 @@
                 $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
             });
         }
-
-        $('.deleteNow').click(function(e) {
+        var path="";
+        $('.btnDelete').click(function(e) {
             e.preventDefault();
-            var path = $('.btnDelete').attr("href")+"/"+id_review;
+            path=e.target.getAttribute('href');
+        });
+        $('.deleteNow').click(function() {
             axios.delete(path)
                 .then(response => {
                     console.log(response);
@@ -342,7 +248,9 @@
         });
 
         // Default Datatable
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            "order": []
+        });
 
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({
