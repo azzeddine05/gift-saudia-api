@@ -11,5 +11,7 @@ return[
     'direction_navbar'=>'navBar-left',
     'direction'=>'direction:ltr;',
     'text_align'=>'text-right',
-    'flex_edit_modal_btn'=>'justify-content: flex-start;'
+    'flex_edit_modal_btn'=>'justify-content: flex-start;',
+    'multiSelect'=>'left',
+    'icon'=>'right',
 ];

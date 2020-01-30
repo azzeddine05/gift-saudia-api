@@ -3,7 +3,15 @@
 <html>
 @include('layouts/back/head');
 
-
+<style>
+.filter-option{
+    text-align:@lang('sidebar.multiSelect') !important
+}
+.dropdown-toggle::after{
+    float:@lang('sidebar.icon') !important;
+    margin-top:-10px
+}
+</style>
 <body class="fixed-left">
 
 <!-- Begin page -->
@@ -140,8 +148,7 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="type">@lang('review.type')</label>
-                <select multiple data-style="bg-white rounded-pill px-4 border" name="sub_standards_id" id="sub_standards_id"  class="selectpicker w-100">
-                    <option value="" disabled >@lang('constructorRegister.sub_sector')</option>
+                <select multiple data-style="bg-white rounded-pill px-4 border" title="@lang('constructorRegister.sub_sector')"  name="sub_standards_id" id="sub_standards_id"  class="selectpicker w-100">
                     @foreach ($dispo_sub_standars as $dispo_sub_standar)
                         <option value="{{ $dispo_sub_standar->id }}">{{ $dispo_sub_standar->arabic_name}}</option>
                     @endforeach

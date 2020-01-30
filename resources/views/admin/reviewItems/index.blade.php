@@ -2,7 +2,15 @@
 <html>
 @include('layouts/back/head');
 
-
+<style>
+.filter-option{
+    text-align:@lang('sidebar.multiSelect') !important
+}
+.dropdown-toggle::after{
+    float:@lang('sidebar.icon') !important;
+    margin-top:-10px
+}
+</style>
 
 <body class="fixed-left">
 
@@ -157,7 +165,7 @@
             <div class="form-group">
                 <!-- Multiselect dropdown -->
                 <label for="type">@lang('review.type')</label>
-                <select multiple data-style="bg-white rounded-pill px-4 border" name="sub_standards_id" id="sub_standards_id"  class="selectpicker w-100">
+                <select multiple data-style="bg-white rounded-pill px-4 border" name="sub_standards_id" id="sub_standards_id"  title="@lang('constructorRegister.sub_sector')"  class="selectpicker w-100">
                     @foreach ($subStandards as $subStandard)
                         <option value="{{ $subStandard->id }}">{{ $subStandard->arabic_name}}</option>
                     @endforeach
