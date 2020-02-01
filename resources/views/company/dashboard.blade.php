@@ -139,7 +139,7 @@
     <!-- ============================================================== -->
 
 
-    <!-- Right Sidebar -->
+    <!-- Right Sidebar-->
     <div class="side-bar right-bar nicescroll">
         <h4 class="text-center">Chat</h4>
         <div class="contact-list nicescroll">
@@ -247,7 +247,7 @@
             </ul>
         </div>
     </div>
-    <!-- /Right-bar -->
+   <!--  /Right-bar -->
 
 </div>
 <!-- END wrapper -->
@@ -291,7 +291,6 @@
 
     !function($) {
         "use strict";
-
         var FormWizard = function() {};
         var regsitred = "{{ $registred }}";
         var payed = "{{ $payed }}";
@@ -304,7 +303,6 @@
         }else {
             activeStep = 0;
         }
-
         FormWizard.prototype.createBasic = function($form_container) {
             $form_container.children("div").steps({
                 headerTag: "h3",
@@ -319,7 +317,6 @@
                     //NOTE: Submit the form, if all validation passed.
                     console.log("Form can be submitted using submit method. E.g. $('#basic-form').submit()");
                     $("#basic-form").submit();
-
                 }
             });
             return $form_container;
@@ -362,7 +359,6 @@
                                    console.log(response);
                                    window.location.replace('/company/dashboard');
                                    //$(".success-message").fadeIn();
-
                                })
                                .catch(error => {
                                    console.log(error.response)
@@ -371,13 +367,27 @@
                        if(currentIndex == 1) {
                            //alert('save payment');
                        }
-
                         $form_container.validate().settings.ignore = ":disabled,:hidden";
                         return $form_container.valid();
                     },
                     onFinishing: function (event, currentIndex) {
-                        $form_container.validate().settings.ignore = ":disabled";
-                        return $form_container.valid();
+                        var isChecked = $('#inlineRadio3').prop('checked');
+                        if(isChecked){
+                            //company.dashboard.update
+                            event.preventDefault();
+                            console.log(event);
+                            axios.post('/company/dashboard/{{$company->user_id}}')
+                                .then(response => {
+                                    console.log(response);
+                                    window.location.replace('/company/dashboard');
+                                    //$(".success-message").fadeIn();
+                                })
+                                .catch(error => {
+                                    console.log(error.response)
+                                });
+                            $form_container.validate().settings.ignore = ":disabled";
+                            return $form_container.valid();
+                        }
                     },
                     onFinished: function (event, currentIndex) {
                         alert("Submitted!");
@@ -414,14 +424,7 @@
             },
             //init
             $.FormWizard = new FormWizard, $.FormWizard.Constructor = FormWizard
-
            // $(this).wizard ('moveTo', 4)
-
-
-
-
-
-
     }(window.jQuery),
 
 //initializing

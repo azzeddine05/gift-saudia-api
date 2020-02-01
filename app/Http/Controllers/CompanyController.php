@@ -26,10 +26,10 @@ class CompanyController extends Controller
         $delivred = false;
         $RegistrationFields =  RegistrationField::all();
         $user = Auth::User();
-        
+
         if($user->hasRole('admin')) {
             $readOnly = "readOnly";
-            $company = Company::where('user_id', 4)->firstOrFail();
+            $company = Company::where('user_id', 2)->firstOrFail();
             return view('company.dashboard', ['RegistrationFields' => $RegistrationFields, 'registred'
                 => $registred, 'payed' => $payed, 'delivred' => $delivred, 'readOnly' => $readOnly
                 ]
@@ -41,12 +41,12 @@ class CompanyController extends Controller
 
         // dd($company);
         // dd($company->isAllStepsCompleted());
-        
+
         if($company->isAllStepsCompleted()) {
             //if all steps are completed redirect to fill the ready-model-form
-            return redirect()->route('company.ready.model.reply');            
+            return redirect()->route('company.ready.model.reply');
         }
-        
+
         $userId = Auth::id();
         $registred = false;
         $payed = false;
@@ -75,7 +75,7 @@ class CompanyController extends Controller
 //        }
         //$RegistrationFields =  RegistrationField::all();
         return view('company.dashboard', ['RegistrationFields' => $RegistrationFields, 'registred'
-            => $registred, 'payed' => $payed, 'delivred' => $delivred, 'readOnly' => $readOnly
+            => $registred, 'payed' => $payed, 'delivred' => $delivred, 'readOnly' => $readOnly,'company'=>$company
             ]
         );
 
@@ -93,7 +93,6 @@ class CompanyController extends Controller
             $registredCompany->type = $data['type'];
             $registredCompany->save();
             $this->companyChangeStatusRegistred();
-
         }
 
         return response()->json("success", 201);
@@ -117,4 +116,8 @@ class CompanyController extends Controller
 
     }
 
+    public function  updateOrderDelivery($id){
+        $userId = Auth::id();
+        Company::where('user_id', $userId)->update(['order_delivery' => true]);
+    }
 }

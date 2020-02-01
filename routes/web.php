@@ -69,6 +69,7 @@ Route::get('user/profile', 'ProfileController@index')->name('user.profile');
 //add protection on company dashboard
 Route::middleware(['web','auth:web'])->group(function(){
     Route::get('/company/dashboard', 'CompanyController@index')->name('company.dashboard');
+    Route::post('/company/dashboard/{id}', 'CompanyController@updateOrderDelivery');
     // Route::get('/company/ready-model-registred','ReadyModelReplyController@index')->name('company.ready.model.reply');
     Route::get('/company/ready-model-registred','ReadyModelControlller@index')->name('company.ready.model.reply');
     Route::post('/company/ready-model-reply','ReadyModelControlller@storeRegistredFields')->name('company.ready.model.reply.store');
