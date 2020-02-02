@@ -36,6 +36,7 @@ class ReviewItemController extends Controller
         $validator = Validator::make($request->all(), [
             'arabic_name' => 'required',
             'english_name' => 'required',
+            'sub_standards_id' => 'required',
         ],
             [
                 'arabic_name.required' => 'مطلوب إسم الحقل  بالعربية !',
@@ -46,7 +47,7 @@ class ReviewItemController extends Controller
         if ($validator->passes()) {
             $review=new ReviewItem();
             $review->arabic_name=$request->arabic_name;
-            $review->english_name=$request->arabic_name;
+            $review->english_name=$request->english_name;
             $review->save();
            // DB::insert("INSERT INTO `review_items`( `arabic_name`, `english_name`) VALUES ('$request->arabic_name','$request->arabic_name')");
             $id_array=explode(',',$request->sub_standards_id);
