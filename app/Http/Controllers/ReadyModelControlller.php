@@ -46,12 +46,12 @@ class ReadyModelControlller extends Controller
         if($request->validated())
         {
             $request->storeRepliesWithFields();
-            return redirect()->route('company.ready.model.reply');
+            return redirect()->route('company.ready.model.redirect');
         }
         else {
             redirect()->withErrors($request->getValidatorInstance(), 'company.ready.model.reply');
         }
-        
+
     }
 
 

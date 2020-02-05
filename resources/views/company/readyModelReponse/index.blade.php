@@ -39,52 +39,52 @@
 
                 <!-- Inline Form -->
                 <div class="row">
-                    <form action="{{ route('company.ready.model.reply.store') }}" method="POST" enctype="multipart/form-data"> 
-                    @csrf
+                    <form action="{{ route('company.ready.model.reply.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         @foreach($readyModels as $readyModel)
-                        <div id="" class="col-md-12">
-                            <div class="card-box">
-                                <h4 class="m-t-0 header-title">حقول نموذج الجاهزية</h4><br>
-                                <div style="margin-right: 30%" class="row">
-                                    <div class="col-md-6">
+                            <div id="" class="col-md-12">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title">حقول نموذج الجاهزية</h4><br>
+                                    <div style="margin-right: 30%" class="row">
+                                        <div class="col-md-6">
 
+                                        </div>
                                     </div>
-                                </div>
-                                <span id="{{ $readyModel->id }}" style="color: #0b97c4">{{ $readyModel->arabic_name }}</span>
-                                <div class="row m-b-30">
-                                    <div class="col-sm-12">
+                                    <span id="{{ $readyModel->id }}" style="color: #0b97c4">{{ $readyModel->arabic_name }}</span>
+                                    <div class="row m-b-30">
+                                        <div class="col-sm-12">
                                         <!-- <form action="{{ route('company.ready.model.reply.store') }}" method="POST" enctype="multipart/form-data">  -->
-                                            <!-- @csrf -->
+                                        <!-- @csrf -->
                                             @foreach($readyModel->subStandard as $rModel)
-                                            <div id="" class="form-inline">
-                                                <div style="" class="form-group mx-sm-3 mainStandard">
-                                                    <label for="" class="">{{ $rModel->arabic_name }}</label>
-                                                </div>
-                                                <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
-                                                    <textarea id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder="">@foreach($readyModelReplies as $readyModelReply) @if($readyModelReply->sub_standard_id == $rModel->id) {{ $readyModelReply->value }} @endif @endforeach</textarea>
-                                                    @foreach($readyModelReplies as $readyModelReply)
-                                                        @if($readyModelReply->sub_standard_id == $rModel->id)
-                                                        <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" value="{{ $readyModelReply->id }}" />
-                                                        @endif
-                                                    @endforeach
-                                                    <div>
-                                                        <label>مرفقات</label>
-                                                        <input type="file" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" class="form-control " placeholder="Upload" />
+                                                <div id="" class="form-inline">
+                                                    <div style="" class="form-group mx-sm-3 mainStandard">
+                                                        <label for="" class="">{{ $rModel->arabic_name }}</label>
+                                                    </div>
+                                                    <div id="rModel-{{ $rModel->id }}" class="form-group mx-sm-3 mainStandard subStandard">
+                                                        <textarea id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}" class="form-control " maxlength="225" rows="2" placeholder="">@foreach($readyModelReplies as $readyModelReply) @if($readyModelReply->sub_standard_id == $rModel->id) {{ $readyModelReply->value }} @endif @endforeach</textarea>
                                                         @foreach($readyModelReplies as $readyModelReply)
-                                                            @if($readyModelReply->sub_standard_id == $rModel->id && $readyModelReply->file)
-                                                            <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" value="{{ $readyModelReply->file->id }}" />
+                                                            @if($readyModelReply->sub_standard_id == $rModel->id)
+                                                                <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_id" value="{{ $readyModelReply->id }}" />
                                                             @endif
                                                         @endforeach
+                                                        <div>
+                                                            <label>مرفقات</label>
+                                                            <input type="file" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_file" class="form-control " placeholder="Upload" />
+                                                            @foreach($readyModelReplies as $readyModelReply)
+                                                                @if($readyModelReply->sub_standard_id == $rModel->id && $readyModelReply->file)
+                                                                    <input type="hidden" id="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" name="{{ $readyModel->english_name }}_{{ $rModel->english_name }}_{{ $rModel->id }}_reply_file" value="{{ $readyModelReply->file->id }}" />
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div><br>
-                                            @endforeach
+                                                </div><br>
+                                        @endforeach
                                         <!-- </form> -->
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                         <div class="m-t-30 text-center">
                             <button type="submit" id="addReadyModel" class="btn btn-default waves-effect waves-light btn-sm">سلم الطلب</button>
@@ -239,6 +239,7 @@
         $(document).on("click", ".button-delete", function() {
             console.log("inside");
         });
+
         // $(document).on("click","#addReadyModel", function(e) {
         //     e.preventDefault();
         //     var data = [];

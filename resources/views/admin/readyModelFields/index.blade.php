@@ -208,7 +208,7 @@
         $("#addSubSector").click(function(e) {
             e.preventDefault();
             var data = getDatafromFormSubSector();
-            axios.post('http://localhost:8000/api/admin/sub-sector', data)
+            axios.post('/api/admin/sub-sector', data)
                 .then(response => {
                     console.log(response);
                     Custombox.close();

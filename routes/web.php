@@ -13,6 +13,8 @@
 
 // Backend
 Route::prefix('admin')->namespace('admin')->group(function () {
+
+
     Route::get('company/confirm', 'DashboardController@confirmRegistred')->name('company.confirm.registred');
     Route::get('gift-steps', 'DashboardController@giftSteps')->name('gift.steps');
     Route::get('main-sectors', 'DashboardController@mainSectors')->name('gift.mainSectors');
@@ -77,6 +79,10 @@ Route::middleware(['web','auth:web'])->group(function(){
 Route::get('/admin/all-companies', 'CompanyController@getAllCompanies')->name('companies.all');
 Route::post('/company/company-registre','CompanyController@storeRegistredFields');
 Route::get('/companies/ready-model-notcofirmed', 'ReadyModelReplyController@getAllReplyReadyModelsReplyNotDelivred')->name('raedy.model.reply.new');
+//redirection
+Route::get('company/success-confirm',function (){
+    return view('company.endReadyModelRegistred');
+})->name('company.ready.model.redirect');
 
 
 
