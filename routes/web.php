@@ -82,7 +82,7 @@ Route::get('/companies/ready-model-notcofirmed', 'ReadyModelReplyController@getA
 //redirection
 Route::get('company/success-confirm',function (){
     return view('company.endReadyModelRegistred');
-})->name('company.ready.model.redirect');
+})->name('admin/ready-model-fields/add');
 
 
 
@@ -98,6 +98,10 @@ Route::get('dashboard', 'admin\DashboardController@index');
 
 
 // FrontEnd
+Route::get('reviews/ready_model_reply','reviewModelReplyController@index');
+
+
+
 Route::get('/','CalcDateController@index');
 
 
@@ -118,3 +122,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('stripe', 'StripePaymentController@stripe');
 //Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
 // Route::post('/make-payment', 'StripePaymentController@pay');
+
