@@ -1,4 +1,4 @@
-/* =============
+#wrapper/* =============
    Common
 ============= */
 
@@ -65,7 +65,6 @@ a {
 }
 
 #wrapper {
-  height: $height;
   overflow: hidden;
   width: $width;
 }

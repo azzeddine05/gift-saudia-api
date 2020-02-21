@@ -15,7 +15,7 @@
 <body class="fixed-left">
 
 <!-- Begin page -->
-<div id="wrapper">
+<div id="wrapper" style="height: initial !important;">
 
     <!-- Top Bar Start -->
     @include('layouts/back/topBar');
