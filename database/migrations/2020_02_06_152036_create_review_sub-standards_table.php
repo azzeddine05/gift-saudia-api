@@ -19,7 +19,7 @@ class CreateReviewSubStandardsTable extends Migration
             $table->string('power');
             $table->string('improve')->default(' ');
             $table->unsignedInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('users');
+            //$table->foreign('company_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
